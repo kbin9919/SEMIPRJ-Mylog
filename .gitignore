@@ -1,0 +1,11 @@
+/.metadata/
+*.classpath
+*.project
+Mylog/.settings/.jsdtscope
+Mylog/.settings/
+*.MF
+Mylog/src/main/webapp/WEB-INF/.gitignore
+Mylog/src/main/webapp/WEB-INF/web.xml
+Servers/.settings/org.eclipse.core.resources.prefs
+Servers/.settings/org.eclipse.wst.server.core.prefs
+Servers/Tomcat v9.0 Server at localhost-config/
