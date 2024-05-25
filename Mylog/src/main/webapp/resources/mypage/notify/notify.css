@@ -1,0 +1,95 @@
+.notify {
+    display: grid;
+    grid-template-rows: 1fr 1.3fr 9.5fr;
+    place-items: center center;
+    grid-column: span 3;
+    grid-row: span 2;
+    margin-top: 40px;
+}
+
+.notify-togle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
+    font-size: 15px;    
+    font-weight: 900;
+    padding: 15px;
+}
+.notify-togle div{
+    display: flex;
+    gap: 14px;
+}
+.notify-togle-border{
+    border: 2px solid rgb(80, 79, 79);
+    border-radius: 20px;
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.notify-togle-focus{
+    border: 2px solid green;
+    color: rgb(57, 200, 57);
+}
+
+.notify-togle > div:nth-child(2)>a{
+    color: rgb(113, 113, 113);
+    font-size: 11px;
+}
+
+.notify-list {
+    width: 57%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 6px;
+}
+
+.notify-list-name {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-column: 1fr 1fr;
+    place-items: center center;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.notify-list-name>div:nth-child(odd) {
+    grid-row: span 2;
+}
+
+.notify-list-name>div:nth-child(even) {
+    display: flex;
+    place-items: center center;
+    width: 100%;
+    gap: 10px;
+}
+
+#notify-email {
+    color: gray;
+    font-size: 12px;
+}
+
+#notify-date {
+    font-size: 11px;
+    font-weight: 900;
+}
+
+#notify-img {
+    border: 1.7px solid black;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+    font-weight: 900;
+    font-size: 11px;
+}
