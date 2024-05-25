@@ -1,0 +1,221 @@
+/* 바디 */
+.font-weight{
+    font-weight: 900;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.img{
+    color: gray;
+    font-size: 13px;
+    font-weight: 900;   
+}
+
+body {
+    background-color: rgb(247, 243, 243);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 7fr 2fr;
+    width: 98vw;
+    height: 120vh;
+    background-color: rgb(247, 247, 247);
+}
+/* TOP */
+header {
+    grid-column: span 3;
+}
+.top {
+    color: black;
+    font-weight: 900;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 13px;
+    justify-items: center;
+    gap: 15px;
+}
+
+.top-right {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 0px;
+}
+
+#newBoard {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 80px;
+    height: 20px;
+    background-color: rgb(252, 250, 248);
+}
+
+/* MIDLE */
+.midle {
+    grid-column: span 3;
+    display: grid;
+    grid-template-rows: 3.5fr 1fr 3fr 1fr;
+    justify-items: center;
+}
+
+.midle-profile {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-rows: 1fr 1fr;
+    font-size: 22px;
+    width: 550px;
+    place-items: center start;
+    padding: 20px;
+    border-bottom: 2px solid rgb(224, 223, 223);
+    margin-top: 40px;
+    
+}
+
+.midle-profile>:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: span 2;
+    border: 2px solid rgb(212, 208, 208);
+    border-radius: 500px;
+    width: 110px;
+    height: 110px; 
+    background-color: rgb(231, 226, 226);
+}
+
+.midle-follow {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    width: 550px;
+    height: 43px;
+}
+
+.midle-category{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    place-items: center center;
+    gap: 50px;
+    font-size: 20px;
+    font-weight: 900;
+}
+.midle-category> a:hover{
+    cursor: pointer;
+}
+
+.category-focus{
+    display: flex;
+    justify-content: center;
+    color: rgb(101, 214, 93);
+    border-bottom: 2px solid rgb(85, 220, 85);
+    width: 180%;
+    padding-bottom: 3px;
+}
+
+.midle-search {
+    width: 600px;
+    display: flex;
+    justify-content: end;
+}
+input[name="midle-search"]{
+    border: 1px solid gray;
+    background-color: rgb(252, 252, 252);
+    height: 24px;
+    border-radius: 15px;
+    padding-left: 26px;
+}
+#search-icon{
+    position: relative;
+    left: 25px;
+    top: 1px;
+}
+/* TAG */
+.tag {
+    display: flex;
+    justify-content: end;
+}
+
+.tag>table {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 2;
+}
+
+#tagList {
+    font-weight: 900;
+    border-bottom: 1px solid black;
+    width: 130px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.tag-focus{
+    color: rgb(101, 214, 93);
+    font-weight: 900;
+}
+td > a:hover{
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+/* CONTENT */
+.board {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 7fr 1fr 2.5fr 1fr 1fr;
+    place-items: center center;
+    height: 300px;
+    gap: 20px;
+    font-size: 12px;
+}
+
+.img {
+    border: 1px solid black;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board>div {
+    width: 600px;
+    display: flex;
+    justify-content: start;
+}
+
+#board-title {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+#board-tag {
+    gap: 8px;
+}
+
+#board-tag>a{
+    border: 1px solid rgb(245, 241, 241);
+    border-radius: 15px;
+    background-color: beige;
+    color: rgb(25, 183, 67);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    width: fit-content;
+    height: 12px;
+}
+#board-tag>a:hover{
+    color: rgb(33, 241, 89);
+}
+
+#board-etc {
+    gap: 10px;
+}
