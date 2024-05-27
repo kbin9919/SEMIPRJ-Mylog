@@ -9,28 +9,7 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/views/layout/header.jsp" %>
-        
-        <div class="midle">
-            <div class="midle-profile">
-                <div class="img"><img src="" alt="기본이미지"></div>
-                <div class="font-weight">이경빈</div>
-                <div style="color: rgb(99, 98, 98);">no pain no gain</div>
-            </div>
-            <a href="" class="midle-follow">
-                <div><span class="font-weight">n</span> 팔로워</div>
-                <div><span class="font-weight">n</span> 팔로잉</div>
-            </a>
-            <div class="midle-category">
-                <a href="" class="category-focus">글</a>
-                <a >시리즈</a>
-                <a >소개</a>
-            </div>
-            <div class="midle-search">
-                <form action="" method="post">
-                    <span id="search-icon">🔍</span><input type="text" name="midle-search" placeholder="검색어를 입력하세요">
-                </form>
-            </div>
-        </div>
+        <%@ include file="/WEB-INF/views/layout/defaultMypage.jsp" %>
         <div class="tag">
             <table>
                 <tr><td><div id="tagList">태그 목록</div></td></tr>

@@ -219,3 +219,38 @@ td > a:hover{
 #board-etc {
     gap: 10px;
 }
+.series{
+    grid-row: span 2;
+    display: flex;
+    justify-content: center;
+}
+
+.series > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    place-items: center center;    
+    font-size: 12px;
+    width: 630px;
+    row-gap: 20px;
+    height: 400px;
+}
+
+.series-board{
+    display: grid;
+    grid-template-rows: 10fr 1fr 1fr;
+    gap: 10px;
+    width: 90%;
+    height: 100%;
+}
+.series-item{
+    display: flex;   
+    justify-content: end;
+}
+.series-img{
+    border: 1px solid black;
+    width: 100%;
+}
+.seres-title{
+    font-weight: 900;
+}
