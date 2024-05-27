@@ -20,14 +20,14 @@
             <div class="setting-info">
                 <div>이름</div>
                 <div>한줄 소개</div>
-                <a href="">수정</a>
+                <div class="setting-Change" >수정</div>
             </div>
         </div>
         <div class="setting-list">
-            <div>
+            <div class="setting-social"> 
                 <div class="setting-list-title">소셜 정보</div>
-                <a href="">정보 추가</a>
-                <div>포스트 및 블로그에서 보여지는 프로필에 공개되는 소셜 정보입니다.</div>
+                <div class="setting-Change">정보 추가</div>
+                <div class="setting-list-ex">포스트 및 블로그에서 보여지는 프로필에 공개되는 소셜 정보입니다.</div>
             </div>
             <div>
                 <div class="setting-list-title">테마</div>
