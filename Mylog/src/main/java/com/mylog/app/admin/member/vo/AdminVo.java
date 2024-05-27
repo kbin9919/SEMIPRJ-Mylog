@@ -1,4 +1,4 @@
-package com.mylog.app.admin.vo;
+package com.mylog.app.admin.member.vo;
 
 public class AdminVo {
 	private String no;

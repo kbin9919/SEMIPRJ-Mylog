@@ -1,8 +1,8 @@
-package com.mylog.app.admin.dao;
+package com.mylog.app.admin.member.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.vo.AdminVo;
+import com.mylog.app.admin.member.vo.AdminVo;
 
 public class AdminDao {
 
