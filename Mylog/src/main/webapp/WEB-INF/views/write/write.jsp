@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="/Mylog/resources/write/write.css">
 <script defer src="/Mylog/resources/write/write.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
 <body>

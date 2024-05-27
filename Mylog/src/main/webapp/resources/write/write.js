@@ -1,7 +1,11 @@
-document.getElementById('inputTitle').addEventListener('input', function() {
-	document.getElementById('outputTitle').innerText = this.value;
+$(document).ready(function() {
+    $('#inputTitle').on('input', function() {
+        $('#outputTitle').text($(this).val());
+    });
 });
 
-document.getElementById('inputText').addEventListener('input', function() {
-	document.getElementById('outputText').innerText = this.value;
+$(document).ready(function() {
+    $('#inputText').on('input', function() {
+        $('#outputText').text($(this).val());
+    });
 });
