@@ -9,6 +9,7 @@
     </head>
     <body>
         <%@ include file="/WEB-INF/views/layout/header.jsp" %>
+        
     <div class="setting">
         <div class="setting-profile">
             <div class="setting-img">
@@ -23,10 +24,10 @@
             </div>
         </div>
         <div class="setting-list">
-            <div class="setting-social">
+            <div>
                 <div class="setting-list-title">소셜 정보</div>
                 <div class="setting-Change">정보 추가</div>
-                <div class="setting-list-ex">포스트 및 블로그에서 보여지는 프로필에 공개되는 소셜 정보입니다.</div>
+                <div>포스트 및 블로그에서 보여지는 프로필에 공개되는 소셜 정보입니다.</div>
             </div>
             <div>
                 <div class="setting-list-title">테마</div>
@@ -42,6 +43,5 @@
             </div>
         </div>
     </div>
-
 </body>
 </html>
