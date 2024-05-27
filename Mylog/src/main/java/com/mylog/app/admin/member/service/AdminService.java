@@ -1,9 +1,9 @@
-package com.mylog.app.admin.service;
+package com.mylog.app.admin.member.service;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.dao.AdminDao;
-import com.mylog.app.admin.vo.AdminVo;
+import com.mylog.app.admin.member.dao.AdminDao;
+import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
 
 public class AdminService {
@@ -18,9 +18,8 @@ public class AdminService {
 		// dao
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
 		AdminVo loginAdminVo = dao.getAdminVo(ss, vo);
-		
 		// biz
-		if (!vo.getAdminYn().equals("Y")) {
+		if (!loginAdminVo.getAdminYn().equals("Y")) {
 			throw new Exception("관리자가 아닙니다.");
 		}
 		

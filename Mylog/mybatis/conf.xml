@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.mylog.app.admin.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.mylog.app.admin.member.vo.AdminVo" alias="AdminVo"/>
 	</typeAliases>
 	
   <environments default="development">

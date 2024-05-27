@@ -1,4 +1,4 @@
-package com.mylog.app.admin.controller;
+package com.mylog.app.admin.member.controller;
 
 import java.io.IOException;
 
