@@ -14,7 +14,6 @@ withFocus.on('click', function (event) {
     }
 });
 const withFollowing = $("#with-following");
-console.log(withFollowing);
 withFollowing.hover(function () { withFollowing.text("언팔로우"); }
     , function () { withFollowing.text("팔로잉"); }
 );
