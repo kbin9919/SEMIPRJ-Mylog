@@ -10,13 +10,15 @@ public class BoardVo {
 	private String secretYn;
 	private String modifyDate;
 	private String delDate;
+	private String nick;
+	private String category;
 	
 	public BoardVo() {
 		super();
 	}
 
 	public BoardVo(String no, String categoryNo, String writerNo, String title, String content, String enrollDate,
-			String secretYn, String modifyDate, String delDate) {
+			String secretYn, String modifyDate, String delDate, String nick, String category) {
 		super();
 		this.no = no;
 		this.categoryNo = categoryNo;
@@ -27,8 +29,10 @@ public class BoardVo {
 		this.secretYn = secretYn;
 		this.modifyDate = modifyDate;
 		this.delDate = delDate;
+		this.nick = nick;
+		this.category = category;
 	}
-
+	
 	public String getNo() {
 		return no;
 	}
@@ -101,12 +105,29 @@ public class BoardVo {
 		this.delDate = delDate;
 	}
 
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", categoryNo=" + categoryNo + ", writerNo=" + writerNo + ", title=" + title
 				+ ", content=" + content + ", enrollDate=" + enrollDate + ", secretYn=" + secretYn + ", modifyDate="
-				+ modifyDate + ", delDate=" + delDate + "]";
+				+ modifyDate + ", delDate=" + delDate + ", nick=" + nick + ", category=" + category + "]";
 	}
+	
 	
 	
 }
