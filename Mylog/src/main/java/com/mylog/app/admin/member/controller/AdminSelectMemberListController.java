@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.member.service.AdminService;
+import com.mylog.app.admin.member.service.AdminMemberService;
 import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
 
 @WebServlet("/admin/select/member/list")
-public class SelectMemberListController extends HttpServlet{
+public class AdminSelectMemberListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -31,7 +31,7 @@ public class SelectMemberListController extends HttpServlet{
 			memberSearchVo.setSearchValue(searchValue);
 			memberSearchVo.setType(type);
 			
-			AdminService adminService = new AdminService();
+			AdminMemberService adminService = new AdminMemberService();
 			List<MemberVo> memberVoList = adminService.selectMemberList(memberSearchVo);
 			
 //			req.setAttribute("memberVoList", memberVoList);

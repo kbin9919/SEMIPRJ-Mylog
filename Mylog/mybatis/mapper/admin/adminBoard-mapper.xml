@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminBoardMapper">
+
+	<select id="adminBoardList" resultType="BoardVo">
+		SELECT 
+   			NO
+    		, CATEGORY_NO
+    		, WRITER_NO
+    		, TITLE
+    		, CONTENT
+    		, ENROLL_DATE
+    		, SECRET_YN
+    		, MODIFY_DATE
+    		, DEL_DATE
+		FROM BOARD
+		ORDER BY NO
+	</select>
+
+	<select id="adminSelectBoardList" resultType="BoardVo">
+		SELECT 
+   			NO
+    		, CATEGORY_NO
+    		, WRITER_NO
+    		, TITLE
+    		, CONTENT
+    		, ENROLL_DATE
+    		, SECRET_YN
+    		, MODIFY_DATE
+    		, DEL_DATE
+		FROM BOARD
+		WHERE TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+	<if test="type == 'title'">
+		ORDER BY TITLE
+	</if> 
+	<if test="type == 'content'">
+		ORDER BY CONTENT
+	</if> 
+	</select>
+
+	<select id="adminSelectBoardDetail" resultType="BoardVo">
+		SELECT 
+   			NO
+    		, CATEGORY_NO
+    		, WRITER_NO
+    		, TITLE
+    		, CONTENT
+    		, ENROLL_DATE
+    		, SECRET_YN
+    		, MODIFY_DATE
+    		, DEL_DATE
+		FROM BOARD
+		WHERE NO = #{no}
+		ORDER BY NO
+	</select>
+
+
+</mapper>

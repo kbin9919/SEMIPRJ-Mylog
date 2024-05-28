@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AdminMapper">
+<mapper namespace="AdminMemberMapper">
 
 	<select id="adminLogin" resultType="AdminVo">
 		SELECT NO, EMAIL, PASSWORD,
@@ -10,7 +10,7 @@
 		#{password}
 	</select>
 
-	<select id="memberList" resultType="MemberVo">
+	<select id="adminMemberList" resultType="MemberVo">
 		SELECT 
 			NO
 			, EMAIL
@@ -24,7 +24,7 @@
 		ORDER BY NO
 	</select>
 
-	<select id="selectMemberList" resultType="MemberVo">
+	<select id="adminSelectMemberList" resultType="MemberVo">
 		SELECT 
 			NO
 			, EMAIL
@@ -44,7 +44,7 @@
 	</if> 
 	</select>
 
-	<select id="selectMemberDetail" resultType="MemberVo">
+	<select id="adminSelectMemberDetail" resultType="MemberVo">
 		SELECT 
 			NO
 			, EMAIL
@@ -57,6 +57,8 @@
 		FROM MEMBER 
 		WHERE NO = #{no}
 	</select>
+	
+	
 
 
 </mapper>

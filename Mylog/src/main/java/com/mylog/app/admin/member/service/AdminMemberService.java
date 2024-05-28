@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.member.dao.AdminDao;
+import com.mylog.app.admin.member.dao.AdminMemberDao;
 import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
 
-public class AdminService {
+public class AdminMemberService {
 	// dao 객체 생성
-	private final AdminDao dao;
+	private final AdminMemberDao dao;
 
-	public AdminService() {
-		this.dao = new AdminDao();
+	public AdminMemberService() {
+		this.dao = new AdminMemberDao();
 	}
 
 	// 관리자 로그인
