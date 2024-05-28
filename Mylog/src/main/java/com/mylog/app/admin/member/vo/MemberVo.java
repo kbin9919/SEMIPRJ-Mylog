@@ -9,13 +9,14 @@ public class MemberVo {
 	private String introduction;
 	private String delDate;
 	private String adminYn;
-
+	private String warningPoint = "0";
+	
 	public MemberVo() {
 		super();
 	}
 
 	public MemberVo(String no, String email, String password, String nick, String enrollDate, String introduction,
-			String delDate, String adminYn) {
+			String delDate, String adminYn, String warningPoint) {
 		super();
 		this.no = no;
 		this.email = email;
@@ -25,6 +26,7 @@ public class MemberVo {
 		this.introduction = introduction;
 		this.delDate = delDate;
 		this.adminYn = adminYn;
+		this.warningPoint = warningPoint;
 	}
 
 	public String getNo() {
@@ -91,10 +93,21 @@ public class MemberVo {
 		this.adminYn = adminYn;
 	}
 
+	public String getWarningPoint() {
+		return warningPoint;
+	}
+
+	public void setWarningPoint(String warningPoint) {
+		this.warningPoint = warningPoint;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVo [no=" + no + ", email=" + email + ", password=" + password + ", nick=" + nick + ", enrollDate="
-				+ enrollDate + ", introduction=" + introduction + ", delDate=" + delDate + ", adminYn=" + adminYn + "]";
+				+ enrollDate + ", introduction=" + introduction + ", delDate=" + delDate + ", adminYn=" + adminYn
+				+ ", warningPoint=" + warningPoint + "]";
 	}
+	
+	
 
 }

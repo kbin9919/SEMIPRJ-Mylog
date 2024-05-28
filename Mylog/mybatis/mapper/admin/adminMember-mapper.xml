@@ -12,50 +12,99 @@
 
 	<select id="adminMemberList" resultType="MemberVo">
 		SELECT 
-			NO
-			, EMAIL
-			, PASSWORD
-			, NICK
-			, ENROLL_DATE
-    		, INTRODUCTION
-    		, DEL_DATE
-    		, ADMIN_YN 
-		FROM MEMBER     
-		ORDER BY NO
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        ORDER BY NO
 	</select>
 
 	<select id="adminSelectMemberList" resultType="MemberVo">
 		SELECT 
-			NO
-			, EMAIL
-			, PASSWORD
-			, NICK
-			, ENROLL_DATE
-			, INTRODUCTION
-			, DEL_DATE
-			, ADMIN_YN 
-		FROM MEMBER 
-		WHERE EMAIL LIKE '%${searchValue}%' OR NICK LIKE '%${searchValue}%'
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        WHERE M.EMAIL LIKE '%${searchValue}%' OR M.EMAIL LIKE '%${searchValue}%'
 	<if test="type == 'email'">
 		ORDER BY EMAIL
 	</if> 
 	<if test="type == 'nick'">
 		ORDER BY NICK
-	</if> 
+	</if>
 	</select>
 
 	<select id="adminSelectMemberDetail" resultType="MemberVo">
 		SELECT 
-			NO
-			, EMAIL
-			, PASSWORD
-			, NICK
-			, ENROLL_DATE
-			, INTRODUCTION
-			, DEL_DATE
-			, ADMIN_YN 
-		FROM MEMBER 
-		WHERE NO = #{no}
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        WHERE NO = #{no}
+        ORDER BY NO
 	</select>
 	
 	<insert id="warningMember">
