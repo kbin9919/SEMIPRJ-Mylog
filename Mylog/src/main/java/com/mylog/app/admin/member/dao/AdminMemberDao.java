@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.admin.member.vo.AdminVo;
-import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
 import com.mylog.app.admin.member.vo.WarningVo;
+import com.mylog.app.util.vo.SearchVo;
 
 public class AdminMemberDao {
 	// 관리자 로그인
@@ -19,8 +19,8 @@ public class AdminMemberDao {
 		return ss.selectList("AdminMemberMapper.adminMemberList");
 	}
 	// 관리자 - 계정 검색
-	public List<MemberVo> selectMemberList(SqlSession ss, MemberSearchVo memberSearchVo) {
-		return ss.selectList("AdminMemberMapper.adminSelectMemberList", memberSearchVo);
+	public List<MemberVo> selectMemberList(SqlSession ss, SearchVo searchVo) {
+		return ss.selectList("AdminMemberMapper.adminSelectMemberList", searchVo);
 	}
 	// 관리자 - 계정 상세 조회
 	public MemberVo selectMemberDetail(SqlSession ss, String no) {

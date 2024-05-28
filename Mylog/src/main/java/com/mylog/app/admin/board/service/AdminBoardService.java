@@ -5,10 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.admin.board.dao.AdminBoardDao;
-import com.mylog.app.admin.board.vo.BoardSearchVo;
 import com.mylog.app.admin.board.vo.BoardVo;
-import com.mylog.app.admin.member.vo.MemberVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
+import com.mylog.app.util.vo.SearchVo;
 
 public class AdminBoardService {
 
@@ -25,9 +24,9 @@ public class AdminBoardService {
 		return boardVoList;
 	}
 
-	public List<BoardVo> selectBoardList(BoardSearchVo boardSearchVo) throws Exception {
+	public List<BoardVo> selectBoardList(SearchVo searchVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		List<BoardVo> boardVoList = dao.selectBoardList(boardSearchVo, ss);
+		List<BoardVo> boardVoList = dao.selectBoardList(searchVo, ss);
 		ss.close();
 		return boardVoList;
 	}

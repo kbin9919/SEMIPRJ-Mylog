@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.board.vo.BoardSearchVo;
 import com.mylog.app.admin.board.vo.BoardVo;
+import com.mylog.app.util.vo.SearchVo;
 
 public class AdminBoardDao {
 
@@ -13,7 +13,7 @@ public class AdminBoardDao {
 		return ss.selectList("AdminBoardMapper.adminBoardList");
 	}
 
-	public List<BoardVo> selectBoardList(BoardSearchVo boardSearchVo, SqlSession ss) {
+	public List<BoardVo> selectBoardList(SearchVo searchVo, SqlSession ss) {
 		return ss.selectList("AdminBoardMapper.adminSelectBoardList");
 	}
 

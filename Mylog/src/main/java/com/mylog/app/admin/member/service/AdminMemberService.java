@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.admin.member.dao.AdminMemberDao;
 import com.mylog.app.admin.member.vo.AdminVo;
-import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
 import com.mylog.app.admin.member.vo.WarningVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
+import com.mylog.app.util.vo.SearchVo;
 
 public class AdminMemberService {
 	// dao 객체 생성
@@ -41,10 +41,10 @@ public class AdminMemberService {
 	}
 
 	// 관리자 - 계정 검색
-	public List<MemberVo> selectMemberList(MemberSearchVo memberSearchVo) throws Exception {
+	public List<MemberVo> selectMemberList(SearchVo searchVo) throws Exception {
 		// dao
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		List<MemberVo> memberVoList = dao.selectMemberList(ss, memberSearchVo);
+		List<MemberVo> memberVoList = dao.selectMemberList(ss, searchVo);
 		ss.close();
 		return memberVoList;
 	}
