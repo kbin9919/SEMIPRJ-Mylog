@@ -17,7 +17,7 @@ import com.mylog.app.admin.member.vo.AdminVo;
 public class AdminLoginController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +32,7 @@ public class AdminLoginController extends HttpServlet{
 			
 			//service
 			AdminService as = new AdminService();
-			AdminVo loginAdminVo = as.login(vo);
+			AdminVo loginAdminVo = as.adminLogin(vo);
 			
 			//result
 			if(loginAdminVo == null) {
