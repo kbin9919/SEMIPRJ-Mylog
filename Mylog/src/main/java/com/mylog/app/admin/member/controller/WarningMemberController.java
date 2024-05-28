@@ -11,21 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.member.service.AdminMemberService;
-import com.mylog.app.admin.member.vo.MemberVo;
+import com.mylog.app.admin.member.vo.WarningVo;
 
-@WebServlet("/admin/select/member/detail")
-public class AdminSelectMemberDetailController extends HttpServlet{
+@WebServlet("/admin/warning")
+public class WarningMemberController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			String no = req.getParameter("no");
-			AdminMemberService adminService = new AdminMemberService();
-			MemberVo memberVo = adminService.selectMemberDetail(no);
+			String warningNo = req.getParameter("warningNo");
+			String memberNo = req.getParameter("memberNo");
+			WarningVo warningVo = new WarningVo();
+			warningVo.setWarningNo(warningNo);
+			warningVo.setMemberNo(memberNo);
 			
+			AdminMemberService adminService = new AdminMemberService();
+			int result = adminService.warningMember(warningVo);
+//			req.setAttribute("memberVo", memberVo);
 //			req.getRequestDispatcher("/WEB-INF/views/admin/member/detail.jsp").forward(req, resp);
 			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + memberVo);
+			out.write("회원 경고 : " + result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

@@ -11,21 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.member.service.AdminMemberService;
-import com.mylog.app.admin.member.vo.MemberVo;
-
-@WebServlet("/admin/select/member/detail")
-public class AdminSelectMemberDetailController extends HttpServlet{
+	
+@WebServlet("/admin/delete/member")
+public class AdminDeleteMemberController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			String no = req.getParameter("no");
-			AdminMemberService adminService = new AdminMemberService();
-			MemberVo memberVo = adminService.selectMemberDetail(no);
+			String memberNo = req.getParameter("memberNo");
 			
-//			req.getRequestDispatcher("/WEB-INF/views/admin/member/detail.jsp").forward(req, resp);
+			AdminMemberService adminService = new AdminMemberService();
+			int result = adminService.deleteMember(memberNo);
+//			req.setAttribute("memberVoList", memberVoList);
+//			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
 			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + memberVo);
+			out.write("관리자 로그인 성공! : " + result);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

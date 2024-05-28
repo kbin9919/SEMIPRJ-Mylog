@@ -8,6 +8,7 @@ import com.mylog.app.admin.member.dao.AdminMemberDao;
 import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
+import com.mylog.app.admin.member.vo.WarningVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
 
 public class AdminMemberService {
@@ -30,6 +31,7 @@ public class AdminMemberService {
 		ss.close();
 		return loginAdminVo;
 	}
+
 	// 관리자 - 계정 전체 조회
 	public List<MemberVo> memberList() throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
@@ -37,7 +39,7 @@ public class AdminMemberService {
 		ss.close();
 		return memberVoList;
 	}
-	
+
 	// 관리자 - 계정 검색
 	public List<MemberVo> selectMemberList(MemberSearchVo memberSearchVo) throws Exception {
 		// dao
@@ -46,7 +48,7 @@ public class AdminMemberService {
 		ss.close();
 		return memberVoList;
 	}
-	
+
 	// 관리자 - 계정 상세 조회
 	public MemberVo selectMemberDetail(String no) throws Exception {
 		// dao
@@ -56,6 +58,33 @@ public class AdminMemberService {
 		return memberVo;
 	}
 
-	
+	public int warningMember(WarningVo warningVo) throws Exception {
+
+		// dao
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.warningMember(ss, warningVo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		ss.close();
+
+		return result;
+	}
+
+	public int deleteMember(String memberNo) throws Exception {
+		// dao
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.deleteMember(ss, memberNo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		ss.close();
+
+		return result;
+	}
 
 }

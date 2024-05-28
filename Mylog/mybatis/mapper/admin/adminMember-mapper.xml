@@ -58,7 +58,12 @@
 		WHERE NO = #{no}
 	</select>
 	
+	<insert id="warningMember">
+		INSERT INTO WARNING(NO, WARNING_NO, MEMBER_NO) VALUES(SEQ_WARNING.NEXTVAL, #{warningNo}, #{memberNo})
+	</insert>
 	
-
+	<update id="deleteMember">
+		UPDATE MEMBER SET DEL_DATE = SYSDATE WHERE NO = #{memberNo}
+	</update>
 
 </mapper>

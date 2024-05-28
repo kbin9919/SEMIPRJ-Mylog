@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.member.vo.MemberSearchVo;
 import com.mylog.app.admin.member.vo.MemberVo;
+import com.mylog.app.admin.member.vo.WarningVo;
 
 public class AdminMemberDao {
 	// 관리자 로그인
@@ -24,6 +25,13 @@ public class AdminMemberDao {
 	// 관리자 - 계정 상세 조회
 	public MemberVo selectMemberDetail(SqlSession ss, String no) {
 		return ss.selectOne("AdminMemberMapper.adminSelectMemberDetail", no);
+	}
+	// 관리자 - 계정 경고하기
+	public int warningMember(SqlSession ss, WarningVo warningVo) {
+		return ss.insert("AdminMemberMapper.warningMember", warningVo);
+	}
+	public int deleteMember(SqlSession ss, String memberNo) {
+		return ss.update("AdminMemberMapper.deleteMember", memberNo);
 	}
 
 	
