@@ -1,4 +1,4 @@
-package com.mylog.app.admin.member.controller;
+package com.mylog.app.admin.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,21 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.member.service.AdminService;
-import com.mylog.app.admin.member.vo.MemberSearchVo;
-import com.mylog.app.admin.member.vo.MemberVo;
+import com.mylog.app.admin.board.service.AdminBoardService;
+import com.mylog.app.admin.board.vo.BoardVo;
 
-@WebServlet("/admin/member/list")
-public class MemberListController extends HttpServlet{
+@WebServlet("/admin/board/list")
+public class AdminBoardListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			AdminService adminService = new AdminService();
-			List<MemberVo> memberVoList = adminService.memberList();
+			AdminBoardService adminService = new AdminBoardService();
+			List<BoardVo> boardVoList = adminService.boardList();
 			
 			PrintWriter out = resp.getWriter();
-			out.write("리스트 조회 : " + memberVoList);
+			out.write("리스트 조회 : " + boardVoList);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

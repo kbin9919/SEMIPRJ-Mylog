@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.member.service.AdminService;
+import com.mylog.app.admin.member.service.AdminMemberService;
 import com.mylog.app.admin.member.vo.AdminVo;
 
 @WebServlet("/admin/login")
@@ -31,7 +31,7 @@ public class AdminLoginController extends HttpServlet{
 			vo.setPassword(password);
 			
 			//service
-			AdminService as = new AdminService();
+			AdminMemberService as = new AdminMemberService();
 			AdminVo loginAdminVo = as.adminLogin(vo);
 			
 			//result
