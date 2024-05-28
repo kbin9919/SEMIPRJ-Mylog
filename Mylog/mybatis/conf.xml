@@ -10,6 +10,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.mylog.app.admin.member.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.mylog.app.admin.member.vo.MemberVo" alias="MemberVo"/>
 	</typeAliases>
 	
   <environments default="development">

@@ -5,7 +5,58 @@
 <mapper namespace="AdminMapper">
 
 	<select id="adminLogin" resultType="AdminVo">
-		SELECT NO, EMAIL, PASSWORD, NICK, ADMIN_YN FROM MEMBER WHERE EMAIL = #{email} AND PASSWORD = #{password}
+		SELECT NO, EMAIL, PASSWORD,
+		NICK, ADMIN_YN FROM MEMBER WHERE EMAIL = #{email} AND PASSWORD =
+		#{password}
 	</select>
+
+	<select id="memberList" resultType="MemberVo">
+		SELECT 
+			NO
+			, EMAIL
+			, PASSWORD
+			, NICK
+			, ENROLL_DATE
+    		, INTRODUCTION
+    		, DEL_DATE
+    		, ADMIN_YN 
+		FROM MEMBER     
+		ORDER BY NO
+	</select>
+
+	<select id="selectMemberList" resultType="MemberVo">
+		SELECT 
+			NO
+			, EMAIL
+			, PASSWORD
+			, NICK
+			, ENROLL_DATE
+			, INTRODUCTION
+			, DEL_DATE
+			, ADMIN_YN 
+		FROM MEMBER 
+		WHERE EMAIL LIKE '%${searchValue}%' OR NICK LIKE '%${searchValue}%'
+	<if test="type == 'email'">
+		ORDER BY EMAIL
+	</if> 
+	<if test="type == 'nick'">
+		ORDER BY NICK
+	</if> 
+	</select>
+
+	<select id="selectMemberDetail" resultType="MemberVo">
+		SELECT 
+			NO
+			, EMAIL
+			, PASSWORD
+			, NICK
+			, ENROLL_DATE
+			, INTRODUCTION
+			, DEL_DATE
+			, ADMIN_YN 
+		FROM MEMBER 
+		WHERE NO = #{no}
+	</select>
+
 
 </mapper>
