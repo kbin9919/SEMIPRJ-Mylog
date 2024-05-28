@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.board.service.AdminBoardService;
-import com.mylog.app.admin.board.vo.BoardSearchVo;
 import com.mylog.app.admin.board.vo.BoardVo;
+import com.mylog.app.util.vo.SearchVo;
 
 @WebServlet("/admin/select/board/list")
 public class AdminSelectBoardListController extends HttpServlet {
@@ -28,12 +28,12 @@ public class AdminSelectBoardListController extends HttpServlet {
 		try {
 			String searchValue = req.getParameter("searchValue");
 			String type = req.getParameter("type");
-			BoardSearchVo boardSearchVo = new BoardSearchVo();
-			boardSearchVo.setSearchValue(searchValue);
-			boardSearchVo.setType(type);
+			SearchVo searchVo = new SearchVo();
+			searchVo.setSearchValue(searchValue);
+			searchVo.setType(type);
 
 			AdminBoardService adminService = new AdminBoardService();
-			List<BoardVo> boardVoList = adminService.selectBoardList(boardSearchVo);
+			List<BoardVo> boardVoList = adminService.selectBoardList(searchVo);
 
 //			req.setAttribute("memberVoList", memberVoList);
 //			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);

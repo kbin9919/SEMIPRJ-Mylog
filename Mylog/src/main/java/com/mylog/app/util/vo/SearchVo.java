@@ -1,37 +1,38 @@
-package com.mylog.app.admin.board.vo;
+package com.mylog.app.util.vo;
 
-public class BoardSearchVo {
+public class SearchVo {
 	private String searchValue;
 	private String type;
-	
-	public BoardSearchVo() {
+
+	public SearchVo() {
 		super();
 	}
-	
-	public BoardSearchVo(String searchValue, String type) {
+
+	public SearchVo(String searchValue, String type) {
 		super();
 		this.searchValue = searchValue;
 		this.type = type;
 	}
-	
+
 	public String getSearchValue() {
 		return searchValue;
 	}
-	
+
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
-	
+
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "BoardSearchVo [searchValue=" + searchValue + ", type=" + type + "]";
+		return "SearchVo [searchValue=" + searchValue + ", type=" + type + "]";
 	}
+
 }

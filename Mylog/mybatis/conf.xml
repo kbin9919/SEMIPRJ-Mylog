@@ -12,6 +12,7 @@
 		<typeAlias type="com.mylog.app.admin.member.vo.AdminVo" alias="AdminVo"/>
 		<typeAlias type="com.mylog.app.admin.member.vo.MemberVo" alias="MemberVo"/>
 		<typeAlias type="com.mylog.app.admin.board.vo.BoardVo" alias="BoardVo"/>
+		<typeAlias type="com.mylog.app.admin.notice.vo.NoticeVo" alias="NoticeVo"/>
 	</typeAliases>
 	
   <environments default="development">
@@ -28,5 +29,6 @@
   <mappers>
     <mapper resource="/mapper/admin/adminMember-mapper.xml"/>
     <mapper resource="/mapper/admin/adminBoard-mapper.xml"/>
+    <mapper resource="/mapper/admin/adminNotice-mapper.xml"/>
   </mappers>
 </configuration>
