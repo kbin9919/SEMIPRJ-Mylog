@@ -1,4 +1,4 @@
-package com.mylog.app.admin.notice.controller;
+package com.mylog.app.admin.faq.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mylog.app.admin.notice.service.NoticeService;
-import com.mylog.app.admin.notice.vo.NoticeVo;
+import com.mylog.app.admin.faq.service.FAQService;
 
-@WebServlet("/admin/select/notice/detail")
-public class AdminSelectNoticeDetailController extends HttpServlet{
+@WebServlet("/admin/delete/faq")
+public class AdminDeleteFAQController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
@@ -21,16 +20,15 @@ public class AdminSelectNoticeDetailController extends HttpServlet{
 			String no = req.getParameter("no");
 			
 			//service
-			NoticeService noticeService = new NoticeService();
-			NoticeVo noticeVo = noticeService.noticeDetail(no);
+			FAQService faqService = new FAQService();
+//			int result = faqService.faqDelete(no);
 			
 			//result
 			PrintWriter out = resp.getWriter();
-			out.write("noticeVo : " + noticeVo);;
+//			out.write("result : " + result);;
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 }

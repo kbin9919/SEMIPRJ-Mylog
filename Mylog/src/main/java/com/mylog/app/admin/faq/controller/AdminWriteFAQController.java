@@ -1,4 +1,4 @@
-package com.mylog.app.admin.notice.controller;
+package com.mylog.app.admin.faq.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mylog.app.admin.faq.service.FAQService;
+import com.mylog.app.admin.faq.vo.FAQVo;
 import com.mylog.app.admin.member.vo.AdminVo;
-import com.mylog.app.admin.notice.service.NoticeService;
-import com.mylog.app.admin.notice.vo.NoticeVo;
 
-@WebServlet("/admin/writer/notice")
-public class AdminWriteNoticeController extends HttpServlet{
+@WebServlet("/admin/writer/faq")
+public class AdminWriteFAQController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -29,15 +29,13 @@ public class AdminWriteNoticeController extends HttpServlet{
 			String writerNo = "1";
 			//loginAdminVo.getNo();
 			
-			NoticeVo noticeVo = new NoticeVo();
-			noticeVo.setTitle(title);
-			noticeVo.setContent(content);
-			noticeVo.setCategoryNo(categoryNo);
-			noticeVo.setWriterNo(writerNo);
+			FAQVo vo = new FAQVo();
+			vo.setTitle(title);
+			
 			
 			//service
-			NoticeService noticeService = new NoticeService();
-			int result = noticeService.noticeWrite(noticeVo);
+			FAQService noticeService = new FAQService();
+			int result = noticeService.noticeWrite(vo);
 			
 			//result
 			PrintWriter out = resp.getWriter();

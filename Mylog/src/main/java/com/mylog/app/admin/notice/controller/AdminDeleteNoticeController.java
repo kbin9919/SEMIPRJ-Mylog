@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mylog.app.admin.notice.service.NoticeService;
-import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/delete/notice")
 public class AdminDeleteNoticeController extends HttpServlet{
