@@ -1,0 +1,95 @@
+body {
+	background-color: rgb(247, 243, 243);
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 1fr 4fr 1fr;
+	width: 98vw;
+	height: 100vh;
+}
+
+header {
+	grid-column: span 3;
+}
+
+.top {
+	color: black;
+	font-weight: 900;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	font-size: 13px;
+	justify-items: center;
+	gap: 15px;
+}
+
+.top-right {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	column-gap: 0px;
+}
+
+#newBoard {
+	display: flex;
+	justify-content: center;
+	border: 1px solid black;
+	border-radius: 25px;
+	width: 80px;
+	height: 20px;
+	background-color: rgb(252, 250, 248);
+}
+
+.main-d {
+	border: 1px solid black;
+	height: 500px;
+}
+
+.mail-list {
+	list-style-type: none;
+}
+
+.mail-list li {
+	display: flex;
+	align-items: center;
+}
+
+.mail-list svg {
+	margin-right: 10px;
+}
+
+.mail-list span {
+	font-size: 16px;
+}
+
+.sec {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.mail-list li:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.main-d {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	height: 500px;
+}
+
+.dd {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+}
+
+.align-center {
+	display: flex;
+	align-items: center;
+}
+
+.align-center svg {
+	margin-right: 5px;
+}

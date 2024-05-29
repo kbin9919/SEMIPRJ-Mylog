@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+
+	<insert id="writeBoard">
+		INSERT INTO BOARD
+        (
+            NO,
+            CATEGORY_NO,
+            WRITER_NO,
+            TITLE,
+            CONTENT
+        ) 
+        VALUES
+        (
+            #{no},
+            #{categoryNo},
+            #{writerNo},
+            #{title},
+            #{content}
+        )
+	</insert>
+
+	<update id="deleteBoard">
+		UPDATE BOARD
+   		SET DEL_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
+	
+	<update id="editBoard">
+		UPDATE BOARD
+   		SET CATEGORY_NO = #{categoryNo}
+   			, TITLE = #{title}
+   			, CONTENT = #{content}
+   			, SECRET_YN = #{secretYn}
+   			, MODIFY_DATE = SYSDATE
+		WHERE NO = #{no} AND DEL_DATE IS NULL
+	</update>
+	
+	<select id="recentBoardCheck" resultType="com.mylog.app.page.board.vo.BoardVo">
+		SELECT * 
+		FROM BOARD
+		WHERE DEL_DATE IS NULL
+		ORDER BY ENROLL_DATE DESC;
+	</select>
+	
+	<select id="trendingBoardCheck">
+	
+	</select>
+	
+	<select id="feedBoardCheck">
+	
+	</select>
+
+</mapper>

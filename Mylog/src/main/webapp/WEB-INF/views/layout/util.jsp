@@ -19,4 +19,3 @@
 
 <link rel="stylesheet" href="/Mylog/resources/mypage/setting/setting.css">
 <script defer src="/Mylog/resources/mypage/setting/setting.js"></script>
-

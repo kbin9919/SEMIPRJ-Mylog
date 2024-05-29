@@ -1,0 +1,147 @@
+body {
+	background-color: rgb(247, 243, 243);
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 1fr 4fr 5fr 3fr 6fr;
+	width: 98vw;
+	height: 120vh;
+}
+
+/* TOP */
+header {
+	grid-column: span 3;
+}
+
+.top {
+	color: black;
+	font-weight: 900;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	font-size: 13px;
+	justify-items: center;
+	gap: 15px;
+}
+
+.top-right {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	justify-items: center;
+	column-gap: 0px;
+}
+
+#newBoard {
+	display: flex;
+	justify-content: center;
+	border: 1px solid black;
+	border-radius: 25px;
+	width: 80px;
+	height: 20px;
+	background-color: rgb(252, 250, 248);
+}
+
+.user-d {
+	display: flex;
+	justify-content: space-between;
+}
+
+.img {
+	border: 1px solid black;
+	height: 40vh;
+}
+
+.main {
+	display: grid;
+	grid-template-rows: 2fr 3fr 1fr 3fr;
+}
+
+.user-d {
+	margin-bottom: 10px;
+}
+
+.content-area {
+	border: 1px solid black;
+	height: 600px;
+}
+
+.user-s {
+	display: flex;
+	justify-content: space-between;
+}
+
+.user-inf {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 8px;
+}
+
+.user-img {
+	border: 1px solid black;
+	height: 50px;
+}
+
+.name {
+	margin-bottom: 10px;
+	margin-top: 8px;
+}
+
+.right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.comment-area div {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.comment-area {
+	width: 100%;
+}
+
+.comment-btn {
+	padding: 10px 20px;
+	background-color: #12B886;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.comment-btn:hover {
+	background-color: #0056b3;
+}
+
+.comment-user-img {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px; border : 1px solid black;
+	border-radius: 50%;
+	border: 1px solid black;
+}
+
+.comment-user {
+	display: flex;
+	flex-direction: row;
+}
+
+.comment-content {
+	margin-top: 10px;
+	margin-bottom: 30px; 
+	border : 1px solid black;
+	height: 100px;
+	width: 100%;
+	border: 1px solid black;
+}
+
+.comment-comment {
+	display: inline-flex;
+	align-items: center;
+	color: #12B886;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.n-comment {
+	margin-left: 8px; 
+}
