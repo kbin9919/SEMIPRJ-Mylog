@@ -14,8 +14,8 @@ import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.notice.service.NoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
-@WebServlet("/admin/notice/writer")
-public class AdminNoticeWriteController extends HttpServlet{
+@WebServlet("/admin/writer/notice")
+public class AdminWriteNoticeController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

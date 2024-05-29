@@ -13,7 +13,7 @@ import com.mylog.app.admin.notice.service.NoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/delete/notice")
-public class AdminNoticeDeleteController extends HttpServlet{
+public class AdminDeleteNoticeController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
