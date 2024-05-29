@@ -58,7 +58,7 @@
 		FROM NOTICE N
 		JOIN CATEGORY C ON C.NO = N.CATEGORY_NO
 		JOIN MEMBER M ON M.NO = N.WRITER_NO
-		WHERE N.CATEGORY_NO = 1 AND (N.TITLE LIKE '%${searchValue}%' OR N.CONTENT LIKE '%${searchValue}%')
+		WHERE N.TITLE LIKE '%${searchValue}%' OR N.CONTENT LIKE '%${searchValue}%'
 		<if test="type == 'title'">
 		ORDER BY N.TITLE
 		</if> 

@@ -5,75 +5,60 @@
 <mapper namespace="AdminFAQMapper">
 
 	<insert id="FAQWrite">
-		INSERT INTO NOTICE(NO, CATEGORY_NO, WRITER_NO, TITLE, CONTENT) VALUES(SEQ_NOTICE.NEXTVAL, #{categoryNo}, #{writerNo}, #{title}, #{content})
+		INSERT INTO FAQ(NO, TITLE, CONTENT) VALUES(SEQ_FAQ.NEXTVAL, #{title}, #{content})
 	</insert>
 		
 	<select id="FAQList" resultType="FAQVo">
 		SELECT 
-    		N.NO
-    		, N.CATEGORY_NO 
-    		, C.TITLE AS CATEGORY
-    		, N.WRITER_NO
-    		, M.NICK
-    		, N.TITLE
-    		, N.CONTENT
-    		, TO_CHAR(N.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
-    		, TO_CHAR(N.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
-    		, N.HITS 
-		FROM NOTICE N
-		JOIN CATEGORY C ON C.NO = N.CATEGORY_NO
-		JOIN MEMBER M ON M.NO = N.WRITER_NO
-		ORDER BY N.NO
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		ORDER BY NO
 	</select>	
 		
 	<select id="FAQDetail" resultType="FAQVo">
 		SELECT 
-    		N.NO
-    		, N.CATEGORY_NO 
-    		, C.TITLE AS CATEGORY
-    		, N.WRITER_NO
-    		, M.NICK
-    		, N.TITLE
-    		, N.CONTENT
-    		, TO_CHAR(N.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
-    		, TO_CHAR(N.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
-    		, N.HITS 
-		FROM NOTICE N
-		JOIN CATEGORY C ON C.NO = N.CATEGORY_NO
-		JOIN MEMBER M ON M.NO = N.WRITER_NO
-		WHERE N.NO = #{no}
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		WHERE NO = #{no}
+		ORDER BY NO
 	</select>
 	
 	<select id="selectFAQList" resultType="FAQVo">
 		SELECT 
-    		N.NO
-    		, N.CATEGORY_NO AS CATEGORY
-    		, C.TITLE
-    		, N.WRITER_NO
-    		, M.NICK
-    		, N.TITLE
-    		, N.CONTENT
-    		, TO_CHAR(N.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
-    		, TO_CHAR(N.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
-    		, N.HITS 
-		FROM NOTICE N
-		JOIN CATEGORY C ON C.NO = N.CATEGORY_NO
-		JOIN MEMBER M ON M.NO = N.WRITER_NO
-		WHERE N.CATEGORY_NO = 1 AND (N.TITLE LIKE '%${searchValue}%' OR N.CONTENT LIKE '%${searchValue}%')
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		WHERE TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
 		<if test="type == 'title'">
-		ORDER BY N.TITLE
+		ORDER BY TITLE
 		</if> 
 		<if test="type == 'content'">
-		ORDER BY N.CONTENT
+		ORDER BY CONTENT
 		</if>
 	</select>
-	<delete id="FAQDelete">
-		DELETE FROM NOTICE WHERE NO = #{no}
+	<delete id="faqDelete">
+		UPDATE FAQ 
+		SET DEL_DATE = SYSDATE
+		WHERE NO = #{no}
 	</delete>
 	
 	<update id="editFAQ">
-		UPDATE NOTICE 
-		SET TITLE = #{title} , CONTENT = #{content}, CATEGORY_NO = #{categoryNo}, MODIFY_DATE = SYSDATE
+		UPDATE FAQ 
+		SET TITLE = #{title} , CONTENT = #{content}, MODIFY_DATE = SYSDATE
 		WHERE NO = #{no}
 	</update>
 </mapper>

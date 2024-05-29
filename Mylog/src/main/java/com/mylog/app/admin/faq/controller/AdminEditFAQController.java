@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mylog.app.admin.faq.service.FAQService;
 import com.mylog.app.admin.faq.vo.FAQVo;
 
-@WebServlet("/admin/edit/notice")
+@WebServlet("/admin/edit/faq")
 public class AdminEditFAQController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,13 +21,12 @@ public class AdminEditFAQController extends HttpServlet{
 			String no = req.getParameter("no");
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");
-			String categoryNo = req.getParameter("categoryNo");
 			
-			FAQVo noticeVo = new FAQVo();
+			FAQVo faqVo = new FAQVo();
 			
 			
-			FAQService noticeService = new FAQService();
-			int result = 0;
+			FAQService faqService = new FAQService();
+			int result = faqService.editFaq(faqVo);
 			if(result != 1) {
 				throw new Exception("게시글 수정 실패 ...");
 			}

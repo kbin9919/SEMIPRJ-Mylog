@@ -10,27 +10,27 @@ import com.mylog.app.util.vo.SearchVo;
 public class FAQDao {
 
 	public int noticeWrite(SqlSession ss, FAQVo vo) {
-		return ss.insert("AdminNoticeMapper.noticeWrite", vo);
+		return ss.insert("AdminFAQMapper.noticeWrite", vo);
 	}
 
 	public FAQVo noticeDetail(SqlSession ss, String no) {
-		return ss.selectOne("AdminNoticeMapper.noticeDetail", no);
+		return ss.selectOne("AdminFAQMapper.noticeDetail", no);
 	}
 
 	public List<FAQVo> noticeList(SqlSession ss) {
-		return ss.selectList("AdminNoticeMapper.noticeList");
+		return ss.selectList("AdminFAQMapper.noticeList");
 	}
 
 	public List<FAQVo> selectNoticeList(SqlSession ss, SearchVo searchVo) {
-		return ss.selectList("AdminNoticeMapper.selectNoticeList", searchVo);
+		return ss.selectList("AdminFAQMapper.selectNoticeList", searchVo);
 	}
 
-	public int noticeDelete(SqlSession ss, String no) {
-		return ss.delete("AdminNoticeMapper.noticeDelete", no);
+	public int faqDelete(SqlSession ss, String no) {
+		return ss.delete("AdminFAQMapper.faqDelete", no);
 	}
 
 	public int editNotice(SqlSession ss, FAQVo noticeVo) {
-		return ss.update("AdminNoticeMapper.editNotice", noticeVo);
+		return ss.update("AdminFAQMapper.editNotice", noticeVo);
 	}
 
 }

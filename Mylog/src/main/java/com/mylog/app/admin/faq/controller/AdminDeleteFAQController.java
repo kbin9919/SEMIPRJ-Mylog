@@ -21,11 +21,11 @@ public class AdminDeleteFAQController extends HttpServlet{
 			
 			//service
 			FAQService faqService = new FAQService();
-//			int result = faqService.faqDelete(no);
+			int result = faqService.faqDelete(no);
 			
 			//result
 			PrintWriter out = resp.getWriter();
-//			out.write("result : " + result);;
+			out.write("result : " + result);;
 			
 		}catch(Exception e) {
 			e.printStackTrace();

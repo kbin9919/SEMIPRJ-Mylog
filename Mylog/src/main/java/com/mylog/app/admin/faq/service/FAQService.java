@@ -49,9 +49,9 @@ public class FAQService {
 		return noticeListVo;
 	}
 
-	public int noticeDelete(String no) throws Exception {
+	public int faqDelete(String no) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		int result = dao.noticeDelete(ss, no);
+		int result = dao.faqDelete(ss, no);
 		if (result == 1) {
 			ss.commit();
 		} else {
@@ -61,7 +61,7 @@ public class FAQService {
 		return result;
 	}
 
-	public int editNotice(FAQVo noticeVo) throws Exception {
+	public int editFaq(FAQVo noticeVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
 		int result = dao.editNotice(ss, noticeVo);
 		if (result == 1) {
