@@ -3,6 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.mylog.app.admin.member.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.mylog.app.admin.member.vo.MemberVo" alias="MemberVo"/>
+		<typeAlias type="com.mylog.app.admin.board.vo.BoardVo" alias="BoardVo"/>
+		<typeAlias type="com.mylog.app.admin.notice.vo.NoticeVo" alias="NoticeVo"/>
+		<typeAlias type="com.mylog.app.admin.faq.vo.FAQVo" alias="FAQVo"/>
+	</typeAliases>
+	
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -15,6 +28,9 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="/mapper/board-mapper.xml"/>
+    <mapper resource="/mapper/admin/adminMember-mapper.xml"/>
+    <mapper resource="/mapper/admin/adminBoard-mapper.xml"/>
+    <mapper resource="/mapper/admin/adminNotice-mapper.xml"/>
+    <mapper resource="/mapper/admin/adminFAQ-mapper.xml"/>
   </mappers>
 </configuration>
