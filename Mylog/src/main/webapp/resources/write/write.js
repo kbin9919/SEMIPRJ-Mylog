@@ -1,11 +1,15 @@
 $(document).ready(function() {
-    $('#inputTitle').on('input', function() {
-        $('#outputTitle').text($(this).val());
-    });
-});
+    var $inputTitle = $('#inputTitle');
+    var $inputText = $('#inputText');
 
-$(document).ready(function() {
-    $('#inputText').on('input', function() {
-        $('#outputText').text($(this).val());
+    var $outputTitle = $('#outputTitle');
+    var $outputText = $('#outputText');
+
+    $inputTitle.on('input', function() {
+        $outputTitle.text($inputTitle.val());
+    });
+
+    $inputText.on('input', function() {
+        $outputText.text($inputText.val());
     });
 });
