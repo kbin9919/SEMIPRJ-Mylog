@@ -60,4 +60,16 @@ public class NoticeService {
 		ss.close();
 		return result;
 	}
+
+	public int editNotice(NoticeVo noticeVo) throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.editNotice(ss, noticeVo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		ss.close();
+		return result;
+	}
 }
