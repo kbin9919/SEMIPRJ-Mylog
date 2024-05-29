@@ -15,7 +15,7 @@ import com.mylog.app.admin.faq.service.FAQService;
 import com.mylog.app.admin.faq.vo.FAQVo;
 
 @WebServlet("/admin/faq/list")
-public class AdminNoticeFAQController extends HttpServlet{
+public class AdminFAQlistController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
