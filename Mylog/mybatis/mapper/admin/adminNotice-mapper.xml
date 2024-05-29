@@ -70,5 +70,9 @@
 		DELETE FROM NOTICE WHERE NO = #{no}
 	</delete>
 	
-	
+	<update id="editNotice">
+		UPDATE NOTICE 
+		SET TITLE = #{title} , CONTENT = #{content}, CATEGORY_NO = #{categoryNo}, MODIFY_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
 </mapper>

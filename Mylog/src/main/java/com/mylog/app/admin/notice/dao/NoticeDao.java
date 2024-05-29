@@ -29,4 +29,8 @@ public class NoticeDao {
 		return ss.delete("AdminNoticeMapper.noticeDelete", no);
 	}
 
+	public int editNotice(SqlSession ss, NoticeVo noticeVo) {
+		return ss.update("AdminNoticeMapper.editNotice", noticeVo);
+	}
+
 }
