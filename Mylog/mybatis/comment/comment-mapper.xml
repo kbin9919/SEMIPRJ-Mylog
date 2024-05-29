@@ -15,11 +15,31 @@
    		) 
     	VALUES 
     	(
-	        #{no}, 
+	        SEQ_COMMENTS.NEXTVAL, 
 	        #{boardNo}, 
 	        #{writerNo}, 
 	        #{content}
     	)
 	</insert>
+	
+	<update id="editComment">
+		UPDATE COMMENTS
+    	SET CONTENT = #{content}, 
+    		MODIFY_DATE = SYSDATE
+		WHERE NO = #{no} 
+			AND WRITER_NO = #{writerNo} 
+			AND BOARD_NO = #{boardNo} 
+			AND DEL_DATE IS NULL
+
+	</update>
+	
+	<update id="deleteComment">
+		UPDATE COMMENTS
+    		SET DEL_DATE = SYSDATE
+		WHERE NO = #{no} 
+			AND WRITER_NO = #{writerNo} 
+			AND BOARD_NO = #{boardNo} 
+			AND DEL_DATE IS NULL
+	</update>
 	
 </mapper>

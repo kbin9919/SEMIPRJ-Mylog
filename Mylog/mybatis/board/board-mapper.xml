@@ -39,15 +39,29 @@
 		WHERE NO = #{no} AND DEL_DATE IS NULL
 	</update>
 	
-	<select id="recentBoardCheck" resultType="com.mylog.app.page.board.vo.BoardVo">
+	<select id="recentBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
 		SELECT * 
 		FROM BOARD
 		WHERE DEL_DATE IS NULL
 		ORDER BY ENROLL_DATE DESC;
 	</select>
 	
-	<select id="trendingBoardCheck">
-	
+	<select id="trendingBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT 
+		  B.NO,
+		  B.CATEGORY_NO,
+		  B.WRITER_NO,
+		  B.TITLE,
+		  B.CONTENT,
+		  B.ENROLL_DATE,
+		  B.SECRET_YN,
+		  B.MODIFY_DATE,
+		  B.DEL_DATE,
+		  COUNT(V.VISITOR_NUM) AS VISIT_COUNT
+		FROM BOARD B
+		LEFT JOIN VISITOR V ON B.NO = V.BOARD_NO
+		GROUP BY B.NO, B.CATEGORY_NO, B.WRITER_NO, B.TITLE, B.CONTENT, B.ENROLL_DATE, B.SECRET_YN, B.MODIFY_DATE, B.DEL_DATE
+		ORDER BY VISIT_COUNT DESC;
 	</select>
 	
 	<select id="feedBoardCheck">
