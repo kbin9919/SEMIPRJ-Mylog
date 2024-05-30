@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminBoardMapper">
+
+	<select id="adminBoardList" resultType="BoardVo">
+		SELECT
+    		B.NO
+    		, B.TITLE
+    		, B.CONTENT
+    		, B.CATEGORY_NO
+    		, C.TITLE AS category
+    		, B.WRITER_NO
+    		, M.NICK
+    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, B.SECRET_YN
+    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+    		, TO_CHAR(B.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+		FROM BOARD B
+		JOIN MEMBER M ON B.WRITER_NO = M.NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
+		ORDER BY B.NO
+	</select>
+
+	<select id="adminSelectBoardList" resultType="BoardVo">
+		SELECT
+    		B.NO
+    		, B.TITLE
+    		, B.CONTENT
+    		, B.CATEGORY_NO
+    		, C.TITLE AS category
+    		, B.WRITER_NO
+    		, M.NICK
+    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, B.SECRET_YN
+    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+    		, TO_CHAR(B.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+		FROM BOARD B
+		JOIN MEMBER M ON B.WRITER_NO = M.NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
+		WHERE B.TITLE LIKE '%${searchValue}%' OR B.CONTENT LIKE '%${searchValue}%'
+	<if test="type == 'title'">
+		ORDER BY B.TITLE
+	</if> 
+	<if test="type == 'content'">
+		ORDER BY B.CONTENT
+	</if> 
+	</select>
+
+	<select id="adminSelectBoardDetail" resultType="BoardVo">
+		SELECT
+    		B.NO
+    		, B.TITLE
+    		, B.CONTENT
+    		, B.CATEGORY_NO
+    		, C.TITLE AS category
+    		, B.WRITER_NO
+    		, M.NICK
+    		, B.ENROLL_DATE
+    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, B.SECRET_YN
+    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+    		, TO_CHAR(B.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+		FROM BOARD B
+		JOIN MEMBER M ON B.WRITER_NO = M.NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
+		WHERE B.NO = #{no}
+		ORDER BY B.NO
+	</select>
+
+
+</mapper>

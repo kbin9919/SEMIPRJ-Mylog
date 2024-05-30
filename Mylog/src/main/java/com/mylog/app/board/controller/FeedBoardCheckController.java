@@ -13,16 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.mylog.app.board.service.BoardService;
 import com.mylog.app.board.vo.BoardVo;
 
-@WebServlet("/board/trend")
-public class TrendingBoardCheckController extends HttpServlet {
+@WebServlet("/board/feed")
+public class FeedBoardCheckController extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
 			
+//			HttpSession session = req.getSession();
+//			
+//			session.getAttribute(getServletName())
+			String followerNo = req.getParameter("followerNo");
+					
 			BoardService bs = new BoardService();
-			List<BoardVo> voList = bs.trendingBoardCheck();
+			List<BoardVo> voList = bs.feedBoardCheck(followerNo);
 			
 			PrintWriter out = resp.getWriter();
 			out.write("voList : " + voList);

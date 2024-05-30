@@ -15,7 +15,7 @@
         ) 
         VALUES
         (
-            #{no},
+            SEQ_BOARD.NEXTVAL,
             #{categoryNo},
             #{writerNo},
             #{title},
@@ -57,15 +57,34 @@
 		  B.SECRET_YN,
 		  B.MODIFY_DATE,
 		  B.DEL_DATE,
-		  COUNT(V.VISITOR_NUM) AS VISIT_COUNT
+		  NVL(VISIT_COUNT, 0) AS VISIT_COUNT
 		FROM BOARD B
-		LEFT JOIN VISITOR V ON B.NO = V.BOARD_NO
-		GROUP BY B.NO, B.CATEGORY_NO, B.WRITER_NO, B.TITLE, B.CONTENT, B.ENROLL_DATE, B.SECRET_YN, B.MODIFY_DATE, B.DEL_DATE
-		ORDER BY VISIT_COUNT DESC;
+		LEFT JOIN (
+		  SELECT 
+		    BOARD_NO,
+		    COUNT(VISITOR_NUM) AS VISIT_COUNT
+		  FROM VISITOR
+		  GROUP BY BOARD_NO
+		) V ON B.NO = V.BOARD_NO
+		ORDER BY VISIT_COUNT DESC
 	</select>
 	
-	<select id="feedBoardCheck">
-	
+	<select id="feedBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT 
+		    B.NO,
+		    B.CATEGORY_NO,
+			B.WRITER_NO,
+			B.TITLE,
+			B.CONTENT,
+		    B.ENROLL_DATE,
+		    B.SECRET_YN,
+		    B.MODIFY_DATE,
+		    B.DEL_DATE
+		FROM BOARD B
+		JOIN FOLLOW F ON B.WRITER_NO = F.MEMBER_NO
+		WHERE F.FOLLOWER_NO = #{followerNo}
+		AND B.DEL_DATE IS NULL
+		AND B.SECRET_YN = 'N'
 	</select>
 
 </mapper>

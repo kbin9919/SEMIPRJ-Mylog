@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.board.dao.BoardDao;
 import com.mylog.app.board.vo.BoardVo;
+import com.mylog.app.board.vo.FollowVo;
 
 public class BoardService {
 	
@@ -75,6 +76,24 @@ private final BoardDao dao;
 		
 		SqlSession ss = getSqlSession();
 		List<BoardVo> voList = dao.recentBoardCheck(ss);
+		ss.close();
+		
+		return voList;
+	}
+	
+	// 트렌딩 게시글 조회
+	public List<BoardVo> trendingBoardCheck() throws Exception {
+		SqlSession ss = getSqlSession();
+		List<BoardVo> voList = dao.trendingBoardCheck(ss);
+		ss.close();
+		
+		return voList;
+	}
+	
+	// 피드 게시글 조회
+	public List<BoardVo> feedBoardCheck(String followerNo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<BoardVo> voList = dao.feedBoardCheck(ss, followerNo);
 		ss.close();
 		
 		return voList;

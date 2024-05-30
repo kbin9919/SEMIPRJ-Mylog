@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminMemberMapper">
+
+	<select id="adminLogin" resultType="AdminVo">
+		SELECT NO, EMAIL, PASSWORD,
+		NICK, ADMIN_YN FROM MEMBER WHERE EMAIL = #{email} AND PASSWORD =
+		#{password}
+	</select>
+
+	<select id="adminMemberList" resultType="MemberVo">
+		SELECT 
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        ORDER BY NO
+	</select>
+
+	<select id="adminSelectMemberList" resultType="MemberVo">
+		SELECT 
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        WHERE M.EMAIL LIKE '%${searchValue}%' OR M.EMAIL LIKE '%${searchValue}%'
+	<if test="type == 'email'">
+		ORDER BY EMAIL
+	</if> 
+	<if test="type == 'nick'">
+		ORDER BY NICK
+	</if>
+	</select>
+
+	<select id="adminSelectMemberDetail" resultType="MemberVo">
+		SELECT 
+			M.NO
+			, M.EMAIL
+			, M.PASSWORD
+			, M.NICK
+			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, M.INTRODUCTION
+            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.ADMIN_YN  
+			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
+		FROM MEMBER M
+		LEFT JOIN
+		(
+			SELECT MEMBER_NO, SUM(POINT) AS WARNING_POINT
+			FROM
+			(
+				SELECT 
+			    	W.MEMBER_NO
+ 			   	, L.POINT
+				FROM WARNING W
+				JOIN WARNING_LIST L ON L.NO = W.WARNING_NO
+				JOIN MEMBER M ON M.NO = W.MEMBER_NO
+			)
+			GROUP BY MEMBER_NO
+		) P
+		ON P.MEMBER_NO = M.NO
+        WHERE NO = #{no}
+        ORDER BY NO
+	</select>
+	
+	<insert id="warningMember">
+		INSERT INTO WARNING(NO, WARNING_NO, MEMBER_NO) VALUES(SEQ_WARNING.NEXTVAL, #{warningNo}, #{memberNo})
+	</insert>
+	
+	<update id="deleteMember">
+		UPDATE MEMBER SET DEL_DATE = SYSDATE WHERE NO = #{memberNo}
+	</update>
+
+</mapper>
