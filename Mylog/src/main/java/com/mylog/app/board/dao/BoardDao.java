@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.board.vo.BoardVo;
-import com.mylog.app.board.vo.FollowVo;
+import com.mylog.app.visitor.vo.VisitorVo;
 
 public class BoardDao {
 	
@@ -38,6 +38,16 @@ public class BoardDao {
 	public List<BoardVo> feedBoardCheck(SqlSession ss, String followerNo) {
 		return ss.selectList("BoardMapper.feedBoardCheck", followerNo);
 		
+	}
+	
+	// 게시물 상세조회
+	public BoardVo detailBoardCheck(SqlSession ss, String no) {
+		return ss.selectOne("BoardMapper.detailBoardCheck", no);
+	}
+	
+	// 방문자 추가
+	public int insertVisitor(SqlSession ss, VisitorVo vo) {
+		return ss.insert("BoardMapper.insertVisitor", vo);
 	}
 
 }

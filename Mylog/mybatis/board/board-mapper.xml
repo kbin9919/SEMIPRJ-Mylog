@@ -6,85 +6,117 @@
 
 	<insert id="writeBoard">
 		INSERT INTO BOARD
-        (
-            NO,
-            CATEGORY_NO,
-            WRITER_NO,
-            TITLE,
-            CONTENT
-        ) 
-        VALUES
-        (
-            SEQ_BOARD.NEXTVAL,
-            #{categoryNo},
-            #{writerNo},
-            #{title},
-            #{content}
-        )
+		(
+			NO,
+			CATEGORY_NO,
+			WRITER_NO,
+			TITLE,
+			CONTENT
+		)
+		VALUES
+		(
+			SEQ_BOARD.NEXTVAL,
+			#{categoryNo},
+			#{writerNo},
+			#{title},
+			#{content}
+		)
 	</insert>
 
 	<update id="deleteBoard">
 		UPDATE BOARD
-   		SET DEL_DATE = SYSDATE
+		SET DEL_DATE = SYSDATE
 		WHERE NO = #{no}
 	</update>
-	
+
 	<update id="editBoard">
 		UPDATE BOARD
-   		SET CATEGORY_NO = #{categoryNo}
-   			, TITLE = #{title}
-   			, CONTENT = #{content}
-   			, SECRET_YN = #{secretYn}
-   			, MODIFY_DATE = SYSDATE
+		SET CATEGORY_NO = #{categoryNo}
+		, TITLE = #{title}
+		, CONTENT = #{content}
+		, SECRET_YN = #{secretYn}
+		, MODIFY_DATE = SYSDATE
 		WHERE NO = #{no} AND DEL_DATE IS NULL
 	</update>
-	
-	<select id="recentBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
-		SELECT * 
+
+	<select id="recentBoardCheck"
+		resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT *
 		FROM BOARD
 		WHERE DEL_DATE IS NULL
 		ORDER BY ENROLL_DATE DESC;
 	</select>
-	
-	<select id="trendingBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
-		SELECT 
-		  B.NO,
-		  B.CATEGORY_NO,
-		  B.WRITER_NO,
-		  B.TITLE,
-		  B.CONTENT,
-		  B.ENROLL_DATE,
-		  B.SECRET_YN,
-		  B.MODIFY_DATE,
-		  B.DEL_DATE,
-		  NVL(VISIT_COUNT, 0) AS VISIT_COUNT
-		FROM BOARD B
-		LEFT JOIN (
-		  SELECT 
-		    BOARD_NO,
-		    COUNT(VISITOR_NUM) AS VISIT_COUNT
-		  FROM VISITOR
-		  GROUP BY BOARD_NO
-		) V ON B.NO = V.BOARD_NO
-		ORDER BY VISIT_COUNT DESC
-	</select>
-	
-	<select id="feedBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
-		SELECT 
-		    B.NO,
-		    B.CATEGORY_NO,
+
+	<select id="trendingBoardCheck"
+		resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT
+			B.NO,
+			B.CATEGORY_NO,
 			B.WRITER_NO,
 			B.TITLE,
 			B.CONTENT,
-		    B.ENROLL_DATE,
-		    B.SECRET_YN,
-		    B.MODIFY_DATE,
-		    B.DEL_DATE
+			B.ENROLL_DATE,
+			B.SECRET_YN,
+			B.MODIFY_DATE,
+			B.DEL_DATE,
+			NVL(VISIT_COUNT, 0) AS VISIT_COUNT
 		FROM BOARD B
+		LEFT JOIN (
+		SELECT
+			BOARD_NO,
+			COUNT(VISITOR_NUM) AS VISIT_COUNT
+		FROM VISITOR
+		GROUP BY BOARD_NO
+		) V ON B.NO = V.BOARD_NO
+		ORDER BY VISIT_COUNT DESC
+	</select>
+
+	<select id="feedBoardCheck"
+		resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT
+			B.NO,
+			B.CATEGORY_NO,
+			B.WRITER_NO,
+			B.TITLE,
+			B.CONTENT,
+			B.ENROLL_DATE,
+			B.SECRET_YN,
+			B.MODIFY_DATE,
+			B.DEL_DATE
+			FROM BOARD B
 		JOIN FOLLOW F ON B.WRITER_NO = F.MEMBER_NO
 		WHERE F.FOLLOWER_NO = #{followerNo}
 		AND B.DEL_DATE IS NULL
 		AND B.SECRET_YN = 'N'
 	</select>
+
+	<select id="detailBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT
+    		B.NO
+    		, B.TITLE
+    		, B.CONTENT
+    		, B.CATEGORY_NO
+    		, C.TITLE AS category
+    		, B.WRITER_NO
+    		, M.NICK
+    		, B.ENROLL_DATE
+    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, B.SECRET_YN
+    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+		FROM BOARD B
+		JOIN MEMBER M ON B.WRITER_NO = M.NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
+		WHERE B.DEL_DATE IS NULL AND B.NO = #{no}
+		ORDER BY B.NO
+	</select>
+	
+	<select id="allBoardCheck">
+		
+	</select>
+
+	<insert id="insertVisitor" >
+		INSERT INTO VISITOR (BOARD_NO, VISITOR_NUM)
+		VALUES (#{boardNo}, #{visitorNum})
+	</insert>
 
 </mapper>
