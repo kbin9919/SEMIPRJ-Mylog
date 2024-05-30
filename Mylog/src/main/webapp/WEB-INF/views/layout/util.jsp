@@ -19,3 +19,6 @@
 
 <link rel="stylesheet" href="/Mylog/resources/mypage/setting/setting.css">
 <script defer src="/Mylog/resources/mypage/setting/setting.js"></script>
+
+<link rel="stylesheet" href="/Mylog/resources/community/community.css">
+<script defer src="/Mylog/resources/community/community.js"></script>

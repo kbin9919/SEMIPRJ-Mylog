@@ -15,17 +15,17 @@ import com.mylog.app.admin.faq.service.FAQService;
 import com.mylog.app.admin.faq.vo.FAQVo;
 
 @WebServlet("/admin/faq/list")
-public class AdminFAQlistController extends HttpServlet{
+public class AdminFAQListController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			FAQService noticeService = new FAQService();
-			List<FAQVo> noticeVoList = noticeService.noticeList();
+			FAQService faqService = new FAQService();
+			List<FAQVo> faqVoList = faqService.faqList();
 			
 			//result
 			PrintWriter out = resp.getWriter();
-			out.write("result : " + noticeVoList);
+			out.write("result : " + faqVoList);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
