@@ -49,6 +49,11 @@ public class BoardDao {
 	public int insertVisitor(SqlSession ss, VisitorVo vo) {
 		return ss.insert("BoardMapper.insertVisitor", vo);
 	}
+	
+	// 전체 게시물 조회
+	public List<BoardVo> allBoardCheck(SqlSession ss) {
+		return ss.selectList("BoardMapper.allBoardCheck");
+	}
 
 }
 
