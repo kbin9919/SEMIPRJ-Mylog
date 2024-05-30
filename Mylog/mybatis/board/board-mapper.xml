@@ -46,6 +46,32 @@
 		WHERE DEL_DATE IS NULL
 		ORDER BY ENROLL_DATE DESC;
 	</select>
+	
+	<select id="searchBoard" resultType="com.mylog.app.board.vo.BoardVo">
+		SELECT
+    		B.NO
+    		, B.TITLE
+    		, B.CONTENT
+    		, B.CATEGORY_NO
+    		, C.TITLE AS category
+    		, B.WRITER_NO
+    		, M.NICK
+    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    		, B.SECRET_YN
+    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+    		, TO_CHAR(B.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+		FROM BOARD B
+		JOIN MEMBER M ON B.WRITER_NO = M.NO
+		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
+		WHERE B.DEL_DATE IS NULL 
+		AND B.TITLE LIKE '%${searchValue}%' OR B.CONTENT LIKE '%${searchValue}%'
+	<if test="type == 'title'">
+		ORDER BY B.TITLE
+	</if> 
+	<if test="type == 'content'">
+		ORDER BY B.CONTENT
+	</if>
+	</select>
 
 	<select id="trendingBoardCheck"
 		resultType="com.mylog.app.board.vo.BoardVo">
@@ -129,6 +155,7 @@
 		WHERE B.DEL_DATE IS NULL
 		ORDER BY B.NO
 	</select>
+	
 
 	<insert id="insertVisitor" >
 		INSERT INTO VISITOR (BOARD_NO, VISITOR_NUM)

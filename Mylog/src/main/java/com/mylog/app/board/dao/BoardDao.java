@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.board.vo.BoardVo;
+import com.mylog.app.util.vo.SearchVo;
 import com.mylog.app.visitor.vo.VisitorVo;
 
 public class BoardDao {
@@ -53,6 +54,11 @@ public class BoardDao {
 	// 전체 게시물 조회
 	public List<BoardVo> allBoardCheck(SqlSession ss) {
 		return ss.selectList("BoardMapper.allBoardCheck");
+	}
+	
+	// 게시물 검색
+	public List<BoardVo> searchBoard(SqlSession ss, SearchVo vo){
+		return ss.selectList("BoardMapper.searchBoard", vo);
 	}
 
 }

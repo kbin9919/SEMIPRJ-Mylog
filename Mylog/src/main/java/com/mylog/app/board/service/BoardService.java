@@ -2,15 +2,13 @@ package com.mylog.app.board.service;
 
 import static com.mylog.app.util.db.SqlSessionTemplate.getSqlSession;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.board.service.AdminBoardService;
 import com.mylog.app.board.dao.BoardDao;
 import com.mylog.app.board.vo.BoardVo;
-import com.mylog.app.util.db.SqlSessionTemplate;
+import com.mylog.app.util.vo.SearchVo;
 import com.mylog.app.visitor.vo.VisitorVo;
 
 public class BoardService {
@@ -136,6 +134,14 @@ public class BoardService {
 	public List<BoardVo> allBoardCheck() throws Exception {
 		SqlSession ss = getSqlSession();
 		List<BoardVo> voList = dao.allBoardCheck(ss);
+		ss.close();
+		return voList;
+	}
+	
+	// 게시글 검색
+	public List<BoardVo> searchBoard(SearchVo vo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<BoardVo> voList = dao.searchBoard(ss, vo);
 		ss.close();
 		return voList;
 	}
