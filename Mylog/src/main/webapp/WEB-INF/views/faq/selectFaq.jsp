@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -12,8 +11,8 @@
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	<div class="notice-body">
-		<a href="/Mylog/qna" class="notice-title">
-			<div>QNA</div>
+		<a href="/Mylog/faq" class="notice-title">
+			<div>FAQ</div>
 		</a>
 		<div class="tag notice-tag">
 			<table>
@@ -36,13 +35,10 @@
 		<div class="notice-main">
 			<div class="qna-write-main">
 				<form action="" method="post">
-					<div><input type="text" name="qna-title" placeholder="제목을 입력하세요"></div>
-					<div><textarea name="qna-content" placeholder="내용을 입력하세요" class="notice-textarea" cols="30" rows="10"></textarea></div>
-					<div class="qna-write-submit"><input type="submit" name="qna-write-submit" value="QNA작성"></div>
+					<div><input type="text" name="qna-title" class="selectQna" placeholder="제목"></div>
+					<div><textarea name="qna-content" placeholder="내용" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
 				</form>
 			</div>
 		</div>
 	</div>
 </body>
-
-</html>

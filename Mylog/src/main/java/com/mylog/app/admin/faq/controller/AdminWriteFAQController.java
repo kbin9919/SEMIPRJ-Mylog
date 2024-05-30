@@ -21,21 +21,18 @@ public class AdminWriteFAQController extends HttpServlet{
 
 		try {
 			HttpSession session = req.getSession();
-			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
 			//data
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");
-			String categoryNo = req.getParameter("categoryNo");
-			String writerNo = "1";
-			//loginAdminVo.getNo();
 			
-			FAQVo vo = new FAQVo();
-			vo.setTitle(title);
+			FAQVo faqVo = new FAQVo();
+			faqVo.setTitle(title);
+			faqVo.setContent(content);
 			
 			
 			//service
-			FAQService noticeService = new FAQService();
-			int result = noticeService.noticeWrite(vo);
+			FAQService faqService = new FAQService();
+			int result = faqService.faqWrite(faqVo);
 			
 			//result
 			PrintWriter out = resp.getWriter();

@@ -23,7 +23,9 @@ public class AdminEditFAQController extends HttpServlet{
 			String content = req.getParameter("content");
 			
 			FAQVo faqVo = new FAQVo();
-			
+			faqVo.setNo(no);
+			faqVo.setTitle(title);
+			faqVo.setContent(content);
 			
 			FAQService faqService = new FAQService();
 			int result = faqService.editFaq(faqVo);

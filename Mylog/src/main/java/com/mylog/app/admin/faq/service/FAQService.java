@@ -16,9 +16,9 @@ public class FAQService {
 		this.dao = new FAQDao();
 	}
 
-	public int noticeWrite(FAQVo vo) throws Exception {
+	public int faqWrite(FAQVo faqVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		int result = dao.noticeWrite(ss, vo);
+		int result = dao.faqWrite(ss, faqVo);
 		if (result == 1) {
 			ss.commit();
 		} else {
@@ -28,25 +28,25 @@ public class FAQService {
 		return result;
 	}
 
-	public FAQVo noticeDetail(String no) throws Exception {
+	public FAQVo faqDetail(String no) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		FAQVo noticeVo = dao.noticeDetail(ss, no);
+		FAQVo faqVo = dao.faqDetail(ss, no);
 		ss.close();
-		return noticeVo;
+		return faqVo;
 	}
 
-	public List<FAQVo> noticeList() throws Exception {
+	public List<FAQVo> faqList() throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		List<FAQVo> noticeListVo = dao.noticeList(ss);
+		List<FAQVo> faqListVo = dao.faqList(ss);
 		ss.close();
-		return noticeListVo;
+		return faqListVo;
 	}
 
-	public List<FAQVo> selectNoticeList(SearchVo searchVo) throws Exception {
+	public List<FAQVo> selectFaqList(SearchVo searchVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		List<FAQVo> noticeListVo = dao.selectNoticeList(ss, searchVo);
+		List<FAQVo> faqListVo = dao.selectFaqList(ss, searchVo);
 		ss.close();
-		return noticeListVo;
+		return faqListVo;
 	}
 
 	public int faqDelete(String no) throws Exception {
@@ -61,9 +61,9 @@ public class FAQService {
 		return result;
 	}
 
-	public int editFaq(FAQVo noticeVo) throws Exception {
+	public int editFaq(FAQVo faqVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		int result = dao.editNotice(ss, noticeVo);
+		int result = dao.editFaq(ss, faqVo);
 		if (result == 1) {
 			ss.commit();
 		} else {

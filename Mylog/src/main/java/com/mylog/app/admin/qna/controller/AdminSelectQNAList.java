@@ -1,4 +1,4 @@
-package com.mylog.app.admin.faq.controller;
+package com.mylog.app.admin.qna.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.faq.service.FAQService;
-import com.mylog.app.admin.faq.vo.FAQVo;
+import com.mylog.app.admin.qna.service.QNAService;
+import com.mylog.app.admin.qna.vo.QNAVo;
 import com.mylog.app.util.vo.SearchVo;
 
-@WebServlet("/admin/select/faq/list")
-public class AdminSelectFAQList extends HttpServlet{
+@WebServlet("/admin/select/qna/list")
+public class AdminSelectQNAList extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -27,13 +27,13 @@ public class AdminSelectFAQList extends HttpServlet{
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
 			
-			FAQService faqService = new FAQService();
-			List<FAQVo> faqVoList = faqService.selectFaqList(searchVo);
+			QNAService qnaService = new QNAService();
+			List<QNAVo> qnaVoList = qnaService.selectQnaList(searchVo);
 			
 //			req.setAttribute("memberVoList", memberVoList);
 //			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
 			PrintWriter out = resp.getWriter();
-			out.write("리스트 : " + faqVoList);
+			out.write("리스트 : " + qnaVoList);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

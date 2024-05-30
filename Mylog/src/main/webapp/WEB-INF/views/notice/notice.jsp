@@ -12,9 +12,9 @@
 <body>
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
 	<div class="notice-body">
-		<div class="notice-title">
-			<div>QNA</div>
-		</div>
+		<a href="/Mylog/notice" class="notice-title">
+			<div>공지사항</div>
+		</a>
 		<div class="tag notice-tag">
 			<table>
 				<tr>
@@ -23,13 +23,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td><a href="/Mylog/notice" class="">NOTICE</a></td>
+					<td><a href="/Mylog/notice" class="tag-focus">NOTICE</a></td>
 				</tr>
 				<tr>
 					<td><a href="/Mylog/faq">FAQ</a></td>
 				</tr>
 				<tr>
-					<td><a href="/Mylog/qna" class="tag-focus">QNA</a></td>
+					<td><a href="/Mylog/qna">QNA</a></td>
 				</tr>
 			</table>
 		</div>
@@ -37,35 +37,25 @@
 			<%@ include file="/WEB-INF/views/layout/community.jsp"%>
 			<div class="range">
 				<div class="notice-search-array">
-					<div>ALL</div>
-					<div>MY</div>
+					<div>title</div>
+					<div>content</div>
 				</div>
 				<div class="page">
-					<div><</div>
-					<div style="font-size: 14px; width: 57px;">page</div>
-					<div>></div>
+					<div> < </div>
+					<div class="page-tow">
+						<div style="font-size: 14px; width: 57px;" id="page"> page </div>
+					</div>
+					<div> > </div>
 				</div>
+
 			</div>
-			<a href="/Mylog/select/qna" class="notice-content">
+			<a href="/Mylog/select/notice" class="notice-content">
 				<div>title</div>
-				<div>content</div>
-			</a>
-			<a href="/Mylog/select/qna" class="notice-content">
-				<div>title</div>
-				<div>content</div>
-			</a><a href="/Mylog/select/qna" class="notice-content">
-				<div>title</div>
-				<div>content</div>
-			</a><a href="/Mylog/select/qna" class="notice-content">
-				<div>title</div>
+				<img src="" alt="png.">
 				<div>content</div>
 			</a>
 			
-			<div class="qna-write">
-				<a href="/Mylog/writeQna">QNA작성</a>
-			</div>
 		</div>
-
 	</div>
 </body>
 

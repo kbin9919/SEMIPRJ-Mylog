@@ -9,28 +9,28 @@ import com.mylog.app.util.vo.SearchVo;
 
 public class FAQDao {
 
-	public int noticeWrite(SqlSession ss, FAQVo vo) {
-		return ss.insert("AdminFAQMapper.noticeWrite", vo);
+	public int faqWrite(SqlSession ss, FAQVo faqVo) {
+		return ss.insert("AdminFAQMapper.faqWrite", faqVo);
 	}
 
-	public FAQVo noticeDetail(SqlSession ss, String no) {
-		return ss.selectOne("AdminFAQMapper.noticeDetail", no);
+	public FAQVo faqDetail(SqlSession ss, String no) {
+		return ss.selectOne("AdminFAQMapper.faqDetail", no);
 	}
 
-	public List<FAQVo> noticeList(SqlSession ss) {
-		return ss.selectList("AdminFAQMapper.noticeList");
+	public List<FAQVo> faqList(SqlSession ss) {
+		return ss.selectList("AdminFAQMapper.faqList");
 	}
 
-	public List<FAQVo> selectNoticeList(SqlSession ss, SearchVo searchVo) {
-		return ss.selectList("AdminFAQMapper.selectNoticeList", searchVo);
+	public List<FAQVo> selectFaqList(SqlSession ss, SearchVo searchVo) {
+		return ss.selectList("AdminFAQMapper.selectFaqList", searchVo);
 	}
 
 	public int faqDelete(SqlSession ss, String no) {
 		return ss.delete("AdminFAQMapper.faqDelete", no);
 	}
 
-	public int editNotice(SqlSession ss, FAQVo noticeVo) {
-		return ss.update("AdminFAQMapper.editNotice", noticeVo);
+	public int editFaq(SqlSession ss, FAQVo faqVo) {
+		return ss.update("AdminFAQMapper.editFAQ", faqVo);
 	}
 
 }
