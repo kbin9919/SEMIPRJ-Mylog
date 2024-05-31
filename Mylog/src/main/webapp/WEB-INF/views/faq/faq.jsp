@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
+<script defer src="/Mylog/resources/faq/faq.js"></script>
 </head>
 
 <body>
@@ -29,44 +30,41 @@
 					<td><a href="/Mylog/faq" class="tag-focus">FAQ</a></td>
 				</tr>
 				<tr>
-					<td><a href="/Mylog/qna">QNA</a></td>
+					<td><a href="/Mylog/qna" class="">QNA</a></td>
 				</tr>
 			</table>
 		</div>
 		<div class="notice-main">
-			<%@ include file="/WEB-INF/views/layout/community.jsp"%>
+			<div class="notice-search">
+				<form action="" method="post">
+					<div>
+						<span> <svg id="notice-svg" width="19" height="19"
+								viewBox="0 0 17 17">
+                                        <path fill-rule="evenodd"
+									d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
+									clip-rule="evenodd" fill="currentColor"></path>
+                                    </svg>
+						</span>
+					</div>
+					<input type="text" name="faq-search" placeholder="검색어를 입력하세요">
+				</form>
+			</div>
 			<div class="range">
 				<div class="notice-search-array">
 					<div>title</div>
 					<div>content</div>
 				</div>
-				<div class="page">
-					<div> < </div>
-					<div style="font-size: 14px; width: 57px;"> page </div>
-					<div> > </div>
-				</div>
 			</div>
-			<a href="/Mylog/select/faq" class="notice-content">
-				<div>title</div>
-				<img src="" alt="png.">
-				<div>content</div>
-			</a>
-			<a href="/Mylog/select/faq" class="notice-content">
-				<div>title</div>
-				<img src="" alt="png.">
-				<div>content</div>
-			</a>
-			<a href="/Mylog/select/faq" class="notice-content">
-				<div>title</div>
-				<img src="" alt="png.">
-				<div>content</div>
-			</a>
-			<a href="/Mylog/select/faq" class="notice-content">
-				<div>title</div>
-				<img src="" alt="png.">
-				<div>content</div>
-			</a>
+			<div class="notice-content-sell">
+				<c:forEach items="${faqVoList}" var="vo">
+					<a href="/Mylog/select/faq?no=${vo.no}" class="notice-content">
+						<div>${vo.title}</div> <img src="" alt="png.">
+						<div>${vo.content}</div>
+					</a>
+				</c:forEach>
+			</div>
 		</div>
+			<div class="message">페이지 불러오는 중...</div>
 	</div>
 </body>
 

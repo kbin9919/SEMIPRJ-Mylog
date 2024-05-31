@@ -25,18 +25,19 @@
 					<td><a href="/Mylog/notice" class="">NOTICE</a></td>
 				</tr>
 				<tr>
-					<td><a href="/Mylog/faq">FAQ</a></td>
+					<td><a href="/Mylog/faq" class="tag-focus">FAQ</a></td>
 				</tr>
 				<tr>
-					<td><a href="/Mylog/qna" class="tag-focus">QNA</a></td>
+					<td><a href="/Mylog/qna" class="">QNA</a></td>
 				</tr>
 			</table>
 		</div>
 		<div class="notice-main">
 			<div class="qna-write-main">
 				<form action="" method="post">
-					<div><input type="text" name="qna-title" class="selectQna" placeholder="제목"></div>
-					<div><textarea name="qna-content" placeholder="내용" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
+					<div><input type="text" name="qna-title" class="selectQna" placeholder="${faqVo.title}"></div>
+					<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${faqVo.enrollDate}"></div>
+					<div><textarea name="qna-content" placeholder="${faqVo.content}" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
 				</form>
 			</div>
 		</div>

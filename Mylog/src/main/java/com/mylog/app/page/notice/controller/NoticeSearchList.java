@@ -1,4 +1,4 @@
-package com.mylog.app.admin.notice.controller;
+package com.mylog.app.page.notice.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,29 +11,45 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
+import com.mylog.app.page.notice.service.NoticeService;
+import com.mylog.app.util.vo.PageVo;
 import com.mylog.app.util.vo.SearchVo;
 
-@WebServlet("/admin/select/notice/list")
-public class AdminSelectNoticeList extends HttpServlet{
+@WebServlet("/search/notice/list")
+public class NoticeSearchList extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			String searchValue = req.getParameter("searchValue");
+			
+			String searchValue = req.getParameter("notice-search");
 			String type = req.getParameter("type");
+			String categoryNo = req.getParameter("category-no");
+			String startNo = "1";
+			String endNo = "4";
+			
+			if(startNo == null) startNo = "";
+			if(endNo == null) endNo = "";
+			
+			if(type == null) {
+				type = "title";
+			}
+			
+			
 			SearchVo searchVo = new SearchVo();
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
+			searchVo.setCategoryNo(categoryNo);
+			searchVo.setStartNo(startNo);
+			searchVo.setEndNo(endNo);
 			
-			AdminNoticeService noticeService = new AdminNoticeService();
+			System.out.println(searchVo);
+			
+			NoticeService noticeService = new NoticeService();
 			List<NoticeVo> noticeVoList = noticeService.selectNoticeList(searchVo);
 			
-//			req.setAttribute("memberVoList", memberVoList);
-//			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
-			PrintWriter out = resp.getWriter();
-			out.write("리스트 : " + noticeVoList);
+			req.getRequestDispatcher("/WEB-INF/views/notice/searchNotice.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

@@ -35,10 +35,13 @@
 		</div>
 		<div class="notice-main">
 			<div class="qna-write-main">
-				<form action="" method="post">
+				<form action="/Mylog/writeQna" method="post">
 					<div><input type="text" name="qna-title" placeholder="제목을 입력하세요"></div>
 					<div><textarea name="qna-content" placeholder="내용을 입력하세요" class="notice-textarea" cols="30" rows="10"></textarea></div>
-					<div class="qna-write-submit"><input type="submit" name="qna-write-submit" value="QNA작성"></div>
+					<div class="qna-write-input">
+						<div>비밀글<input type="checkbox" id="secretYn" name="secretYn"></div>
+						<div class="qna-write-submit"><input type="submit" name="qna-write-submit" value="QNA작성"></div>
+					</div>
 				</form>
 			</div>
 		</div>

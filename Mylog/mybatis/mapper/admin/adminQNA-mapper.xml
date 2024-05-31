@@ -50,7 +50,6 @@
 		JOIN MEMBER M ON M.NO = Q.WRITER_NO
 		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
 		WHERE Q.NO = #{no}
-		ORDER BY NO
 	</select>
 	
 	<select id="selectQnaList" resultType="QNAVo">

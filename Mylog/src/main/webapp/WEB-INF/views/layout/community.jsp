@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="notice-search">
-	<form action="" method="post">
+	<form action="/Mylog/search/notice/list" method="post">
 		<div>
 			<span> <svg id="notice-svg" width="19" height="19"
 					viewBox="0 0 17 17">
@@ -13,10 +13,10 @@
 			</span>
 		</div>
 		<input type="text" name="notice-search" placeholder="검색어를 입력하세요">
-		<select name="category">
-			<option value="1">카테고리 1</option>
-			<option value="2">카테고리 2</option>
-			<option value="3">카테고리 3</option>
-		</select>
+		<select name="category-no">
+				<option value="1">카테고리 1</option>
+				<option value="2">카테고리 2</option>
+				<option value="3">카테고리 3</option>
+			</select>
 	</form>
 </div>

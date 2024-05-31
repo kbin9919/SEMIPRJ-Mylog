@@ -34,5 +34,8 @@
     <mapper resource="/mapper/admin/adminNotice-mapper.xml"/>
     <mapper resource="/mapper/admin/adminFAQ-mapper.xml"/>
     <mapper resource="/mapper/admin/adminQNA-mapper.xml"/>
+    <mapper resource="/notice/notice-mapper.xml"/>
+    <mapper resource="/faq/faq-mapper.xml"/>
+    <mapper resource="/qna/qna-mapper.xml"/>
   </mappers>
 </configuration>

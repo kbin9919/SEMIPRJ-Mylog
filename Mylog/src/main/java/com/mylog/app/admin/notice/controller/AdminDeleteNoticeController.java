@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 
 @WebServlet("/admin/delete/notice")
 public class AdminDeleteNoticeController extends HttpServlet{
@@ -20,12 +20,12 @@ public class AdminDeleteNoticeController extends HttpServlet{
 			String no = req.getParameter("no");
 			
 			//service
-			NoticeService NoticeService = new NoticeService();
+			AdminNoticeService NoticeService = new AdminNoticeService();
 			int result = NoticeService.noticeDelete(no);
 			
 			//result
 			PrintWriter out = resp.getWriter();
-			out.write("result : " + result);;
+			out.write("result : " + result);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
