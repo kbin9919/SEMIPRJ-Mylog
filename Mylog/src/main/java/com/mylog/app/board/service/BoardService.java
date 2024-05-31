@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.board.dao.BoardDao;
 import com.mylog.app.board.vo.BoardVo;
+import com.mylog.app.recommend.vo.RecommendVo;
 import com.mylog.app.util.vo.SearchVo;
 import com.mylog.app.visitor.vo.VisitorVo;
 
@@ -101,35 +102,14 @@ public class BoardService {
 	}
 
 	// 게시물 상세조회
-	public BoardVo detailBoardCheck(String no, VisitorVo vo, boolean isSelf) throws Exception {
+	public BoardVo detailBoardCheck(String no) throws Exception {
 
-		BoardVo bvo = null;
-		SqlSession ss = null;
-		try {
-			ss = getSqlSession();
-
-			int result = 1;
-
-			if (!isSelf) {
-				result = dao.insertVisitor(ss, vo);
-			}
-
-			bvo = dao.detailBoardCheck(ss, no);
-
-			if (result == 1 && bvo != null && vo != null) {
-				ss.commit();
-			} else {
-				ss.rollback();
-				throw new Exception("게시글 조회수 증가 실패");
-			}
-
-		} finally {
-			ss.close();
-		}
-
-		return bvo;
+		SqlSession ss = getSqlSession();
+		BoardVo vo = dao.detailBoardCheck(ss, no);
+		ss.close();
+		return vo;
 	}
-	
+
 	// 게시물 전체 조회
 	public List<BoardVo> allBoardCheck() throws Exception {
 		SqlSession ss = getSqlSession();
@@ -137,13 +117,49 @@ public class BoardService {
 		ss.close();
 		return voList;
 	}
-	
+
 	// 게시글 검색
 	public List<BoardVo> searchBoard(SearchVo vo) throws Exception {
 		SqlSession ss = getSqlSession();
 		List<BoardVo> voList = dao.searchBoard(ss, vo);
 		ss.close();
 		return voList;
+	}
+
+	// 게시글 조회수 증가
+	public int insertVisitor(VisitorVo vo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<VisitorVo> vvo = dao.getBoardListLoginMember(ss, vo.getBoardNo());
+		int result = 0;
+
+		boolean visitorExists = false;
+
+		for (VisitorVo V : vvo) {
+			if (V.getVisitorNum().equals(vo.getVisitorNum())) {
+				visitorExists = true;
+				break;
+			}
+
+		}
+
+		if (!visitorExists) {
+			result = dao.insertVisitor(ss, vo);
+		}
+
+		if (result > 0) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		ss.close();
+
+		return result;
+	}
+	
+	// 좋아요수 증가 감소
+	public void recommendIDcrease(RecommendVo vo) throws Exception {
+		SqlSession ss = getSqlSession();
+		RecommendVo rvo = dao.getRecommendLoginMember(ss, vo.getBoardNo());
 	}
 
 }

@@ -118,17 +118,17 @@
 
 	<select id="detailBoardCheck" resultType="com.mylog.app.board.vo.BoardVo">
 		SELECT
-    		B.NO
-    		, B.TITLE
-    		, B.CONTENT
-    		, B.CATEGORY_NO
-    		, C.TITLE AS category
-    		, B.WRITER_NO
-    		, M.NICK
-    		, B.ENROLL_DATE
-    		, TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
-    		, B.SECRET_YN
-    		, TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
+    	  B.NO
+    	   , B.TITLE
+    	   , B.CONTENT
+    	   , B.CATEGORY_NO
+    	   , C.TITLE AS category
+    	   , B.WRITER_NO
+    	   , M.NICK
+    	   , B.ENROLL_DATE
+    	   , TO_CHAR(B.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
+    	   , B.SECRET_YN
+    	   , TO_CHAR(B.MODIFY_DATE, 'YYYY-MM-DD HH24:MI:SS') AS MODIFY_DATE
 		FROM BOARD B
 		JOIN MEMBER M ON B.WRITER_NO = M.NO
 		JOIN CATEGORY C ON B.CATEGORY_NO = C.NO
@@ -156,10 +156,31 @@
 		ORDER BY B.NO
 	</select>
 	
-
-	<insert id="insertVisitor" >
-		INSERT INTO VISITOR (BOARD_NO, VISITOR_NUM)
+	<select id="getBoardListLoginMember" resultType="VisitorVo">
+		SELECT VISITOR_NUM 
+		FROM VISITOR 
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<insert id="insertVisitor" parameterType="VisitorVo">
+		INSERT INTO VISITOR (BOARD_NO, VISITOR_NUM) 
 		VALUES (#{boardNo}, #{visitorNum})
 	</insert>
+	
+	<select id="getRecommendLoginMember" resultType="com.mylog.app.recommend.vo.RecommendVo">
+		SELECT REFERENCE_NO 
+		FROM RECOMMEND 
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<insert id="insertRecommend" parameterType="VisitorVo">
+		INSERT INTO RECOMMEND (BOARD_NO, REFERENCE_NO) 
+		VALUES (#{boardNo}, #{referenceNo})
+	</insert>
+	
+	<delete id="deleteRecommend">
+		DELETE FROM RECOMMEND
+		WHERE REFERENCE_NO = #{referencNo}
+	</delete>
 
 </mapper>

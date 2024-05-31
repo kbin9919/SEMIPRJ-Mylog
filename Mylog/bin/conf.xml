@@ -14,6 +14,7 @@
 		<typeAlias type="com.mylog.app.admin.board.vo.BoardVo" alias="BoardVo"/>
 		<typeAlias type="com.mylog.app.admin.notice.vo.NoticeVo" alias="NoticeVo"/>
 		<typeAlias type="com.mylog.app.admin.faq.vo.FAQVo" alias="FAQVo"/>
+		<typeAlias type="com.mylog.app.visitor.vo.VisitorVo" alias="VisitorVo"/>
 	</typeAliases>
 	
   <environments default="development">
