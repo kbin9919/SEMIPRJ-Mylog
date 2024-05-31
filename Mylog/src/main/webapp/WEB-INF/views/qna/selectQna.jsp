@@ -35,8 +35,12 @@
 		<div class="notice-main">
 			<div class="qna-write-main">
 				<form action="" method="post">
-					<div><input type="text" name="qna-title" class="selectQna" placeholder="제목"></div>
-					<div><textarea name="qna-content" placeholder="내용" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
+					<div><input type="text" name="qna-title" class="selectQna" placeholder="${qnaVo.title}"></div>
+					<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${qnaVo.createdDate}"></div>
+					<div><textarea name="qna-content" placeholder="${qnaVo.content}" class="notice-textarea answerQna" cols="30" rows="10"></textarea></div>
+					<div><input type="text" name="qna-title" class="selectQna" placeholder="${qnaVo.answerTitle}"></div>
+					<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${qnaVo.answerDate}"></div>
+					<div><textarea name="qna-content" placeholder="${qnaVo.answerContent}" class="notice-textarea answerQna" cols="30" rows="10"></textarea></div>
 				</form>
 			</div>
 		</div>

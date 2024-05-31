@@ -12,6 +12,7 @@ $(window).on("scroll", function(){
             return false;
         }else{
             isLoading = true;
+            $(".message").show();
             startNo += 4;
             endNo += 4;
             getList(startNo, endNo);
@@ -22,17 +23,18 @@ $(window).on("scroll", function(){
 function getList(startNo, endNo){
     $.ajax({
         type: "get",
-        url: "/Mylog/notice/receive",
+        url: "/Mylog/qna/receive",
         data: {
             "startNo" : startNo,
             "endNo" : endNo
         },
+		dataType: "html",
 		success: function (response) {
-            let noticeHtml = $(response).filter('#notice-list').html();
-            let noticeCount = $(response).filter('#notice-count').text();
-			$('.notice-content-sell').append(noticeHtml);
-            totPage = noticeCount;
-            console.log(totPage);
+			let qnaHtml = $(response).filter('#qna-list').html();
+            let qnaCount = $(response).filter('#qna-count').text();
+			$('.notice-content-sell').append(qnaHtml);
+            totPage = qnaCount;
+            $(".message").hide();
 		},
 		error: function (error) {
 			console.error('AJAX error:', error);

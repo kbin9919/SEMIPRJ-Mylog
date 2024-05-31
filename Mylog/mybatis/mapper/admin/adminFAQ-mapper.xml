@@ -30,7 +30,6 @@
 			, DEL_DATE    		
 		FROM FAQ
 		WHERE NO = #{no}
-		ORDER BY NO
 	</select>
 	
 	<select id="selectFaqList" resultType="FAQVo">

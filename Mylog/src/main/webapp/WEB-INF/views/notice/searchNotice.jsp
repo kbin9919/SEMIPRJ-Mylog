@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
-<script defer src="/Mylog/resources/notice/notice.js"></script>
 </head>
 
 <body>
@@ -36,7 +35,7 @@
 		</div>
 		<div class="notice-main">
 			<%@ include file="/WEB-INF/views/layout/community.jsp"%>
-			
+
 			<div class="range">
 				<div class="notice-search-array">
 					<div>title</div>

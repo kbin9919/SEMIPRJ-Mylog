@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QnaMapper">
+
+	<select id="qnaList" resultType="QNAVo">
+		SELECT *
+		FROM
+		(
+			SELECT ROWNUM AS R
+			, Q.*
+			FROM QNA Q
+			ORDER BY NO
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+
+	<select id="getTotPage" resultType="int">
+		SELECT COUNT(NO) AS COUNT
+		FROM QNA
+	</select>
+	
+	<select id="selectQna" resultType="QNAVo">
+		SELECT 
+			Q.NO
+			, Q.WRITER_NO
+			, M.NICK
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.CREATED_DATE
+			, Q.SECRET_YN
+			, Q.ADMIN_NO
+			, A.NICK AS ADMIN_NICK
+			, Q.ANSWER_TITLE
+			, Q.ANSWER_CONTENT
+			, Q.ANSWER_DATE
+			, Q.DEL_DATE		 
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO = Q.WRITER_NO
+		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
+		WHERE Q.NO = #{no}
+	</select>
+	
+	<update id="qnaWrite">
+		INSERT INTO QNA(NO, WRITER_NO, TITLE, CONTENT, SECRET_YN) VALUES(SEQ_QNA.NEXTVAL, #{writerNo}, #{title}, #{content}, #{secretYn})		
+	</update>
+</mapper>

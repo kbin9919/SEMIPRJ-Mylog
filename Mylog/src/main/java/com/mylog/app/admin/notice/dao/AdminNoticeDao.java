@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 import com.mylog.app.util.vo.SearchVo;
 
-public class NoticeDao {
+public class AdminNoticeDao {
 
 	public int noticeWrite(SqlSession ss, NoticeVo noticeVo) {
 		return ss.insert("AdminNoticeMapper.noticeWrite", noticeVo);

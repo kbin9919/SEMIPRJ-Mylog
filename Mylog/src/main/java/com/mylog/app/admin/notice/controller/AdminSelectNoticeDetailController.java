@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/select/notice/detail")
@@ -21,7 +21,7 @@ public class AdminSelectNoticeDetailController extends HttpServlet{
 			String no = req.getParameter("no");
 			
 			//service
-			NoticeService noticeService = new NoticeService();
+			AdminNoticeService noticeService = new AdminNoticeService();
 			NoticeVo noticeVo = noticeService.noticeDetail(no);
 			
 			//result

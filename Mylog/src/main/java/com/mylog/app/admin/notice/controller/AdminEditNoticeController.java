@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/edit/notice")
@@ -29,7 +29,7 @@ public class AdminEditNoticeController extends HttpServlet{
 			noticeVo.setContent(content);
 			noticeVo.setCategoryNo(categoryNo);
 			
-			NoticeService noticeService = new NoticeService();
+			AdminNoticeService noticeService = new AdminNoticeService();
 			int result = noticeService.editNotice(noticeVo);
 			if(result != 1) {
 				throw new Exception("게시글 수정 실패 ...");

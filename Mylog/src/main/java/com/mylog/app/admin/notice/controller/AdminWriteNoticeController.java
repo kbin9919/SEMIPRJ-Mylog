@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.member.vo.AdminVo;
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/writer/notice")
@@ -36,7 +36,7 @@ public class AdminWriteNoticeController extends HttpServlet{
 			noticeVo.setWriterNo(writerNo);
 			
 			//service
-			NoticeService noticeService = new NoticeService();
+			AdminNoticeService noticeService = new AdminNoticeService();
 			int result = noticeService.noticeWrite(noticeVo);
 			
 			//result

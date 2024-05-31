@@ -8,10 +8,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mylog.app.admin.notice.vo.NoticeVo;
+import com.mylog.app.page.notice.service.NoticeService;
+
 @WebServlet("/select/notice")
 public class SelectNoticeController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/notice/selectNotice.jsp").forward(req, resp);
+		try {
+			//data
+			String no = req.getParameter("no");
+			System.out.println(no);
+			//service
+			NoticeService noticeService = new NoticeService();
+			NoticeVo noticeVo = noticeService.selectNotice(no);
+			System.out.println(noticeVo);
+			req.setAttribute("noticeVo", noticeVo);
+			//result
+			req.getRequestDispatcher("/WEB-INF/views/notice/selectNotice.jsp").forward(req, resp);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
