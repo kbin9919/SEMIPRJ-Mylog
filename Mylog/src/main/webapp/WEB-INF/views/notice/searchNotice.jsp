@@ -52,7 +52,7 @@
 					</c:forEach>
 					</c:if>
 					<c:if test="${empty noticeVoList}">
-							<div class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</div>
+							<span class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</span>
 					</c:if>
 				</div>
 			</div>

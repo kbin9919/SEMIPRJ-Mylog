@@ -10,8 +10,8 @@ import com.mylog.app.util.vo.SearchVo;
 
 public class QnaDao {
 
-	public List<QNAVo> qnaList(SqlSession ss, PageVo pageVo) {
-		return ss.selectList("QnaMapper.qnaList", pageVo);
+	public List<QNAVo> qnaList(SqlSession ss, SearchVo searchVo) {
+		return ss.selectList("QnaMapper.qnaList", searchVo);
 	}
 
 	public int getTotPage(SqlSession ss) {

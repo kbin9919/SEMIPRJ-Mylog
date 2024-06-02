@@ -45,9 +45,9 @@ public class NoticeService{
 		return noticeVoList;
 	}
 
-	public int getSearchTotPage() throws Exception {
+	public int getSearchTotPage(SearchVo searchVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		int result = dao.getsearchTotPage(ss);
+		int result = dao.getSearchTotPage(ss, searchVo);
 		ss.close();
 		return result;
 	}

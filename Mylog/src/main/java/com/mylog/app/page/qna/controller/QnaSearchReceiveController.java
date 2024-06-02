@@ -37,9 +37,7 @@ public class QnaSearchReceiveController extends HttpServlet{
 			if(Integer.parseInt(startNo) > qnaCount) {
 				session.removeAttribute("searchVo");
 			}
-			for(QNAVo vo : qnaVoList) {
-				System.out.println("vo : " + vo);
-			}
+		
 			req.setAttribute("qnaCount", qnaCount);
 			req.setAttribute("qnaVoList", qnaVoList);
 			req.getRequestDispatcher("/WEB-INF/views/qna/receive.jsp").forward(req, resp);

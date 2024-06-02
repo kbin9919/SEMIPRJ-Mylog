@@ -11,7 +11,7 @@
 			SELECT ROWNUM AS R
 			, N.*
 			FROM NOTICE N
-			ORDER BY NO
+			ORDER BY ENROLL_DATE DESC
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
@@ -79,22 +79,11 @@
 	</select>
 	
 	<select id="getSearchTotPage" resultType="int">
-		SELECT
-COUNT(R)        
-FROM
-(
-    SELECT 
-        ROWNUM R
-    FROM
-    (
-        SELECT 
-            N.NO
+		SELECT COUNT(NO)
+            NO
         FROM NOTICE N
-        JOIN CATEGORY C ON C.NO = N.CATEGORY_NO
-        WHERE N.CATEGORY_NO = #{categoryNo} 
-        AND (N.TITLE LIKE '%${searchValue}%' OR N.CONTENT LIKE '%${searchValue}%')  
-    ) A
-)
+        WHERE CATEGORY_NO = #{categoryNo} 
+        AND (TITLE LIKE '%로그인%' OR CONTENT LIKE '%로그인%')
 	</select>
 	
 </mapper>

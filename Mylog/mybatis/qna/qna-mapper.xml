@@ -12,9 +12,12 @@
 			, Q.*
 			FROM QNA Q
 			WHERE DEL_DATE IS NULL
-			ORDER BY NO
+			ORDER BY CREATED_DATE DESC
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
+			<if test="type == 'my'">
+        		AND WRITER_NO = #{writerNo}
+			</if>
 	</select>
 
 	<select id="getTotPage" resultType="int">
@@ -63,40 +66,32 @@
             		, CREATED_DATE
             		, SECRET_YN
         		FROM QNA
-        		WHERE DEL_DATE IS NULL AND SECRET_YN = 'N'
-        		AND (TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%')
-        	ORDER BY 
-            CASE 
-            <if test="type == 'title'">
+        		WHERE DEL_DATE IS NULL AND
+        			<if test="type == 'all'"> 
+        				SECRET_YN = 'N'
+        			</if>
+        			<if test="type == 'my'">
+        				WRITER_NO = #{writerNo}
+		            </if>
+        				AND (TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%')
+        			ORDER BY
+            		<if test="type == 'all'">
+            		CASE 
 		            WHEN TITLE LIKE '%${searchValue}%' THEN 1
-		            ELSE 2
-		            </if> 
-		            <if test="type == 'content'">
-		            WHEN TITLE LIKE '%${searchValue}%' THEN 2
-		            ELSE 1
-		            </if> 
-		            END, CREATED_DATE DESC
+		            ELSE 2 END, 
+		            </if>
+		            CREATED_DATE DESC
     		) Q
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
 	
 	<select id="getSearchTotPage" resultType="int">
-		SELECT 
-			COUNT(R)
-		FROM
-		(
-    		SELECT
-    			ROWNUM R
-    		FROM
-    		(
         		SELECT 
-            		NO
+            		COUNT(NO)
         		FROM QNA
         		WHERE DEL_DATE IS NULL AND SECRET_YN = 'N'
         		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
-    		) 
-		)
 	</select>
 	
 </mapper>

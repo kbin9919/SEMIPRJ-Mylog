@@ -31,6 +31,7 @@ public class FAQSearchReceiveController extends HttpServlet{
 			
 			FaqService faqService = new FaqService();
 			List<FAQVo> faqVoList = faqService.searchFaqList(searchVo);
+			
 			int faqCount = faqService.getSearchTotPage(searchVo);
 			System.out.println(faqVoList.size());
 			System.out.println(faqCount);

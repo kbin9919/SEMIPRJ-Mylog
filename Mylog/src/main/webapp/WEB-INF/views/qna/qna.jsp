@@ -7,10 +7,10 @@
 		<title>Insert title here</title>
 		<%@ include file="/WEB-INF/views/layout/util.jsp" %>
 
-			<c:if test="${searchVo == null}">
+			<c:if test="${empty sessionScope.searchVo.searchValue}">
 				<script defer src="/Mylog/resources/qna/qna.js"></script>
 			</c:if>
-			<c:if test="${searchVo != null}">
+			<c:if test="${!empty sessionScope.searchVo.searchValue}">
 				<script defer src="/Mylog/resources/qna/search.js"></script>
 			</c:if>
 	</head>
@@ -50,19 +50,19 @@
 									</svg>
 								</span>
 							</div>
-							<c:if test="${searchVo == null}">
+							<c:if test="${empty sessionScope.searchVo.searchValue}">
 								<input type="text" name="faq-search" placeholder="검색어를 입력하세요" id="searchInput">
 							</c:if>
-							<c:if test="${searchVo != null}">
-								<input type="text" name="faq-search" placeholder="" value="${searchVo.searchValue}"
+							<c:if test="${!empty sessionScope.searchVo.searchValue}">
+								<input type="text" name="faq-search" placeholder="" value="${sessionScope.searchVo.searchValue}"
 									id="searchInput">
 							</c:if>
 						</form>
 					</div>
 					<div class="range">
 						<div class="notice-search-array">
-							<div>ALL</div>
-							<div>MY</div>
+							<div class="array-all">ALL</div>
+							<div class="array-my">MY</div>
 							<span class="qna-write"> <a href="/Mylog/writeQna">QNA작성</a>
 							</span>
 						</div>
@@ -90,7 +90,7 @@
 						</c:if>
 
 						<c:if test="${empty qnaVoList}">
-							<div class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</div>
+							<span class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</span>
 						</c:if>
 					</div>
 

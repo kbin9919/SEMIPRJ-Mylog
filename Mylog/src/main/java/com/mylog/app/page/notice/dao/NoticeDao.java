@@ -26,8 +26,8 @@ public class NoticeDao {
 		return ss.selectList("NoticeMapper.searchNoticeList" , searchVo);
 	}
 
-	public int getsearchTotPage(SqlSession ss) {
-		return ss.selectOne("NoticeMapper.getSearchTotPage");
+	public int getSearchTotPage(SqlSession ss,SearchVo searchVo) {
+		return ss.selectOne("NoticeMapper.getSearchTotPage", searchVo);
 	}
 	
 

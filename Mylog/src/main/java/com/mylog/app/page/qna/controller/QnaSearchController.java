@@ -22,25 +22,26 @@ public class QnaSearchController extends HttpServlet {
 		try {
 			String searchValue = req.getParameter("faq-search");
 			String type = req.getParameter("type");
+			//나중에 로그인 세션 가져와서 꺼내오기
+			String writerNo = "2";
+			
 			String startNo = "1";
 			String endNo = "4";
 
 			if (type == null) {
-				type = "title";
+				type = "all";
 			}
-
 			SearchVo searchVo = new SearchVo();
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
+			searchVo.setWriterNo(writerNo);
 			searchVo.setStartNo(startNo);
 			searchVo.setEndNo(endNo);
-			
 			QnaService qnaService = new QnaService();
 			List<QNAVo> qnaVoList = qnaService.searchQnaList(searchVo);
 			
-			
-			req.setAttribute("qnaVoList", qnaVoList);
 			session.setAttribute("searchVo", searchVo);
+			req.setAttribute("qnaVoList", qnaVoList);
 			req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
