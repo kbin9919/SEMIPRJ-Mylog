@@ -12,26 +12,35 @@ import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.qna.vo.QNAVo;
 import com.mylog.app.page.qna.service.QnaService;
-import com.mylog.app.util.vo.PageVo;
+import com.mylog.app.util.vo.SearchVo;
 
-@WebServlet("/qna")
-public class QnaController extends HttpServlet {
-	
+@WebServlet("/search/qna/list")
+public class QnaSearchController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		HttpSession session = req.getSession();
 		try {
-			session.removeAttribute("searchVo");
+			String searchValue = req.getParameter("faq-search");
+			String type = req.getParameter("type");
 			String startNo = "1";
 			String endNo = "4";
-			PageVo pageVo = new PageVo();
-			pageVo.setStartNo(startNo);
-			pageVo.setEndNo(endNo);
+
+			if (type == null) {
+				type = "title";
+			}
+
+			SearchVo searchVo = new SearchVo();
+			searchVo.setSearchValue(searchValue);
+			searchVo.setType(type);
+			searchVo.setStartNo(startNo);
+			searchVo.setEndNo(endNo);
 			
 			QnaService qnaService = new QnaService();
-			List<QNAVo> qnaVoList = qnaService.qnaList(pageVo);
+			List<QNAVo> qnaVoList = qnaService.searchQnaList(searchVo);
+			
+			
 			req.setAttribute("qnaVoList", qnaVoList);
+			session.setAttribute("searchVo", searchVo);
 			req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -40,10 +49,8 @@ public class QnaController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
+		doGet(req, resp);
 	}
-
 }

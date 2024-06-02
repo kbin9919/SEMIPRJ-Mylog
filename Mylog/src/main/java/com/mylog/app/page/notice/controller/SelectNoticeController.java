@@ -18,11 +18,9 @@ public class SelectNoticeController extends HttpServlet{
 		try {
 			//data
 			String no = req.getParameter("no");
-			System.out.println(no);
 			//service
 			NoticeService noticeService = new NoticeService();
 			NoticeVo noticeVo = noticeService.selectNotice(no);
-			System.out.println(noticeVo);
 			req.setAttribute("noticeVo", noticeVo);
 			//result
 			req.getRequestDispatcher("/WEB-INF/views/notice/selectNotice.jsp").forward(req, resp);

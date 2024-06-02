@@ -10,6 +10,7 @@ import com.mylog.app.admin.qna.vo.QNAVo;
 import com.mylog.app.page.qna.dao.QnaDao;
 import com.mylog.app.util.db.SqlSessionTemplate;
 import com.mylog.app.util.vo.PageVo;
+import com.mylog.app.util.vo.SearchVo;
 
 public class QnaService {
 	private QnaDao dao;
@@ -44,6 +45,19 @@ public class QnaService {
 		} else {
 			ss.rollback();
 		}
+		ss.close();
+		return result;
+	}
+	public List<QNAVo> searchQnaList(SearchVo searchVo) throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		List<QNAVo> qnaVoList = dao.searchQnaList(ss, searchVo);
+		System.out.println(searchVo);
+		ss.close();
+		return qnaVoList;
+	}
+	public int getSearchTotPage(SearchVo searchVo) throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.getSearchTotPage(ss, searchVo);
 		ss.close();
 		return result;
 	}

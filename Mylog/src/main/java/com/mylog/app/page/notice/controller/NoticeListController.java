@@ -15,11 +15,12 @@ import com.mylog.app.page.notice.service.NoticeService;
 import com.mylog.app.util.vo.PageVo;
 
 @WebServlet("/notice")
-public class NoticeController extends HttpServlet{
+public class NoticeListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
+			session.removeAttribute("searchVo");
 			String startNo = "1";
 			String endNo = "4";
 			PageVo pageVo = new PageVo();

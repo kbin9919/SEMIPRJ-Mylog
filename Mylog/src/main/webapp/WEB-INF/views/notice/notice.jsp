@@ -38,10 +38,6 @@
 			<%@ include file="/WEB-INF/views/layout/community.jsp"%>
 			
 			<div class="range">
-				<div class="notice-search-array">
-					<div>title</div>
-					<div>content</div>
-				</div>
 				<div class="notice-content-sell">
 					<c:forEach items="${noticeVoList}" var="vo">
 						<a href="/Mylog/select/notice?no=${vo.no}" class="notice-content">

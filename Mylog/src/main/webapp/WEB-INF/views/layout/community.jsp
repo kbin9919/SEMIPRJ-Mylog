@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="notice-search">
-	<form action="/Mylog/search/notice/list" method="post">
+	<form action="/Mylog/search/notice/list" method="get">
 		<div>
 			<span> <svg id="notice-svg" width="19" height="19"
 					viewBox="0 0 17 17">
@@ -12,11 +12,17 @@
                                     </svg>
 			</span>
 		</div>
-		<input type="text" name="notice-search" placeholder="검색어를 입력하세요">
+		<c:if test="${searchVo == null}">
+		<input type="text" name="notice-search" placeholder="검색어를 입력하세요" id="searchInput">
+		</c:if>
+		<c:if test="${searchVo != null}">
+		<input type="text" name="notice-search" placeholder="" value="${searchVo.searchValue}" id="searchInput">
+		</c:if>
 		<select name="category-no">
-				<option value="1">카테고리 1</option>
-				<option value="2">카테고리 2</option>
-				<option value="3">카테고리 3</option>
+				<option value="99">로그인</option>
+				<option value="94">업데이트</option>
+				<option value="97">계정</option>
+				<option value="95">기타</option>
 			</select>
 	</form>
 </div>

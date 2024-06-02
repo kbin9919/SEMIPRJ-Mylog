@@ -1,3 +1,4 @@
+console.log("faq-js호출");
 let startNo = 1;
 let endNo = 4;
 let isLoading = false;
@@ -7,7 +8,7 @@ $(window).on("scroll", function(){
     let windowsHeight = $(window).height();
     let documentHeight = $(document).height();
     let isBottom = scrollTop + windowsHeight + 10 >= documentHeight;
-    if(isBottom){
+    if(isBottom && !isLoading){
         if(startNo >= totPage){
             return false;
         }else{

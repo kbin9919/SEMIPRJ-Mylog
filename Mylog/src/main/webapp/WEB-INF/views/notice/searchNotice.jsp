@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="/WEB-INF/views/layout/util.jsp"%>
+<script defer src="/Mylog/resources/notice/search.js"></script>
 </head>
 
 <body>
@@ -38,16 +39,21 @@
 
 			<div class="range">
 				<div class="notice-search-array">
-					<div>title</div>
-					<div>content</div>
+					<div class="array-title">title</div>
+					<div class="array-content">content</div>
 				</div>
 				<div class="notice-content-sell">
+					<c:if test="${!empty noticeVoList}">
 					<c:forEach items="${noticeVoList}" var="vo">
 						<a href="/Mylog/select/notice?no=${vo.no}" class="notice-content">
-							<div>${vo.title}</div> <img src="" alt="png.">
-							<div>${vo.content}</div>
+							<div class="highlightable">${vo.title}</div> <img src="" alt="png.">
+							<div class="highlightable">${vo.content}</div>
 						</a>
 					</c:forEach>
+					</c:if>
+					<c:if test="${empty noticeVoList}">
+							<div class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

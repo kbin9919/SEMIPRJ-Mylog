@@ -1,8 +1,8 @@
+console.log(" search : 연결됨");
 let startNo = 1;
 let endNo = 4;
 let isLoading = false;
 let totPage = 100;
-const data = [];
 $(window).on("scroll", function(){
     let scrollTop = $(window).scrollTop();
     let windowsHeight = $(window).height();
@@ -23,7 +23,7 @@ $(window).on("scroll", function(){
 function getList(startNo, endNo){
     $.ajax({
         type: "get",
-        url: "/Mylog/notice/receive",
+        url: "/Mylog/notice/search/receive",
         data: {
             "startNo" : startNo,
             "endNo" : endNo
@@ -33,7 +33,6 @@ function getList(startNo, endNo){
             let noticeCount = $(response).filter('#notice-count').text();
 			$('.notice-content-sell').append(noticeHtml);
             totPage = noticeCount;
-            date = noticeHtml.val;
             console.log(totPage);
             isLoading = false;
 		},
@@ -42,4 +41,29 @@ function getList(startNo, endNo){
 		}
     });
 }
+const type = 'content';
+$('.array-content').on('click', function arrayContent(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const noticeSearch = urlParams.get('notice-search');
+    const categoryNo = urlParams.get('category-no');
+    $.ajax({
+        type: "get",
+        url: "/Mylog/search/notice/list",
+        data: {
+            "type" : type
+            , "notice-search" : noticeSearch
+            , "category-no" : categoryNo
+        },
+		success: function (response) {
+			$('body').empty();
+            $('body').append(response);
+		},
+		error: function (error) {
+			console.error('AJAX error:', error);
+		}
+    });
+});
 
+$('.array-content').on('click', function arrayContent(){
+    
+});

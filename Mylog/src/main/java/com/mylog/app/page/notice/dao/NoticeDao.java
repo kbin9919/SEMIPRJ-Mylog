@@ -25,6 +25,10 @@ public class NoticeDao {
 	public List<NoticeVo> searchNoticeList(SqlSession ss, SearchVo searchVo) {
 		return ss.selectList("NoticeMapper.searchNoticeList" , searchVo);
 	}
+
+	public int getsearchTotPage(SqlSession ss) {
+		return ss.selectOne("NoticeMapper.getSearchTotPage");
+	}
 	
 
 }

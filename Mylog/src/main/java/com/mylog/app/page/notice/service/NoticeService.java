@@ -38,11 +38,18 @@ public class NoticeService{
 		return noticeVo;
 	}
 
-	public List<NoticeVo> selectNoticeList(SearchVo searchVo) throws Exception {
+	public List<NoticeVo> searchNoticeList(SearchVo searchVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
 		List<NoticeVo> noticeVoList = dao.searchNoticeList(ss, searchVo);
 		ss.close();
 		return noticeVoList;
+	}
+
+	public int getSearchTotPage() throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.getsearchTotPage(ss);
+		ss.close();
+		return result;
 	}
 
 

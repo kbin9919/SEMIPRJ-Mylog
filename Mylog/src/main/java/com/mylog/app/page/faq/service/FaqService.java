@@ -9,6 +9,7 @@ import com.mylog.app.admin.notice.vo.NoticeVo;
 import com.mylog.app.page.faq.dao.FaqDao;
 import com.mylog.app.util.db.SqlSessionTemplate;
 import com.mylog.app.util.vo.PageVo;
+import com.mylog.app.util.vo.SearchVo;
 
 public class FaqService {
 	private FaqDao dao;
@@ -33,5 +34,17 @@ public class FaqService {
 		FAQVo faqVo = dao.selectFaq(ss, no);
 		ss.close();
 		return faqVo;
+	}
+	public List<FAQVo> searchFaqList(SearchVo searchVo) throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		List<FAQVo> faqVoList = dao.searchFaqList(ss, searchVo);
+		ss.close();
+		return faqVoList;
+	}
+	public int getSearchTotPage(SearchVo searchVo) throws Exception {
+		SqlSession ss = SqlSessionTemplate.getSqlSession();
+		int result = dao.getSearchTotPage(ss ,searchVo);
+		ss.close();
+		return result;
 	}
 }

@@ -35,6 +35,7 @@
     padding-left: 0px;
     padding-right: 15px;
     width: 10.4%;
+    cursor: pointer;
 }
 .notice-main{
     grid-column: span 2;
@@ -126,9 +127,29 @@ select{
     height: 100px;
     margin-bottom: 10px;
 }
+.notice-content-click{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    align-content: center;
+    box-sizing: border-box;
+    padding-left: 19px;
+    place-items: center start;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
 .notice-content:hover{
     border: 2px solid black;
     cursor: pointer;
+}
+.notice-content div{
+    width: 630px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .notice-content>img{
     grid-row: span 2;
@@ -259,4 +280,26 @@ body{
 }
 .qna-write-input >div:nth-child(1){
     font-weight: 900;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+.secretQna-shake{
+    animation: shake 0.5s;
+    border: 3px solid red;
+    z-index: 99;
+}
+.highlight {
+    color: rgb(70, 236, 81);
+}
+.not-Find{
+    display: flex;
+    justify-content: center;
+    color: gray;
+    font-size: 20px;
+    height: 375px;
 }

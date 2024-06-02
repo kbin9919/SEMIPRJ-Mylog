@@ -36,7 +36,10 @@
 			<div class="qna-write-main">
 				<form action="" method="post">
 					<div><input type="text" name="qna-title" class="selectQna" placeholder="${noticeVo.title}"></div>
-					<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${noticeVo.enrollDate}"></div>
+					<div style="display: flex; justify-content: end; gap: 13px;">
+						<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="카테고리 : ${noticeVo.category}"></div>
+						<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${noticeVo.enrollDate}"></div>
+					</div>
 					<div><textarea name="qna-content" placeholder="${noticeVo.content}" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
 				</form>
 			</div>

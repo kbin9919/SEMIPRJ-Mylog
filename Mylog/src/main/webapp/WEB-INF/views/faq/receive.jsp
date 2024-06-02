@@ -5,8 +5,8 @@
 <div id="faq-list">
 	<c:forEach items="${faqVoList}" var="vo">
 		<a href="/Mylog/select/faq?no=${vo.no}" class="notice-content">
-			<div>${vo.title}</div> <img src="" alt="png.">
-			<div>${vo.content}</div>
+			<div class="highlightable">${vo.title}</div> <img src="" alt="png.">
+			<div class="highlightable">${vo.content}</div>
 		</a>
 	</c:forEach>
 </div>
