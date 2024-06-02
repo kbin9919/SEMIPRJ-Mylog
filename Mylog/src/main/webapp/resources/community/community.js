@@ -3,7 +3,7 @@ $(document).ready(function () {
     const searchText = $('#searchInput').val().trim() // input의 기본값을 검색어로 설정
     function applyHighlighting() {
         $('.highlightable').each(function () {
-            const divText = $(this).text().toLowerCase(); // 각 div 요소의 텍스트를 가져와서 소문자로 변환하여 저장
+            const divText = $(this).text(); // 각 div 요소의 텍스트를 가져와서 소문자로 변환하여 저장
             const regex = new RegExp('(' + searchText + ')', 'gi'); // 검색어와 일치하는 부분을 찾을 정규식 생성
             const highlightedText = divText.replace(regex, '<span class="highlight">$1</span>'); // 검색어와 일치하는 부분을 감싸고 있는 span 태그 생성
             $(this).html(highlightedText); // div 요소의 내용을 변경

@@ -35,6 +35,9 @@ public class FAQReceiveController extends HttpServlet{
 			
 			List<FAQVo> faqVoList = faqService.faqList(pageVo);
 			int faqCount =  faqService.getTotPage();
+			if(Integer.parseInt(startNo) > faqCount) {
+				session.removeAttribute("pageVo");
+			}
 			req.setAttribute("faqCount", faqCount);
 			req.setAttribute("faqVoList", faqVoList);
 			req.getRequestDispatcher("/WEB-INF/views/faq/receive.jsp").forward(req, resp);

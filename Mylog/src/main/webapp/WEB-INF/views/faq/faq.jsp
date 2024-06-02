@@ -59,7 +59,14 @@
 							</c:if>
 						</form>
 					</div>
-					<div class="range"></div>
+					<div class="range">
+					<c:if test="${searchVo != null}">
+						<div class="notice-search-array">
+							<div class="array-title">title</div>
+							<div class="array-content">content</div>
+						</div>
+					</c:if>
+					</div>
 					<div class="notice-content-sell">
 						<c:if test="${!empty faqVoList}">
 							<c:forEach items="${faqVoList}" var="vo">
@@ -71,7 +78,7 @@
 						</c:if>
 					</div>
 					<c:if test="${empty faqVoList}">
-						<div class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</div>
+						<span class="not-Find">검색 결과가 존재하지 않습니다. 다시 검색해주세요.</span>
 					</c:if>
 				</div>
 				<div class="message">페이지 불러오는 중...</div>

@@ -15,7 +15,7 @@ import com.mylog.app.page.notice.service.NoticeService;
 import com.mylog.app.util.vo.SearchVo;
 
 @WebServlet("/notice/search/receive")
-public class NoticeSearchReceiveController extends HttpServlet{
+public class NoticeSearchReceiveController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -23,23 +23,25 @@ public class NoticeSearchReceiveController extends HttpServlet{
 			SearchVo searchVo = (SearchVo) session.getAttribute("searchVo");
 			String startNo = req.getParameter("startNo");
 			String endNo = req.getParameter("endNo");
-			if(startNo == null) startNo = "";
-			if(endNo == null) endNo = "";
-			
+			if (startNo == null)
+				startNo = "";
+			if (endNo == null)
+				endNo = "";
+
 			searchVo.setStartNo(startNo);
 			searchVo.setEndNo(endNo);
-			System.out.println("notice searchVo : " + searchVo);
-			
+			System.out.println(searchVo);
 			NoticeService noticeService = new NoticeService();
 			List<NoticeVo> noticeVoList = noticeService.searchNoticeList(searchVo);
-			/*
-			 * int noticeCount = noticeService.getSearchTotPage();
-			 * 
-			 * if(Integer.parseInt(startNo) > noticeCount) {
-			 * session.removeAttribute("searchVo"); }
-			 */
-			int noticeCount = 20;
-			System.out.println("사이즈 : " + noticeVoList.size());
+
+			int noticeCount = noticeService.getSearchTotPage(searchVo);
+			System.out.println(noticeCount);
+			
+			if (Integer.parseInt(startNo) > noticeCount) {
+				session.removeAttribute("searchVo");
+			}
+			
+
 			req.setAttribute("noticeCount", noticeCount);
 			req.setAttribute("noticeVoList", noticeVoList);
 			req.getRequestDispatcher("/WEB-INF/views/notice/receive.jsp").forward(req, resp);

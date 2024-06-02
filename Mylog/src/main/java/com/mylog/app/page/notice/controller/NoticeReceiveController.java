@@ -33,6 +33,11 @@ public class NoticeReceiveController extends HttpServlet{
 			List<NoticeVo> noticeVoList = noticeService.noticeList(pageVo);
 			
 			int noticeCount = noticeService.getTotPage();
+			
+			if(Integer.parseInt(startNo) > noticeCount) {
+				session.removeAttribute("pageVo");
+			}
+			
 			req.setAttribute("noticeCount", noticeCount);
 			req.setAttribute("noticeVoList", noticeVoList);
 			

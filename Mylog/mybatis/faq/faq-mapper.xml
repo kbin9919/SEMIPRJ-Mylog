@@ -12,7 +12,7 @@
 			, F.*
 			FROM FAQ F
             WHERE DEL_DATE IS NULL
-			ORDER BY NO
+			ORDER BY ENROLL_DATE DESC
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
@@ -67,20 +67,11 @@
 	</select>
 	
 	<select id="getSearchTotPage" resultType="int">
-		SELECT COUNT(R)
-		FROM
-		(
-  		    SELECT
-    			ROWNUM R
-    		FROM
-    		(
         		SELECT 
-            	NO
+            	COUNT(NO)
        	 		FROM FAQ
         		WHERE DEL_DATE IS NULL
         		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
-    		) 
-		)
 	</select>
 	
 </mapper>

@@ -13,9 +13,10 @@ import javax.servlet.http.HttpSession;
 import com.mylog.app.admin.qna.vo.QNAVo;
 import com.mylog.app.page.qna.service.QnaService;
 import com.mylog.app.util.vo.PageVo;
+import com.mylog.app.util.vo.SearchVo;
 
 @WebServlet("/qna")
-public class QnaController extends HttpServlet {
+public class QnaListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,12 +26,19 @@ public class QnaController extends HttpServlet {
 			session.removeAttribute("searchVo");
 			String startNo = "1";
 			String endNo = "4";
-			PageVo pageVo = new PageVo();
-			pageVo.setStartNo(startNo);
-			pageVo.setEndNo(endNo);
+			String type = req.getParameter("type");
+			//나중에 로그인 세션 가져와서 꺼내오기
+			String writerNo = "2";
+			SearchVo searchVo = new SearchVo();
+			searchVo.setType(type);
+			searchVo.setWriterNo(writerNo);
+			searchVo.setStartNo(startNo);
+			searchVo.setEndNo(endNo);
 			
 			QnaService qnaService = new QnaService();
-			List<QNAVo> qnaVoList = qnaService.qnaList(pageVo);
+			List<QNAVo> qnaVoList = qnaService.qnaList(searchVo);
+			
+			session.setAttribute("searchVo", searchVo);
 			req.setAttribute("qnaVoList", qnaVoList);
 			req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
 		} catch (Exception e) {

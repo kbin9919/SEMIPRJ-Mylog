@@ -29,11 +29,10 @@ public class WriteQnaController extends HttpServlet {
 			String title = req.getParameter("qna-title");
 			String content = req.getParameter("qna-content");
 			String secretYn = req.getParameter("secretYn");
-			
-			if(secretYn.equals("on")) {
-				secretYn = "Y";
-			}else {
+			if(secretYn == null) {
 				secretYn = "N";
+			}else {
+				secretYn = "Y";
 			}
 			
 			QNAVo qnaVo = new QNAVo();

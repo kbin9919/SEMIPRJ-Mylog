@@ -32,9 +32,12 @@ function getList(startNo, endNo){
 		success: function (response) {
             let faqHtml = $(response).filter('#faq-list').html();
             let faqCount = $(response).filter('#faq-count').text();
+            
 			$('.notice-content-sell').append(faqHtml);
             totPage = faqCount;
             $(".message").hide();
+            
+            isLoading = false;
 		},
 		error: function (error) {
 			console.error('AJAX error:', error);

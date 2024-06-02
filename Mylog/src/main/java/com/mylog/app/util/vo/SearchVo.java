@@ -6,18 +6,20 @@ public class SearchVo {
 	private String categoryNo;
 	private String startNo; 
 	private String endNo;
+	private String writerNo;
 	
 	public SearchVo() {
 		super();
 	}
 
-	public SearchVo(String searchValue, String type, String categoryNo, String startNo, String endNo) {
+	public SearchVo(String searchValue, String type, String categoryNo, String startNo, String endNo, String writerNo) {
 		super();
 		this.searchValue = searchValue;
 		this.type = type;
 		this.categoryNo = categoryNo;
 		this.startNo = startNo;
 		this.endNo = endNo;
+		this.writerNo = writerNo;
 	}
 
 	public String getSearchValue() {
@@ -60,10 +62,18 @@ public class SearchVo {
 		this.endNo = endNo;
 	}
 
+	public String getWriterNo() {
+		return writerNo;
+	}
+
+	public void setWriterNo(String writerNo) {
+		this.writerNo = writerNo;
+	}
+
 	@Override
 	public String toString() {
 		return "SearchVo [searchValue=" + searchValue + ", type=" + type + ", categoryNo=" + categoryNo + ", startNo="
-				+ startNo + ", endNo=" + endNo + "]";
+				+ startNo + ", endNo=" + endNo + ", writerNo=" + writerNo + "]";
 	}
 
 }

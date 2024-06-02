@@ -31,8 +31,6 @@ public class NoticeSearchListController extends HttpServlet{
 			if(type == null) {
 				type = "title";
 			}
-			
-			
 			SearchVo searchVo = new SearchVo();
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);

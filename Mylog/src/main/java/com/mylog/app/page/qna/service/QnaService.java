@@ -17,9 +17,9 @@ public class QnaService {
 	public QnaService() {
 		this.dao = new QnaDao();
 	}
-	public List<QNAVo> qnaList(PageVo pageVo) throws Exception {
+	public List<QNAVo> qnaList(SearchVo searchVo) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
-		List<QNAVo> qnaVoList = dao.qnaList(ss, pageVo);
+		List<QNAVo> qnaVoList = dao.qnaList(ss, searchVo);
 		ss.close();
 		return qnaVoList;
 	}
