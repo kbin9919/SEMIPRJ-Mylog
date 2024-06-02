@@ -11,6 +11,7 @@
 			SELECT ROWNUM AS R
 			, Q.*
 			FROM QNA Q
+			WHERE DEL_DATE IS NULL
 			ORDER BY NO
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
@@ -19,6 +20,7 @@
 	<select id="getTotPage" resultType="int">
 		SELECT COUNT(NO) AS COUNT
 		FROM QNA
+		WHERE DEL_DATE IS NULL
 	</select>
 	
 	<select id="selectQna" resultType="QNAVo">
@@ -45,4 +47,56 @@
 	<update id="qnaWrite">
 		INSERT INTO QNA(NO, WRITER_NO, TITLE, CONTENT, SECRET_YN) VALUES(SEQ_QNA.NEXTVAL, #{writerNo}, #{title}, #{content}, #{secretYn})		
 	</update>
+	
+	<select id="searchQnaList" resultType="QNAVo">
+		SELECT *
+		FROM
+		(
+    		SELECT 
+    			Q.*
+    			,ROWNUM R
+    		FROM
+    		(
+        		SELECT 
+            		TITLE
+            		, CONTENT
+            		, CREATED_DATE
+            		, SECRET_YN
+        		FROM QNA
+        		WHERE DEL_DATE IS NULL AND SECRET_YN = 'N'
+        		AND (TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%')
+        	ORDER BY 
+            CASE 
+            <if test="type == 'title'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 1
+		            ELSE 2
+		            </if> 
+		            <if test="type == 'content'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 2
+		            ELSE 1
+		            </if> 
+		            END, CREATED_DATE DESC
+    		) Q
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="getSearchTotPage" resultType="int">
+		SELECT 
+			COUNT(R)
+		FROM
+		(
+    		SELECT
+    			ROWNUM R
+    		FROM
+    		(
+        		SELECT 
+            		NO
+        		FROM QNA
+        		WHERE DEL_DATE IS NULL AND SECRET_YN = 'N'
+        		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+    		) 
+		)
+	</select>
+	
 </mapper>

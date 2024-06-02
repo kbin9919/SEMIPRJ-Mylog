@@ -33,4 +33,54 @@
 		FROM FAQ
 		WHERE NO = #{no}
 	</select>
+	
+	<select id="searchFaqList" resultType="FAQVo">
+		SELECT *
+		FROM
+		(
+		    SELECT F.*
+		    ,ROWNUM R
+		 		   FROM
+		    (
+		        SELECT 
+		            TITLE
+		            , CONTENT
+		            , ENROLL_DATE
+		            , MODIFY_DATE
+		        FROM FAQ
+		        WHERE DEL_DATE IS NULL
+		        AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+		        ORDER BY 
+		            CASE 
+		            <if test="type == 'title'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 1
+		            ELSE 2
+		            </if> 
+		            <if test="type == 'content'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 2
+		            ELSE 1
+		            </if> 
+		            END, ENROLL_DATE DESC
+		    ) F
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="getSearchTotPage" resultType="int">
+		SELECT COUNT(R)
+		FROM
+		(
+  		    SELECT
+    			ROWNUM R
+    		FROM
+    		(
+        		SELECT 
+            	NO
+       	 		FROM FAQ
+        		WHERE DEL_DATE IS NULL
+        		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+    		) 
+		)
+	</select>
+	
 </mapper>

@@ -1,8 +1,8 @@
+console.log("faq-search-js호출");
 let startNo = 1;
 let endNo = 4;
 let isLoading = false;
 let totPage = 100;
-const data = [];
 $(window).on("scroll", function(){
     let scrollTop = $(window).scrollTop();
     let windowsHeight = $(window).height();
@@ -23,23 +23,21 @@ $(window).on("scroll", function(){
 function getList(startNo, endNo){
     $.ajax({
         type: "get",
-        url: "/Mylog/notice/receive",
+        url: "/Mylog/faq/search/receive",
         data: {
             "startNo" : startNo,
             "endNo" : endNo
         },
 		success: function (response) {
-            let noticeHtml = $(response).filter('#notice-list').html();
-            let noticeCount = $(response).filter('#notice-count').text();
+            let noticeHtml = $(response).filter('#faq-list').html();
+            let noticeCount = $(response).filter('#faq-count').text();
+            
 			$('.notice-content-sell').append(noticeHtml);
             totPage = noticeCount;
-            date = noticeHtml.val;
             console.log(totPage);
-            isLoading = false;
 		},
 		error: function (error) {
 			console.error('AJAX error:', error);
 		}
     });
 }
-

@@ -12,27 +12,38 @@ import javax.servlet.http.HttpSession;
 
 import com.mylog.app.admin.qna.vo.QNAVo;
 import com.mylog.app.page.qna.service.QnaService;
-import com.mylog.app.util.vo.PageVo;
+import com.mylog.app.util.vo.SearchVo;
 
-@WebServlet("/qna")
-public class QnaController extends HttpServlet {
-	
+@WebServlet("/qna/search/receive")
+public class QnaSearchReceiveController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		HttpSession session = req.getSession();
 		try {
-			session.removeAttribute("searchVo");
-			String startNo = "1";
-			String endNo = "4";
-			PageVo pageVo = new PageVo();
-			pageVo.setStartNo(startNo);
-			pageVo.setEndNo(endNo);
+			
+			SearchVo searchVo = (SearchVo) session.getAttribute("searchVo");
+			String startNo = req.getParameter("startNo");
+			String endNo = req.getParameter("endNo");
+			if(startNo == null) startNo = "";
+			if(endNo == null) endNo = "";
+			searchVo.setStartNo(startNo);
+			searchVo.setEndNo(endNo);
 			
 			QnaService qnaService = new QnaService();
-			List<QNAVo> qnaVoList = qnaService.qnaList(pageVo);
+			List<QNAVo> qnaVoList = qnaService.searchQnaList(searchVo);
+			
+			int qnaCount = qnaService.getSearchTotPage(searchVo);
+			
+			if(Integer.parseInt(startNo) > qnaCount) {
+				session.removeAttribute("searchVo");
+			}
+			for(QNAVo vo : qnaVoList) {
+				System.out.println("vo : " + vo);
+			}
+			req.setAttribute("qnaCount", qnaCount);
 			req.setAttribute("qnaVoList", qnaVoList);
-			req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/qna/receive.jsp").forward(req, resp);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -40,10 +51,4 @@ public class QnaController extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/qna/qna.jsp").forward(req, resp);
-	}
-
 }
