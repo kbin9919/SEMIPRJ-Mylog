@@ -6,18 +6,27 @@ public class AdminVo {
 	private String password;
 	private String nick;
 	private String adminYn;
+	private String enrollDate;
+	private String delDate;
+	private String introduction;
+	private String warningPoint;
 	
 	public AdminVo() {
 		super();
 	}
 
-	public AdminVo(String no, String email, String password, String nick, String adminYn) {
+	public AdminVo(String no, String email, String password, String nick, String adminYn, String enrollDate,
+			String delDate, String introduction, String warningPoint) {
 		super();
 		this.no = no;
 		this.email = email;
 		this.password = password;
 		this.nick = nick;
 		this.adminYn = adminYn;
+		this.enrollDate = enrollDate;
+		this.delDate = delDate;
+		this.introduction = introduction;
+		this.warningPoint = warningPoint;
 	}
 
 	public String getNo() {
@@ -60,13 +69,43 @@ public class AdminVo {
 		this.adminYn = adminYn;
 	}
 
+	public String getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+	public String getDelDate() {
+		return delDate;
+	}
+
+	public void setDelDate(String delDate) {
+		this.delDate = delDate;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getWarningPoint() {
+		return warningPoint;
+	}
+
+	public void setWarningPoint(String warningPoint) {
+		this.warningPoint = warningPoint;
+	}
+
 	@Override
 	public String toString() {
 		return "AdminVo [no=" + no + ", email=" + email + ", password=" + password + ", nick=" + nick + ", adminYn="
-				+ adminYn + "]";
+				+ adminYn + ", enrollDate=" + enrollDate + ", delDate=" + delDate + ", introduction=" + introduction
+				+ ", warningPoint=" + warningPoint + "]";
 	}
-	
-	
-	
-	
+
 }

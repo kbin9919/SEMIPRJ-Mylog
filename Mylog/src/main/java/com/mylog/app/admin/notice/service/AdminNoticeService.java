@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.admin.faq.vo.FAQVo;
 import com.mylog.app.admin.notice.dao.AdminNoticeDao;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 import com.mylog.app.util.db.SqlSessionTemplate;
+import com.mylog.app.util.vo.AttachmentVo;
 import com.mylog.app.util.vo.SearchVo;
 
 public class AdminNoticeService {
@@ -17,16 +17,22 @@ public class AdminNoticeService {
 		this.dao = new AdminNoticeDao();
 	}
 
-	public int noticeWrite(NoticeVo noticeVo) throws Exception {
+	public int noticeWrite(NoticeVo noticeVo, List<AttachmentVo> attVoList) throws Exception {
 		SqlSession ss = SqlSessionTemplate.getSqlSession();
 		int result = dao.noticeWrite(ss, noticeVo);
-		if (result == 1) {
+		int attResult = 1;
+		if(attVoList.size() > 0) {
+			attResult = dao.insertNoticeAttachment(ss , attVoList);
+		}
+		
+		if(result * attResult >= 1) {
 			ss.commit();
-		} else {
+		}else {
 			ss.rollback();
 		}
 		ss.close();
-		return result;
+		
+		return result * attResult;
 	}
 
 	public NoticeVo noticeDetail(String no) throws Exception {

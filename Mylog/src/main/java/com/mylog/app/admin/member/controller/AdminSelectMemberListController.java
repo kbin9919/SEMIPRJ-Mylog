@@ -19,25 +19,21 @@ import com.mylog.app.util.vo.SearchVo;
 public class AdminSelectMemberListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			String searchValue = req.getParameter("searchValue");
+			String searchValue = req.getParameter("admin-search");
 			String type = req.getParameter("type");
+			if(type == null) {
+				type = "title";
+			}
+			
 			SearchVo searchVo = new SearchVo();
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
-			
 			AdminMemberService adminService = new AdminMemberService();
 			List<MemberVo> memberVoList = adminService.selectMemberList(searchVo);
-			
-//			req.setAttribute("memberVoList", memberVoList);
-//			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
-			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + memberVoList);
+			req.setAttribute("memberVoList", memberVoList);
+			req.getRequestDispatcher("/WEB-INF/views/admin/selectList.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

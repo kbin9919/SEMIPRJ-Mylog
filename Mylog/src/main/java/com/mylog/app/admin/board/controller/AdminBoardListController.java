@@ -23,9 +23,7 @@ public class AdminBoardListController extends HttpServlet{
 			AdminBoardService adminService = new AdminBoardService();
 			List<BoardVo> boardVoList = adminService.boardList();
 			
-			PrintWriter out = resp.getWriter();
-			out.write("리스트 조회 : " + boardVoList);
-			System.out.println(boardVoList);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
