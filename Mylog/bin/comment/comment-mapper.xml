@@ -42,4 +42,20 @@
 			AND DEL_DATE IS NULL
 	</update>
 	
+	<select id="commentListCheck" resultType="com.mylog.app.comment.vo.CommentVo">
+		SELECT 
+		    C.NO
+		    ,C.CONTENT
+		    ,C.BOARD_NO
+		    ,C.WRITER_NO
+		    ,C.ENROLL_DATE
+		    ,C.DEL_DATE
+		    ,M.NICK AS writerNick
+		FROM COMMENTS C
+		JOIN MEMBER M ON C.WRITER_NO = M.NO
+		WHERE C.BOARD_NO = #{no}
+		AND C.DEL_DATE IS NULL
+		ORDER BY C.NO DESC
+	</select>
+	
 </mapper>

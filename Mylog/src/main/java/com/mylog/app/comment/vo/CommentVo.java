@@ -9,9 +9,11 @@ public class CommentVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String delDate;
+	private String writerNick;
 
 	public CommentVo(String no, String boardNo, String writerNo, String content, String enrollDate, String modifyDate,
-			String delDate) {
+			String delDate, String writerNick) {
+		super();
 		this.no = no;
 		this.boardNo = boardNo;
 		this.writerNo = writerNo;
@@ -19,10 +21,12 @@ public class CommentVo {
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.delDate = delDate;
+		this.writerNick = writerNick;
 	}
 
 	public CommentVo() {
-		
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getNo() {
@@ -81,10 +85,19 @@ public class CommentVo {
 		this.delDate = delDate;
 	}
 
+	public String getWriterNick() {
+		return writerNick;
+	}
+
+	public void setWriterNick(String writerNick) {
+		this.writerNick = writerNick;
+	}
+
 	@Override
 	public String toString() {
 		return "CommentVo [no=" + no + ", boardNo=" + boardNo + ", writerNo=" + writerNo + ", content=" + content
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", delDate=" + delDate + "]";
+				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", delDate=" + delDate + ", writerNick="
+				+ writerNick + "]";
 	}
 
 }

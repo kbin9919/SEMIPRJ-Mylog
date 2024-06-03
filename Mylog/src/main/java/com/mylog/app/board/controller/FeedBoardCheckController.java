@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.member.vo.MemberVo;
+import com.mylog.app.board.vo.MemberVo;
 import com.mylog.app.board.service.BoardService;
 import com.mylog.app.board.vo.BoardVo;
 
@@ -23,9 +23,7 @@ public class FeedBoardCheckController extends HttpServlet {
 		try {
 			// 로그인된 사용자 정보 가져오기
 			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-			if (loginMember == null) {
-				throw new Exception("로그인된 사용자가 아닙니다.");
-			}
+			
 			String followerNo = loginMember.getNo();
 
 			BoardService bs = new BoardService();

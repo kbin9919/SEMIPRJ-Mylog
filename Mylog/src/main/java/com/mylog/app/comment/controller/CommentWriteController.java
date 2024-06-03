@@ -25,14 +25,15 @@ public class CommentWriteController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 
-			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+//			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
 
 			String boardNo = req.getParameter("boardNo");
 			String content = req.getParameter("content");
 
 			CommentVo vo = new CommentVo();
 			vo.setBoardNo(boardNo);
-			vo.setWriterNo(loginMember.getNo());
+//			vo.setWriterNo(loginMember.getNo());
+			vo.setWriterNo("2");
 			vo.setContent(content);
 
 			CommentService cs = new CommentService();
@@ -42,7 +43,7 @@ public class CommentWriteController extends HttpServlet {
 				throw new Exception("댓글 작성 실패");
 			}
 
-			resp.sendRedirect("/board/detail?no=" + boardNo);
+			resp.sendRedirect("/Mylog/board/detail?no=" + boardNo);
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -11,9 +11,19 @@ public class BoardVo {
 	private String secretYn;
 	private String modifyDate;
 	private String delDate;
+	private String category;
+	private String commentCount;
+	private String nick;
+	private String introduce;
+
+	public BoardVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public BoardVo(String no, String categoryNo, String writerNo, String title, String content, String enrollDate,
-			String secretYn, String modifyDate, String delDate) {
+			String secretYn, String modifyDate, String delDate, String category, String commentCount, String nick,
+			String introduce) {
 		super();
 		this.no = no;
 		this.categoryNo = categoryNo;
@@ -24,11 +34,10 @@ public class BoardVo {
 		this.secretYn = secretYn;
 		this.modifyDate = modifyDate;
 		this.delDate = delDate;
-	}
-
-	public BoardVo() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.category = category;
+		this.commentCount = commentCount;
+		this.nick = nick;
+		this.introduce = introduce;
 	}
 
 	public String getNo() {
@@ -103,11 +112,44 @@ public class BoardVo {
 		this.delDate = delDate;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(String commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getIntroduce() {
+		return introduce;
+	}
+
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchByOneVo [no=" + no + ", categoryNo=" + categoryNo + ", writerNo=" + writerNo + ", title=" + title
+		return "BoardVo [no=" + no + ", categoryNo=" + categoryNo + ", writerNo=" + writerNo + ", title=" + title
 				+ ", content=" + content + ", enrollDate=" + enrollDate + ", secretYn=" + secretYn + ", modifyDate="
-				+ modifyDate + ", delDate=" + delDate + "]";
+				+ modifyDate + ", delDate=" + delDate + ", category=" + category + ", commentCount=" + commentCount
+				+ ", nick=" + nick + ", introduce=" + introduce + "]";
 	}
 
 }

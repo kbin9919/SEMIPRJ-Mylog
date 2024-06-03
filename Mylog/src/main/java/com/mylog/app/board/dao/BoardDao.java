@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.mylog.app.board.vo.AttachmentVo;
 import com.mylog.app.board.vo.BoardVo;
+import com.mylog.app.board.vo.CategoryVo;
 import com.mylog.app.recommend.vo.RecommendVo;
 import com.mylog.app.util.vo.SearchVo;
 import com.mylog.app.visitor.vo.VisitorVo;
@@ -69,6 +71,18 @@ public class BoardDao {
 		return ss.selectList("BoardMapper.getBoardListLoginMember");
 	}
 	
+	// 카테고리 불러오기
+	public List<CategoryVo> getCategoryVoList(SqlSession ss) {
+		return ss.selectList("BoardMapper.getCategoryVoList");
+	}
+	
+	public List<AttachmentVo> getAttachment(SqlSession ss, String no) throws Exception {
+        return ss.selectList("BoardMapper.getAttachment", no);
+    }
+	
+	public int insertBoardAttachment(SqlSession ss, List<AttachmentVo> attVoList) throws Exception {
+		return ss.insert("BoardMapper.insertBoardAttachment" , attVoList);
+	}
 	// ----------- 좋아요 수 증감 -----------
 	
 	// 추천인 추가

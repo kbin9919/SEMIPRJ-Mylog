@@ -2,6 +2,8 @@ package com.mylog.app.comment.service;
 
 import static com.mylog.app.util.db.SqlSessionTemplate.getSqlSession;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.comment.dao.CommentDao;
@@ -63,6 +65,14 @@ public class CommentService {
 
 		return result;
 
+	}
+
+	// 댓글 전체 조회
+	public List<CommentVo> commentListCheck(String boardNo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<CommentVo> CVoList = dao.commentListCheck(ss, boardNo);
+		ss.close();
+		return CVoList;
 	}
 
 }

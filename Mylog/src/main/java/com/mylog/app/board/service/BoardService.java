@@ -7,7 +7,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.board.dao.BoardDao;
+import com.mylog.app.board.vo.AttachmentVo;
 import com.mylog.app.board.vo.BoardVo;
+import com.mylog.app.board.vo.CategoryVo;
 import com.mylog.app.recommend.vo.RecommendVo;
 import com.mylog.app.util.vo.SearchVo;
 import com.mylog.app.visitor.vo.VisitorVo;
@@ -20,21 +22,44 @@ public class BoardService {
 		dao = new BoardDao();
 	}
 
+	// 이미지
+	public List<AttachmentVo> getAttachment(String no) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<AttachmentVo> attVoList = null;
+
+		try {
+			attVoList = dao.getAttachment(ss, no);
+			ss.commit();
+		} catch (Exception e) {
+			ss.rollback();
+			throw e;
+		} finally {
+			ss.close();
+		}
+
+		return attVoList;
+	}
+
 	// 게시글 작성
-	public int wrtieBoard(BoardVo vo) throws Exception {
+	public int wrtieBoard(BoardVo vo, List<AttachmentVo> attVoList) throws Exception {
 
 		// Dao 호출
 		SqlSession ss = getSqlSession();
 		int result = dao.writeBoard(ss, vo);
 
-		if (result == 1) {
+		int attResult = 1;
+		if (attVoList.size() > 0) {
+			attResult = dao.insertBoardAttachment(ss, attVoList);
+		}
+
+		if (result * attResult >= 1) {
 			ss.commit();
 		} else {
 			ss.rollback();
 		}
 		ss.close();
 
-		return result;
+		return result * attResult;
 
 	}
 
@@ -73,6 +98,14 @@ public class BoardService {
 
 	}
 
+	// 카테고리 목록조회
+	public List<CategoryVo> getCategoryVoList() throws Exception {
+		SqlSession ss = getSqlSession();
+		List<CategoryVo> categoryVoList = dao.getCategoryVoList(ss);
+		ss.close();
+		return categoryVoList;
+	}
+
 	// 최신 게시글 조회
 	public List<BoardVo> recentBoardCheck() throws Exception {
 
@@ -103,24 +136,26 @@ public class BoardService {
 
 	// 게시물 상세조회
 	public BoardVo detailBoardCheck(String no, VisitorVo visitor) throws Exception {
-	    SqlSession ss = getSqlSession();
-	    BoardVo vo = null;
-	    try {
-	        vo = dao.detailBoardCheck(ss, no);
-	        
-	        // 조회수 증가
-	        int result = insertVisitor(ss, visitor);
-	        if (result > 0) {
-	            ss.commit();
-	        } else {
-	            ss.rollback();
-	        }
-	    } catch (Exception e) {
-	        ss.rollback();
-	    } finally {
-	        ss.close();
-	    }
-	    return vo;
+		SqlSession ss = getSqlSession();
+		BoardVo vo = null;
+		try {
+			vo = dao.detailBoardCheck(ss, no);
+
+			// 조회수 증가
+			if (visitor != null) {
+				int result = insertVisitor(ss, visitor);
+				if (result > 0) {
+					ss.commit();
+				} else {
+					ss.rollback();
+				}
+			}
+		} catch (Exception e) {
+			ss.rollback();
+		} finally {
+			ss.close();
+		}
+		return vo;
 	}
 
 	// 게시물 전체 조회
@@ -141,7 +176,6 @@ public class BoardService {
 
 	// 게시글 조회수 증가
 	public int insertVisitor(SqlSession ss, VisitorVo vo) throws Exception {
-		ss = getSqlSession();
 		List<VisitorVo> vvo = dao.getBoardListLoginMember(ss, vo.getBoardNo());
 		int result = 0;
 
@@ -168,7 +202,7 @@ public class BoardService {
 
 		return result;
 	}
-	
+
 	// 좋아요수 증가 감소 -- 미완 --
 	public void recommendIDcrease(RecommendVo vo) throws Exception {
 		SqlSession ss = getSqlSession();
