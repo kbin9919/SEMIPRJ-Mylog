@@ -17,8 +17,8 @@ public class BoardDao {
 	}
 	
 	// 게시글 삭제
-	public int deleteBoard (SqlSession ss, String no) {
-		return ss.update("BoardMapper.deleteBoard", no);
+	public int deleteBoard (SqlSession ss, BoardVo vo) {
+		return ss.update("BoardMapper.deleteBoard", vo);
 	}
 	
 	// 게시글 수정

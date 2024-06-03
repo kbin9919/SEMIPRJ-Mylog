@@ -23,7 +23,7 @@
 	</insert>
 	
 	<update id="editComment">
-		UPDATE COMMENTS
+		UPDATE COMMENTS 
     	SET CONTENT = #{content}, 
     		MODIFY_DATE = SYSDATE
 		WHERE NO = #{no} 

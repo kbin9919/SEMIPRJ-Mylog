@@ -24,8 +24,8 @@ public class RecentBoardCheckController extends HttpServlet {
 			BoardService bs = new BoardService();
 			List<BoardVo> voList = bs.recentBoardCheck();
 			
-			PrintWriter out = resp.getWriter();
-			out.write("voList : " + voList);
+			req.setAttribute("voList", voList);
+			req.getRequestDispatcher("/WEB-INF/views/board/recent.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

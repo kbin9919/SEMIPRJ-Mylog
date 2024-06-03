@@ -18,14 +18,16 @@ public class AllBoardCheckController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			
 			BoardService bs = new BoardService();
 			List<BoardVo> voList = bs.allBoardCheck();
-			PrintWriter out = resp.getWriter();
-			out.write("voList : " + voList);
-			
+
+			req.setAttribute("voList", voList);
+
+			req.getRequestDispatcher("/WEB-INF/views/board/all.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
 }

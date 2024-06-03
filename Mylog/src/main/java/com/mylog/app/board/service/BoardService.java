@@ -39,12 +39,12 @@ public class BoardService {
 	}
 
 	// 게시글 삭제
-	public int deleteBoard(String no) throws Exception {
+	public int deleteBoard(BoardVo vo) throws Exception {
 
 		// Dao 호출
 		SqlSession ss = getSqlSession();
 
-		int result = dao.deleteBoard(ss, no);
+		int result = dao.deleteBoard(ss, vo);
 
 		if (result == 1) {
 			ss.commit();
@@ -102,12 +102,25 @@ public class BoardService {
 	}
 
 	// 게시물 상세조회
-	public BoardVo detailBoardCheck(String no) throws Exception {
-
-		SqlSession ss = getSqlSession();
-		BoardVo vo = dao.detailBoardCheck(ss, no);
-		ss.close();
-		return vo;
+	public BoardVo detailBoardCheck(String no, VisitorVo visitor) throws Exception {
+	    SqlSession ss = getSqlSession();
+	    BoardVo vo = null;
+	    try {
+	        vo = dao.detailBoardCheck(ss, no);
+	        
+	        // 조회수 증가
+	        int result = insertVisitor(ss, visitor);
+	        if (result > 0) {
+	            ss.commit();
+	        } else {
+	            ss.rollback();
+	        }
+	    } catch (Exception e) {
+	        ss.rollback();
+	    } finally {
+	        ss.close();
+	    }
+	    return vo;
 	}
 
 	// 게시물 전체 조회
@@ -127,8 +140,8 @@ public class BoardService {
 	}
 
 	// 게시글 조회수 증가
-	public int insertVisitor(VisitorVo vo) throws Exception {
-		SqlSession ss = getSqlSession();
+	public int insertVisitor(SqlSession ss, VisitorVo vo) throws Exception {
+		ss = getSqlSession();
 		List<VisitorVo> vvo = dao.getBoardListLoginMember(ss, vo.getBoardNo());
 		int result = 0;
 
@@ -156,7 +169,7 @@ public class BoardService {
 		return result;
 	}
 	
-	// 좋아요수 증가 감소
+	// 좋아요수 증가 감소 -- 미완 --
 	public void recommendIDcrease(RecommendVo vo) throws Exception {
 		SqlSession ss = getSqlSession();
 		RecommendVo rvo = dao.getRecommendLoginMember(ss, vo.getBoardNo());
