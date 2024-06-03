@@ -28,6 +28,7 @@ public class NoticeReceiveController extends HttpServlet{
 			PageVo pageVo = new PageVo();
 			pageVo.setStartNo(startNo);
 			pageVo.setEndNo(endNo);
+			
 			NoticeService noticeService = new NoticeService();
 			
 			List<NoticeVo> noticeVoList = noticeService.noticeList(pageVo);

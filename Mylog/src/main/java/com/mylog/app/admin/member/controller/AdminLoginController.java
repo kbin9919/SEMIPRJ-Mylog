@@ -17,7 +17,7 @@ import com.mylog.app.admin.member.vo.AdminVo;
 public class AdminLoginController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.getRequestDispatcher("/WEB-INF/views/admin/login.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class AdminLoginController extends HttpServlet{
 			AdminVo vo = new AdminVo();
 			vo.setEmail(email);
 			vo.setPassword(password);
-			
+			System.out.println(vo);
 			//service
 			AdminMemberService as = new AdminMemberService();
 			AdminVo loginAdminVo = as.adminLogin(vo);
@@ -40,12 +40,11 @@ public class AdminLoginController extends HttpServlet{
 			}
 			HttpSession session = req.getSession();
 			session.setAttribute("loginAdminVo", loginAdminVo);
-			
-			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + loginAdminVo);
-//			resp.sendRedirect("/app/home");
+			System.out.println(loginAdminVo);
+			resp.sendRedirect("/Mylog/admin/main");
 		}catch(Exception e) {
 			e.printStackTrace();
+			resp.sendRedirect("/Mylog/admin/main");
 		}
 	
 	}

@@ -17,8 +17,8 @@
 			, M.PASSWORD
 			, M.NICK
 			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
-    		, M.INTRODUCTION
-            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+    		, M.INTRODUCTION 
+            , NVL(TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS'),'N') AS DEL_DATE
     		, M.ADMIN_YN  
 			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
 		FROM MEMBER M
@@ -67,7 +67,8 @@
 			GROUP BY MEMBER_NO
 		) P
 		ON P.MEMBER_NO = M.NO
-        WHERE M.EMAIL LIKE '%${searchValue}%' OR M.EMAIL LIKE '%${searchValue}%'
+        WHERE M.EMAIL LIKE '%${searchValue}%' OR M.NICK LIKE '%${searchValue}%'
+        
 	<if test="type == 'email'">
 		ORDER BY EMAIL
 	</if> 
@@ -84,7 +85,7 @@
 			, M.NICK
 			, TO_CHAR(M.ENROLL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ENROLL_DATE
     		, M.INTRODUCTION
-            , TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS') AS DEL_DATE
+            , NVL(TO_CHAR(M.DEL_DATE, 'YYYY-MM-DD HH24:MI:SS'),'N') AS DEL_DATE
     		, M.ADMIN_YN  
 			, NVL(P.WARNING_POINT, 0) AS WARNING_POINT
 		FROM MEMBER M

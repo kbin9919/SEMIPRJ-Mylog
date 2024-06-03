@@ -29,6 +29,7 @@ function getList(startNo, endNo){
             "endNo" : endNo
         },
 		success: function (response) {
+			console.log(response);
             let noticeHtml = $(response).filter('#notice-list').html();
             let noticeCount = $(response).filter('#notice-count').text();
 			$('.notice-content-sell').append(noticeHtml);

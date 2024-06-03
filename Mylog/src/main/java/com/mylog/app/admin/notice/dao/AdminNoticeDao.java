@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.mylog.app.admin.notice.vo.NoticeVo;
+import com.mylog.app.util.vo.AttachmentVo;
 import com.mylog.app.util.vo.SearchVo;
 
 public class AdminNoticeDao {
@@ -31,6 +32,10 @@ public class AdminNoticeDao {
 
 	public int editNotice(SqlSession ss, NoticeVo noticeVo) {
 		return ss.update("AdminNoticeMapper.editNotice", noticeVo);
+	}
+
+	public int insertNoticeAttachment(SqlSession ss, List<AttachmentVo> attVoList) {
+		return ss.insert("AdminNoticeMapper.insertNoticeAttachment" , attVoList);
 	}
 
 }

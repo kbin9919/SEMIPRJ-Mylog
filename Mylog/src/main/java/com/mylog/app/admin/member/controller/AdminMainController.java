@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import com.mylog.app.admin.member.service.AdminMemberService;
 import com.mylog.app.admin.member.vo.MemberVo;
 
-@WebServlet("/admin/member/list")
-public class AdminMemberListController extends HttpServlet{
+@WebServlet("/admin/main")
+public class AdminMainController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -23,8 +23,8 @@ public class AdminMemberListController extends HttpServlet{
 			AdminMemberService adminService = new AdminMemberService();
 			List<MemberVo> memberVoList = adminService.memberList();
 			
-			PrintWriter out = resp.getWriter();
-			out.write("리스트 조회 : " + memberVoList);
+			req.setAttribute("memberVoList", memberVoList);
+			req.getRequestDispatcher("/WEB-INF/views/admin/main.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
