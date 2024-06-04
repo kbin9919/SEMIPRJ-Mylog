@@ -17,21 +17,6 @@
 </head>
 <body>
 
-	 <%
-	// Check if the user is not already logged in
-	if (session.getAttribute("loginMember") == null) {
-		com.mylog.app.board.vo.MemberVo user = new com.mylog.app.board.vo.MemberVo();
-		user.setNo("1");
-		user.setEmail("user@example.com");
-		user.setPassword("password123"); // For simulation only, do not store plain text passwords in practice
-		user.setNick("SampleUser");
-		user.setIntroduction("This is a sample introduction text.");
-		user.setDelDate(null); // Assuming the account is active
-
-		session.setAttribute("loginMember", user);
-	}
-	%>
-
 	<c:choose>
 		<c:when test="${not empty sessionScope.loginMember}">
 			<div class="new_board">
