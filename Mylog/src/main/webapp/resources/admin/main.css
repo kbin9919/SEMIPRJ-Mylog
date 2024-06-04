@@ -160,7 +160,11 @@ input{
     cursor: pointer;
     background-color: rgb(176, 110, 24);
 }
-.warning-botton > a{
+.warning-botton{
+    display: flex;
+    grid-column: span 3;
+}
+.warning-botton > div{
     margin-right: 50px;
     margin-left: 50px;
     gap: 30px; border: 2px solid rgb(19, 19, 19);
@@ -171,6 +175,73 @@ input{
     font-weight: 900;
 }
 
-.warning-botton > a:hover{
+.warning-botton > div:hover{
     background-color: rgb(234, 9, 54);
+    cursor: pointer;
+}
+.warning-text{
+    border: 2px solid red;
+    width: 360px;
+    height: 150px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center center;
+    font-weight: 900;
+    background-color: antiquewhite;
+    position: fixed;
+    left: 47%;
+    bottom: 42%;
+    cursor: pointer;
+}
+
+.check-warning{
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    gap: 80px;
+}
+.check-warning > div{
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 3px;
+    width: 50px;
+    color: aliceblue;
+    background-color: rgb(25, 189, 44);
+}
+.check-warning > div:hover{
+    cursor: pointer;
+    background-color: rgb(111, 222, 59);
+}
+#select{
+    border: 3px solid black;
+    border-radius: 5px;
+    font-weight: 900;
+}
+.hidden{
+    visibility: hidden;
+}
+.del-text{
+    border: 2px solid red;
+    width: 300px;
+    height: 120px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center center;
+    font-weight: 900;
+    background-color: antiquewhite;
+    position: fixed;
+    left: 47%;
+    bottom: 42%;
+    cursor: pointer;
+}
+.del-text > div:nth-child(1){
+    grid-column: span 2;
 }

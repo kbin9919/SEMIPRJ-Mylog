@@ -24,13 +24,16 @@ public class WarningMemberController extends HttpServlet {
 			WarningVo warningVo = new WarningVo();
 			warningVo.setWarningNo(warningNo);
 			warningVo.setMemberNo(memberNo);
-			
+			System.out.println(warningVo);
 			AdminMemberService adminService = new AdminMemberService();
 			int result = adminService.warningMember(warningVo);
-//			req.setAttribute("memberVo", memberVo);
 //			req.getRequestDispatcher("/WEB-INF/views/admin/member/detail.jsp").forward(req, resp);
-			PrintWriter out = resp.getWriter();
-			out.write("회원 경고 : " + result);
+			System.out.println(result);
+			if(result == 1) {
+				PrintWriter out = resp.getWriter();
+				out.write("1");
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

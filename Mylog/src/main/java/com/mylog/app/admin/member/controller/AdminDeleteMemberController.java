@@ -22,10 +22,10 @@ public class AdminDeleteMemberController extends HttpServlet{
 			
 			AdminMemberService adminService = new AdminMemberService();
 			int result = adminService.deleteMember(memberNo);
-//			req.setAttribute("memberVoList", memberVoList);
-//			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
-			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + result);
+			if(result == 1) {
+				PrintWriter out = resp.getWriter();
+				out.write("1");
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

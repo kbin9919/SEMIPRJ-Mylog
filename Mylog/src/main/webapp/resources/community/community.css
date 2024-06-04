@@ -303,3 +303,13 @@ body{
     font-size: 20px;
     height: 375px;
 }
+.writer-faq{
+    border: 1px solid rgb(222, 219, 219);
+    border-radius: 25px;
+    padding: 7px;
+    background-color: rgb(94, 210, 45);
+    font-weight: 900;
+}
+.writer-faq:hover{
+    background-color: greenyellow;
+}

@@ -34,13 +34,10 @@
 		</div>
 		<div class="notice-main">
 			<div class="qna-write-main">
-				<form action="" method="post">
-					<c:if test="${loginAdminVo != null}">
-					<a href="/Mylog/admin/delete/faq?no=${faqVo.no}" style="position: relative; left: 800px; bottom: 12px" >❌</a>
-					</c:if>
-					<div><input type="text" name="qna-title" class="selectQna" placeholder="${faqVo.title}"></div>
-					<div class="timeStamp"><input type="text" name="qna-time" class="selectQna" placeholder="작성일 : ${faqVo.enrollDate}"></div>
-					<div><textarea name="qna-content" placeholder="${faqVo.content}" class="notice-textarea selectQna" cols="30" rows="10"></textarea></div>
+				<form action="/Mylog/admin/writer/faq" method="post">
+					<div><input type="text" name="qna-title" class="" placeholder="게시글 제목"></div>
+					<div><textarea name="qna-content" placeholder="게시글 내용" class="notice-textarea " cols="30" rows="10"></textarea></div>
+					<input type="submit" style="border: 2px solid; black; border-radius: 20px; padding:5px; width: 65px; background-color: rgb(94, 210, 45); cursor:pointer; position: relative; left: 750px">
 				</form>
 			</div>
 		</div>

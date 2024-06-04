@@ -26,7 +26,7 @@
 		<a href="">FAQ</a>
 	</c:if>
 	<c:if test="${loginAdminVo != null}">
-		<a href="/Mylog/faq">QNA</a>
+		<a href="/Mylog/qna">QNA</a>
 	</c:if>
 	<c:if test="${loginAdminVo == null}">
 		<a href="">QNA</a>

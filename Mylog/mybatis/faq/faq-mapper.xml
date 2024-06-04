@@ -12,7 +12,7 @@
 			, F.*
 			FROM FAQ F
             WHERE DEL_DATE IS NULL
-			ORDER BY ENROLL_DATE DESC
+			ORDER BY ENROLL_DATE
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
 	</select>
