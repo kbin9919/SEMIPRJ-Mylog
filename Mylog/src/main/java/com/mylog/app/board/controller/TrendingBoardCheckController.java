@@ -13,28 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.mylog.app.board.service.BoardService;
 import com.mylog.app.board.vo.BoardVo;
 
-@WebServlet("/board/recent")
-public class RecentBoardCheckController extends HttpServlet {
+@WebServlet("/board/trend")
+public class TrendingBoardCheckController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		try {
 			
 			BoardService bs = new BoardService();
-			List<BoardVo> voList = bs.recentBoardCheck();
-			
-			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/WEB-INF/views/board/recent.jsp").forward(req, resp);
+            List<BoardVo> voList = bs.trendingBoardCheck();
+
+            // 조회된 게시글 리스트를 request 객체에 저장
+            req.setAttribute("voList", voList);
+
+            // JSP 페이지로 포워딩
+            req.getRequestDispatcher("/WEB-INF/views/board/trending.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	
 }

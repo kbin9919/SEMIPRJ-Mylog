@@ -17,40 +17,36 @@ import com.mylog.app.comment.service.CommentService;
 import com.mylog.app.comment.vo.CommentVo;
 import com.mylog.app.visitor.vo.VisitorVo;
 
-@WebServlet("/comment/write")
-public class CommentWriteController extends HttpServlet {
+@WebServlet("/comment/delete")
+public class CommentDeleteController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		try {
 			HttpSession session = req.getSession();
 
-//			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-
+			String no = req.getParameter("no");
 			String boardNo = req.getParameter("boardNo");
-			String content = req.getParameter("content");
+			String memberNo = ((MemberVo) session.getAttribute("loginMemberVo")).getNo();
 
 			CommentVo vo = new CommentVo();
+			vo.setNo(no);
+			vo.setWriterNo(memberNo);
 			vo.setBoardNo(boardNo);
-//			vo.setWriterNo(loginMember.getNo());
-			vo.setWriterNo("2");
-			vo.setContent(content);
 
 			CommentService cs = new CommentService();
-			int result = cs.writeComment(vo);
+			int result = cs.deleteComment(vo);
 
-			if (result < 1) {
-				throw new Exception("댓글 작성 실패");
+			if (result != 1) {
+				throw new Exception("댓글 삭제 실패");
 			}
-
-			resp.sendRedirect("/Mylog/board/detail?no=" + boardNo);
+			resp.sendRedirect("/board/detail?no=" + boardNo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
-
 	}
-
 }

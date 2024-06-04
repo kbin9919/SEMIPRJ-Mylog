@@ -1,62 +1,72 @@
-.search{
-    display: grid;
-    grid-template-rows: 1fr 8.5fr;
-    justify-items: center;
-    grid-column: span 3;
-    grid-row: span 2;
-    gap: 4%;
+.search {
+	display: grid;
+	grid-template-rows: 1fr 8.5fr;
+	justify-items: center;
+	grid-column: span 3;
+	grid-row: span 2;
+	gap: 4%;
 }
-.input{
-    margin-top: 12px;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 19px;
-    width: 47%;
+
+.input {
+	margin-top: 12px;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	gap: 19px;
+	width: 47%;
 }
-.input > div{
-    margin-left: 22px;
-    font-size: 13px;
+
+.input>div {
+	margin-left: 22px;
+	font-size: 13px;
 }
+
 input[name="search"] {
-    border: 1px solid gray;
-    background-color: rgb(252, 252, 252);
-    width: 89%;
-    height: 24px;
-    border-radius: 15px;
-    padding-left: 26px; 
+	border: 1px solid gray;
+	background-color: rgb(252, 252, 252);
+	width: 89%;
+	height: 24px;
+	border-radius: 15px;
+	padding-left: 26px;
 }
 
-.search-post{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 7fr 1fr 2.5fr 1fr 1fr;
-    place-items: center center;
-    height: 300px;
-    gap: 13px;
-    font-size: 12px;
+.search-post {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 7fr 1fr 2.5fr 1fr 1fr;
+	place-items: center center;
+	height: 300px;
+	gap: 13px;
+	font-size: 12px;
 }
 
-.search-profile{
-    display: flex;
-    justify-content: start;
-    width: 100%;
-    gap: 8px;
-    align-items: center;
-    font-weight: 900;
-}
-.search-profile >div:nth-child(1){
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid black;
-    border-radius: 50px;
-    width: 35px;
-    height: 35px;
-    padding: 3px;
-    font-size: 8px;
+.search-profile {
+	display: flex;
+	justify-content: start;
+	width: 100%;
+	gap: 8px;
+	align-items: center;
+	font-weight: 900;
 }
 
-.search-etc{
+.search-profile>div:nth-child(1) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid black;
+	border-radius: 50px;
+	width: 35px;
+	height: 35px;
+	padding: 3px;
+	font-size: 8px;
+}
+
+.search-etc {
 	border-bottom: 1px solid gray;
 	padding-bottom: 19px
+}
+
+.c-summary {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

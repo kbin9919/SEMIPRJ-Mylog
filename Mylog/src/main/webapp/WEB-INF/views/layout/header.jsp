@@ -8,7 +8,7 @@
 		<div class="top-right">
 			<div>알림</div>
 			<div>검색</div>
-			<div id="newBoard">새 글 작성</div>
+			<div id="newBoard"><a href="/Mylog/write">새 글 작성</a></div>
 			<div>set</div>
 		</div>
 	</div>

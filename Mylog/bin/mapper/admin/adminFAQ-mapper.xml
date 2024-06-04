@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminFAQMapper">
+
+	<insert id="FAQWrite">
+		INSERT INTO FAQ(NO, TITLE, CONTENT) VALUES(SEQ_FAQ.NEXTVAL, #{title}, #{content})
+	</insert>
+		
+	<select id="FAQList" resultType="FAQVo">
+		SELECT 
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		ORDER BY NO
+	</select>	
+		
+	<select id="FAQDetail" resultType="FAQVo">
+		SELECT 
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		WHERE NO = #{no}
+		ORDER BY NO
+	</select>
+	
+	<select id="selectFAQList" resultType="FAQVo">
+		SELECT 
+		, NO
+		, TITLE
+		, CONTENTS
+		, ENROLL_DATE
+		, MODIFY_DATE
+		, DEL_DATE    		
+		FROM FAQ
+		WHERE TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+		<if test="type == 'title'">
+		ORDER BY TITLE
+		</if> 
+		<if test="type == 'content'">
+		ORDER BY CONTENT
+		</if>
+	</select>
+	<delete id="faqDelete">
+		UPDATE FAQ 
+		SET DEL_DATE = SYSDATE
+		WHERE NO = #{no}
+	</delete>
+	
+	<update id="editFAQ">
+		UPDATE FAQ 
+		SET TITLE = #{title} , CONTENT = #{content}, MODIFY_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
+</mapper>

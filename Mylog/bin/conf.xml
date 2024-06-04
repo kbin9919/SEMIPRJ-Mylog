@@ -6,8 +6,6 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
-		<setting name="lazyLoadingEnabled" value="false"/>
-    		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
 	
 	<typeAliases>
@@ -17,8 +15,6 @@
 		<typeAlias type="com.mylog.app.admin.notice.vo.NoticeVo" alias="NoticeVo"/>
 		<typeAlias type="com.mylog.app.admin.faq.vo.FAQVo" alias="FAQVo"/>
 		<typeAlias type="com.mylog.app.visitor.vo.VisitorVo" alias="VisitorVo"/>
-		<typeAlias type="com.mylog.app.admin.qna.vo.QNAVo" alias="QNAVo"/>
-
 	</typeAliases>
 	
   <environments default="development">
@@ -39,10 +35,6 @@
     <mapper resource="/mapper/admin/adminFAQ-mapper.xml"/>
     <mapper resource="/board/board-mapper.xml"/>
     <mapper resource="/comment/comment-mapper.xml"/>
-    <mapper resource="/mapper/admin/adminQNA-mapper.xml"/>
-    <mapper resource="/notice/notice-mapper.xml"/>
-    <mapper resource="/faq/faq-mapper.xml"/>
-    <mapper resource="/qna/qna-mapper.xml"/>
-
+    
   </mappers>
 </configuration>

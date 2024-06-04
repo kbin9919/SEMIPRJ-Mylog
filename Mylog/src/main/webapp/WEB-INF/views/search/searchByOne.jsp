@@ -1,14 +1,19 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
-
+<title>게시글 상세조회</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/Mylog/resources/search/searchByOne.css">
-</head>
+<script defer src="/Mylog/resources/search/searchByOne.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
+</head>
 <body>
 
 	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
@@ -17,31 +22,47 @@
 	<div class="main">
 		<div class="title">
 			<div class="main-wrapper">
-				<h1>제목</h1>
+				<div>
+					<h1>제목 : ${requestScope.vo.title}</h1>
+				</div>
 				<div class="user-d">
 					<div class="userInfo">
-						<span>유저이름</span> <span>·</span> <span>4일전</span>
+						<span>${requestScope.vo.nick}</span> <span>·</span> <span>작성일자
+							: ${requestScope.vo.enrollDate}</span>
 					</div>
+					<c:if
+						test="${requestScope.vo.writerNo == sessionScope.loginMemberVo.no}">
+						<button
+							onclick="location.href='/Mylog/board/edit?no=${requestScope.vo.no}'">수정</button>
+						<button
+							onclick="location.href='/Mylog/board/delete?no=${requestScope.vo.no}'">삭제</button>
+					</c:if>
 					<div class="f&g">
 						<button class="follow-btn">팔로우</button>
 						<button class="follow-btn">좋아요</button>
 					</div>
 				</div>
-				<div class="img">사진파일</div>
-
+				<div class="img">
+					<c:forEach items="${attVoList}" var="x">
+						<img width="100px" height="100px" alt="${x.originName}"
+							src="/Mylog/resources/upload/${x.changeName}">
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 		<div class="content">
-			<h2>소제목</h2>
-			<div class="content-area"></div>
+			<h2></h2>
+			<div class="content-area">${requestScope.vo.content}</div>
 		</div>
 		<div class="user-e">
 			<div class="user-s">
 				<div class="left">
-					<div class="user-img">유저 이미지</div>
+					<div class="user-img">
+						<a href="/Mylog/mypage">유저 이미지</a>
+					</div>
 					<div class="user-inf">
-						<div class="name">유저이름</div>
-						<div class="decription">어쩌구 저쩌구 내용</div>
+						<div class="name">${requestScope.vo.nick}</div>
+						<div class="description">${requestScope.vo.introduce}</div>
 					</div>
 				</div>
 				<div class="right">
@@ -52,41 +73,36 @@
 				<hr>
 			</div>
 		</div>
+
+
 		<div class="comment-main">
-			<h2>n개의 댓글</h2>
-			<div class="comment-write">
-				<div class="comment-area">
-					<textarea name="comment" placeholder="댓글을 작성하세요" rows="8"
-						cols="120"></textarea>
-					<div>
-						<button class="comment-btn">댓글 작성</button>
-					</div>
-				</div>
-				<div class="comment">
-					<div class="comment-user">
-						<div class="comment-user-img"></div>
+			<h2>${vo.commentCount}개의댓글</h2>
+			<c:if test="${ sessionScope.loginMember != null}">
+				<div class="comment-write">
+					<input type="hidden" name="boardNo" value="${requestScope.vo.no}">
+					<div class="comment-area">
+						<textarea name="reply-content" placeholder="댓글을 작성하세요" rows="8"
+							cols="120"></textarea>
 						<div>
-							<div>이름</div>
-							<div>n일 전</div>
+							<button onclick="writeReply(${vo.no});">댓글 작성</button>
 						</div>
 					</div>
-					<div class="comment-content">댓글내용</div>
-					<div class="comment-comment">
-						<svg width="12" height="12" fill="none" viewBox="0 0 12 12">
-							<path fill="currentColor"
-								d="M5.5 2.5h1v3h3v1h-3v3h-1v-3h-3v-1h3v-3z"></path>
-							<path fill="currentColor" fill-rule="evenodd"
-								d="M1 0a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm10 1H1v10h10V1z"
-								clip-rule="evenodd"></path></svg>
-						<span class="n-comment">n개의 답글</span>
-					</div>
 				</div>
-			</div>
+			</c:if>
+
+			<c:if test="${sessionScope.loginMember == null}">
+				<span>로그인 후 댓글 작성 가능합니다.</span>
+			</c:if>
+		</div>
+
+		<div id="commentContainer"></div>
+
+		<div>
+			<button onclick="loadReplyList(${requestScope.vo.no});">댓글
+				불러오기</button>
 		</div>
 	</div>
 	<aside></aside>
 
-
 </body>
-
 </html>
