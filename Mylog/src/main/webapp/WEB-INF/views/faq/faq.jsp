@@ -40,6 +40,9 @@
 					</table>
 				</div>
 				<div class="notice-main">
+					<c:if test="${loginAdminVo != null}">
+					<a href="/Mylog/admin/writer/faq" class="writer-faq">게시글 작성</a>
+					</c:if>
 					<div class="notice-search">
 						<form action="/Mylog/search/faq/list" method="get">
 							<div>

@@ -17,27 +17,40 @@ import com.mylog.app.admin.member.vo.AdminVo;
 @WebServlet("/admin/writer/faq")
 public class AdminWriteFAQController extends HttpServlet{
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/WEB-INF/views/faq/writeFaq.jsp").forward(req, resp);
+	}
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
 			HttpSession session = req.getSession();
-			//data
-			String title = req.getParameter("title");
-			String content = req.getParameter("content");
+			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
 			
-			FAQVo faqVo = new FAQVo();
-			faqVo.setTitle(title);
-			faqVo.setContent(content);
-			
-			
-			//service
-			FAQService faqService = new FAQService();
-			int result = faqService.faqWrite(faqVo);
-			
-			//result
-			PrintWriter out = resp.getWriter();
-			out.write("result : " + result);
-			
+			if(loginAdminVo !=null) {
+				//data
+				String title = req.getParameter("qna-title");
+				String content = req.getParameter("qna-content");
+				
+				FAQVo faqVo = new FAQVo();
+				faqVo.setTitle(title);
+				faqVo.setContent(content);
+				
+				
+				//service
+				FAQService faqService = new FAQService();
+				int result = faqService.faqWrite(faqVo);
+				
+				System.out.println(result);
+				//result
+				if(result == 1) {
+					session.setAttribute("alertMsg", "FAQ 작성 성공!");
+					resp.sendRedirect("/Mylog/faq");
+				}
+			} else {
+				session.setAttribute("alertMsg", "관리자가 아닙니다.");
+				resp.sendRedirect("/Mylog/faq");
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

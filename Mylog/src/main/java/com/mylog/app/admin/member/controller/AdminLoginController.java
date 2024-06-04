@@ -40,7 +40,6 @@ public class AdminLoginController extends HttpServlet{
 			}
 			HttpSession session = req.getSession();
 			session.setAttribute("loginAdminVo", loginAdminVo);
-			System.out.println(loginAdminVo);
 			resp.sendRedirect("/Mylog/admin/main");
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -57,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+            
 		</c:if>
 		<%@ include file="/WEB-INF/views/admin/layout/aside.jsp"%>
 	</div>

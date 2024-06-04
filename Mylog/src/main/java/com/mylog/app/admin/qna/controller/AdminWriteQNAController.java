@@ -10,37 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.qna.service.QNAService;
 import com.mylog.app.admin.qna.vo.QNAVo;
 
 @WebServlet("/admin/writer/qna")
-public class AdminWriteQNAController extends HttpServlet{
+public class AdminWriteQNAController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		try {
 			HttpSession session = req.getSession();
-			//data
+			// data
 			String no = req.getParameter("no");
-			String adminNo = "1";
-			String answerTitle = req.getParameter("answerTitle");
-			String answerContent = req.getParameter("answerContent");
-//			String adminNo = session.getAttribute(adminLoginVo).getNo(); 
-			
+			String answerTitle = req.getParameter("qna-Title");
+			String answerContent = req.getParameter("qna-Content");
+			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
+			String adminNo = loginAdminVo.getNo();
+
 			QNAVo qnaVo = new QNAVo();
 			qnaVo.setNo(no);
 			qnaVo.setAdminNo(adminNo);
 			qnaVo.setAnswerTitle(answerTitle);
 			qnaVo.setAnswerContent(answerContent);
 			System.out.println(qnaVo);
-			//service
+			// service
 			QNAService qnaService = new QNAService();
 			int result = qnaService.qnaWrite(qnaVo);
-			
-			//result
-			PrintWriter out = resp.getWriter();
-			out.write("result : " + result);
-			
-		}catch(Exception e) {
+			if(result == 1) {
+				resp.sendRedirect("/Mylog/qna");
+			}
+			// result
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
