@@ -11,7 +11,8 @@ public class FileUpload {
 	public static AttachmentVo saveFile(Part f) throws Exception {
 
 		InputStream is = f.getInputStream();
-		String path = "D:\\dev\\servletWorkspace\\prj99semi\\src\\main\\webapp\\resources\\upload\\";
+//		String path = "C:\\dev\\servletWorkspace\\prj99semi\\src\\main\\webapp\\resources\\upload\\";
+		String path = "C:\\공부파일\\SEMIPRJ-Mylog\\Mylog\\src\\main\\webapp\\resources\\upload\\";
 		int random = (int) (Math.random() * 90000) + 10000;
 		String originName = f.getSubmittedFileName();
 		String ext = originName.substring(originName.lastIndexOf("."));

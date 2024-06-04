@@ -10,9 +10,7 @@ import com.mylog.app.util.vo.SearchVo;
 
 public class AdminNoticeDao {
 
-	public int noticeWrite(SqlSession ss, NoticeVo noticeVo) {
-		return ss.insert("AdminNoticeMapper.noticeWrite", noticeVo);
-	}
+	
 
 	public NoticeVo noticeDetail(SqlSession ss, String no) {
 		return ss.selectOne("AdminNoticeMapper.noticeDetail", no);
@@ -33,7 +31,10 @@ public class AdminNoticeDao {
 	public int editNotice(SqlSession ss, NoticeVo noticeVo) {
 		return ss.update("AdminNoticeMapper.editNotice", noticeVo);
 	}
-
+	
+	public int noticeWrite(SqlSession ss, NoticeVo noticeVo) {
+		return ss.insert("AdminNoticeMapper.noticeWrite", noticeVo);
+	}
 	public int insertNoticeAttachment(SqlSession ss, List<AttachmentVo> attVoList) {
 		return ss.insert("AdminNoticeMapper.insertNoticeAttachment" , attVoList);
 	}

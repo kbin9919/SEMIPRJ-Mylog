@@ -82,7 +82,7 @@
 								</c:if>
 								<c:if test="${vo.secretYn eq checkN}">
 									<a href="/Mylog/select/qna?no=${vo.no}" class="notice-content">
-										<div class="highlightable">${vo.title}</div> <img src="" alt="png.">
+										<div class="highlightable">${vo.title}</div> <div></div>
 										<div class="highlightable">${vo.content}</div>
 									</a>
 								</c:if>

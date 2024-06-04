@@ -5,7 +5,6 @@ public class AttachmentVo {
 	private String changeName;
 	public AttachmentVo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public AttachmentVo(String originName, String changeName) {
 		super();

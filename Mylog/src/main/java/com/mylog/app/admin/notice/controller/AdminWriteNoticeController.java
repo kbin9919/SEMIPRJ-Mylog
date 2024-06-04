@@ -28,7 +28,7 @@ public class AdminWriteNoticeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			// 관리자 공지사항 작성 페이지로 넘김
-			req.getRequestDispatcher("/WEB-INF/views/board/insert.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/notice/writeNotice.jsp").forward(req, resp);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -40,20 +40,22 @@ public class AdminWriteNoticeController extends HttpServlet {
 			HttpSession session = req.getSession();
 			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
 			// data
-			String title = req.getParameter("title");
-			String content = req.getParameter("content");
-			String categoryNo = req.getParameter("categoryNo");
-			String writerNo = "1";
-			// loginAdminVo.getNo();
+			String title = req.getParameter("qna-title");
+			String content = req.getParameter("qna-content");
+			String categoryNo = req.getParameter("category-No");
+			String writerNo = loginAdminVo.getNo();
+			 
 			
 			NoticeVo noticeVo = new NoticeVo();
 			noticeVo.setTitle(title);
 			noticeVo.setContent(content);
 			noticeVo.setCategoryNo(categoryNo);
 			noticeVo.setWriterNo(writerNo);
-			
+			System.out.println(noticeVo);
 			Collection<Part> parts = req.getParts();
-
+			
+			System.out.println(parts);
+			
 			List<Part> fileList = new ArrayList<Part>();
 			for (Part part : parts) {
 				if (part.getContentType() != null) {
@@ -67,25 +69,14 @@ public class AdminWriteNoticeController extends HttpServlet {
 				AttachmentVo attVo = FileUpload.saveFile(f);
 				attVoList.add(attVo);
 			}
-			
-
-			for (Part part : parts) {
-				if (part.getContentType() != null) {
-					fileList.add(part);
-				}
-			}
-			
-
-			
-
 			// service
 			AdminNoticeService noticeService = new AdminNoticeService();
 			int result = noticeService.noticeWrite(noticeVo, attVoList);
-
+			
 			if (result < 1) {
 				throw new Exception("게시글 작성 실패 ...");
 			}
-			resp.sendRedirect("/app/board/list");
+			resp.sendRedirect("/Mylog/notice");
 
 		} catch (Exception e) {
 			e.printStackTrace();

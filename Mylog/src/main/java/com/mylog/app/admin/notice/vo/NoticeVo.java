@@ -11,13 +11,14 @@ public class NoticeVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String hits;
-
+	private String png;
+	
 	public NoticeVo() {
 		super();
 	}
 
 	public NoticeVo(String no, String categoryNo, String category, String writerNo, String nick, String title,
-			String content, String enrollDate, String modifyDate, String hits) {
+			String content, String enrollDate, String modifyDate, String hits, String png) {
 		super();
 		this.no = no;
 		this.categoryNo = categoryNo;
@@ -29,8 +30,9 @@ public class NoticeVo {
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.hits = hits;
+		this.png = png;
 	}
-
+	
 	public String getNo() {
 		return no;
 	}
@@ -111,11 +113,21 @@ public class NoticeVo {
 		this.hits = hits;
 	}
 
+	public String getPng() {
+		return png;
+	}
+
+	public void setPng(String png) {
+		this.png = png;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeVo [no=" + no + ", categoryNo=" + categoryNo + ", category=" + category + ", writerNo=" + writerNo
 				+ ", nick=" + nick + ", title=" + title + ", content=" + content + ", enrollDate=" + enrollDate
-				+ ", modifyDate=" + modifyDate + ", hits=" + hits + "]";
+				+ ", modifyDate=" + modifyDate + ", hits=" + hits + ", png=" + png + "]";
 	}
+
+	
 
 }

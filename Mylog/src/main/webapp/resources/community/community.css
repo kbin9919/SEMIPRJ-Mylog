@@ -312,4 +312,39 @@ body{
 }
 .writer-faq:hover{
     background-color: greenyellow;
+    cursor: pointer;
+}
+
+/* 숨기고 커스텀 라벨 사용 */
+.file-input {
+    display: none;
+}
+
+.file-upload {
+    display: flex;
+    align-items: center;
+}
+
+.file-label {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #0056b3;
+}
+#notice-write-submit{
+    border: 2px solid black;
+    border-radius: 25px;
+    width: 90px;
+    height: 30px;
+    background-color: rgb(94, 210, 45);
+}
+#notice-write-submit:hover{
+    background-color: greenyellow;
+    cursor: pointer;
 }
