@@ -58,7 +58,7 @@
 						<div class="img">
 							<img src="" alt="기본이미지">
 						</div>
-						<div id="board-title">${vo.title}</div>
+						<div id="board-title"><a href="/Mylog/board/detail?no=${vo.no}"> ${vo.title}</a></div>
 						<div class="c-summary">내용 요약 : ${vo.content}</div>
 						<div id="board-tag">
 							<a href="">${vo.category}</a>

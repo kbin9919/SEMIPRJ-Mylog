@@ -52,6 +52,7 @@ public class AdminWriteNoticeController extends HttpServlet {
 			noticeVo.setCategoryNo(categoryNo);
 			noticeVo.setWriterNo(writerNo);
 			System.out.println(noticeVo);
+			
 			Collection<Part> parts = req.getParts();
 			
 			System.out.println(parts);

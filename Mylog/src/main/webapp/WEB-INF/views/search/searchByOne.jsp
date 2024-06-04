@@ -31,7 +31,7 @@
 							: ${requestScope.vo.enrollDate}</span>
 					</div>
 					<c:if
-						test="${requestScope.vo.writerNo == sessionScope.loginMemberVo.no}">
+						test="${requestScope.vo.writerNo == sessionScope.loginAdminVo.no}">
 						<button
 							onclick="location.href='/Mylog/board/edit?no=${requestScope.vo.no}'">수정</button>
 						<button
@@ -77,7 +77,7 @@
 
 		<div class="comment-main">
 			<h2>${vo.commentCount}개의댓글</h2>
-			<c:if test="${ sessionScope.loginMember != null}">
+			<c:if test="${ sessionScope.loginAdminVo != null}">
 				<div class="comment-write">
 					<input type="hidden" name="boardNo" value="${requestScope.vo.no}">
 					<div class="comment-area">
@@ -90,7 +90,7 @@
 				</div>
 			</c:if>
 
-			<c:if test="${sessionScope.loginMember == null}">
+			<c:if test="${sessionScope.loginAdminVo == null}">
 				<span>로그인 후 댓글 작성 가능합니다.</span>
 			</c:if>
 		</div>

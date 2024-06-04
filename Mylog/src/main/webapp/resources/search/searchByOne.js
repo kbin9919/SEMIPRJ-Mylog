@@ -15,7 +15,7 @@ function loadReplyList(boardNo) {
 				str += "<div>";
 				str += "<div>" + CVoList[i].writerNick + "</div>";
 				str += "<div>" + CVoList[i].enrollDate + "</div>";
-				if (CVoList[i].writerNo == sessionScope.loginMember.no) {
+				if (CVoList[i].writerNo == sessionScope.loginAdminVo.no) {
 					str += "<button onclick=\"location.href='/Mylog/comment/edit?no=" + CVoList[i].no + "'\">수정</button>";
 					str += "<button onclick=\"location.href='/Mylog/comment/delete?no=" + CVoList[i].no + "'\">삭제</button>";
 				}

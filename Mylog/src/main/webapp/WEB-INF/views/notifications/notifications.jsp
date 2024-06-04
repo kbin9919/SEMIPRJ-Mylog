@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.mylog.app.Notification" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -12,7 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
+        }"src/main/main/mainHome.jsp"
         header {
             background-color: white;
             padding: 20px;
@@ -58,7 +60,7 @@
             List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
             if (notifications != null && !notifications.isEmpty()) {
                 for (Notification notification : notifications) {
-                    out.println("<div class='notification'>" + notification.getMessage() + "</div>");
+                    out.println("<div class='notification'>" + notification.getType() + "</div>");
                 }
             } else {
                 out.println("<div class='notification'>알림이 없습니다.</div>");

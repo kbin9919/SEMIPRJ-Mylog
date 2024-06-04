@@ -188,7 +188,7 @@
 		SELECT * FROM CATEGORY ORDER BY NO DESC
 	</select>
 	
-	<select id="getAttachment" resultType="com.mylog.app.board.vo.AttachmentVo">
+	<select id="getAttachment" resultType="com.mylog.app.util.vo.AttachmentVo">
 		SELECT * FROM BOARD_ATTACHMENT WHERE BOARD_NO = #{no} AND DEL_YN = 'N'
 	</select>
 	
@@ -204,7 +204,7 @@
 		 ) 
 		 VALUES 
 		 (
-			 (SELECT FN_GET_BOARD_ATTACHMENT_SEQ_NEXTVAL FROM DUAL)
+			 SEQ_BOARD_ATTACHMENT.NEXTVAL
 			 , SEQ_BOARD.CURRVAL
 			 , #{vo.originName}
 			 , #{vo.changeName}

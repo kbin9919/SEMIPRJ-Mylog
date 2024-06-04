@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.mylog.app.board.vo.AttachmentVo;
+import com.mylog.app.util.vo.AttachmentVo;
 import com.mylog.app.board.vo.BoardVo;
 import com.mylog.app.board.vo.CategoryVo;
 import com.mylog.app.recommend.vo.RecommendVo;

@@ -18,10 +18,10 @@
 <body>
 
 	<c:choose>
-		<c:when test="${not empty sessionScope.loginMember}">
+		<c:when test="${not empty sessionScope.loginAdminVo}">
 			<div class="new_board">
 				<div class="write_board">
-					<form action="/Mylog/board/write" method="post"
+					<form action="/Mylog/board/write" method="post	"
 						enctype="multipart/form-data">
 						<div class="write_title">
 							<textarea name="title" placeholder="제목을 입력하세요" class="title"

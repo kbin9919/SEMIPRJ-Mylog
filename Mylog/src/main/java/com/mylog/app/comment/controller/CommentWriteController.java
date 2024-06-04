@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.admin.member.vo.MemberVo;
 import com.mylog.app.board.service.BoardService;
 import com.mylog.app.board.vo.BoardVo;
@@ -25,15 +26,14 @@ public class CommentWriteController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession();
 
-//			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
+			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
 
 			String boardNo = req.getParameter("boardNo");
 			String content = req.getParameter("content");
 
 			CommentVo vo = new CommentVo();
 			vo.setBoardNo(boardNo);
-//			vo.setWriterNo(loginMember.getNo());
-			vo.setWriterNo("2");
+			vo.setWriterNo(loginAdminVo.getNo());
 			vo.setContent(content);
 
 			CommentService cs = new CommentService();

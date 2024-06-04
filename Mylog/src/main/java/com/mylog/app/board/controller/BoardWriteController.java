@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.mylog.app.admin.member.vo.AdminVo;
 import com.mylog.app.board.service.BoardService;
-import com.mylog.app.board.vo.AttachmentVo;
 import com.mylog.app.board.vo.BoardVo;
 import com.mylog.app.board.vo.CategoryVo;
 import com.mylog.app.board.vo.MemberVo;
 import com.mylog.app.util.file.FileUpload;
+import com.mylog.app.util.vo.AttachmentVo;
 
 @MultipartConfig(maxFileSize = 1024 * 1024 * 50, maxRequestSize = 1024 * 1024 * 500, fileSizeThreshold = 1024 * 1024
 		* 50)
@@ -67,8 +68,8 @@ public class BoardWriteController extends HttpServlet {
 				attVoList.add(attVo);
 			}
 			
-			MemberVo loginMember = (MemberVo) session.getAttribute("loginMember");
-			String writerNo = loginMember.getNo();
+			AdminVo loginAdminVo = (AdminVo) session.getAttribute("loginAdminVo");
+			String writerNo = loginAdminVo.getNo();
 
 			BoardVo vo = new BoardVo();
 			vo.setCategoryNo(categoryNo);

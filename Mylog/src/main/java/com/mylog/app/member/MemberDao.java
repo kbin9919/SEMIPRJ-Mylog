@@ -1,14 +1,20 @@
-import java.sql.*;
+package com.mylog.app.member;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.sql.DataSource;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public class MemberDao {
-    private final DataSource dataSource;
+    
+    private DataSource dataSource;
 
-    public MemberDao(DataSource dataSource) {
+	public MemberDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

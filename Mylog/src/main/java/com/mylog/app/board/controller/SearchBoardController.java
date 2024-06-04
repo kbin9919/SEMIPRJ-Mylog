@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mylog.app.board.service.BoardService;
-import com.mylog.app.board.vo.AttachmentVo;
+import com.mylog.app.util.vo.AttachmentVo;
 import com.mylog.app.board.vo.BoardVo;
 import com.mylog.app.util.vo.SearchVo;
 
