@@ -4,7 +4,7 @@
 <div id="notice-list">
 	<c:forEach items="${noticeVoList}" var="vo">
 		<a href="/Mylog/select/notice?no=${vo.no}" class="notice-content">
-			<div class="highlightable">${vo.title}</div> <img src="" alt="png.">
+			<div class="highlightable">${vo.title}</div> <img src="/Mylog/resources/upload/${vo.png}" alt="png.">
 			<div class="highlightable">${vo.content}</div>
 		</a>
 	</c:forEach>

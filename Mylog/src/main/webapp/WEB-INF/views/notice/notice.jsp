@@ -35,13 +35,17 @@
 			</table>
 		</div>
 		<div class="notice-main">
+			<c:if test="${loginAdminVo != null}">
+				<a href="/Mylog/admin/writer/notice" class="writer-faq">게시글 작성</a>
+			</c:if>
 			<%@ include file="/WEB-INF/views/layout/community.jsp"%>
-			
+				
 			<div class="range">
+			
 				<div class="notice-content-sell">
 					<c:forEach items="${noticeVoList}" var="vo">
 						<a href="/Mylog/select/notice?no=${vo.no}" class="notice-content">
-							<div>${vo.title}</div> <img src="" alt="png.">
+							<div>${vo.title}</div> <img src="/Mylog/resources/upload/${vo.png}" alt="png.">
 							<div>${vo.content}</div>
 						</a>
 					</c:forEach>

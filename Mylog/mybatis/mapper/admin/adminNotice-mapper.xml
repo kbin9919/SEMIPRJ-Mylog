@@ -13,7 +13,7 @@
 		 	INTO NOTICE_ATTACHMENT
 		 	(
 				 NO
-				 , REF_NO
+				 , NOTICE_NO
 				 , ORIGIN_NAME
 				 , CHANGE_NAME
 			 ) 

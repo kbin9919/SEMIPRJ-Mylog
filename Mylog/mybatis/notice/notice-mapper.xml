@@ -10,7 +10,9 @@
 		(
 			SELECT ROWNUM AS R
 			, N.*
+			, A.CHANGE_NAME AS PNG
 			FROM NOTICE N
+			JOIN NOTICE_ATTACHMENT A ON N.NO = A.NOTICE_NO
 			ORDER BY ENROLL_DATE DESC
 		)
 		WHERE R BETWEEN #{startNo} AND #{endNo}
@@ -85,5 +87,45 @@
         WHERE CATEGORY_NO = #{categoryNo} 
         AND (TITLE LIKE '%로그인%' OR CONTENT LIKE '%로그인%')
 	</select>
+	
+	<insert id="noticeWrite">
+		INSERT INTO BOARD
+		(
+			NO
+			, TITLE
+			, CONTENT
+			, CATEGORY_NO
+			, WRITER_NO
+		) 
+		VALUES
+		(
+			SEQ_NOTICE.NEXTVAL
+			, #{title}
+			, #{content}
+			, #{categoryNo}
+			, #{writerNo}
+		)
+	</insert>
+	
+	<insert id="insertNoticeAttachment">
+		INSERT ALL
+		<foreach collection="list" item="vo" separator=" ">
+		 INTO NOTICE_ATTACHMENT
+		 (
+			 NO
+			 , NOTICE_NO
+			 , ORIGIN_NAME
+			 , CHANGE_NAME
+		 ) 
+		 VALUES 
+		 (
+			 SEQ_NOTICE_ATTACHMENT.NEXTVAL
+			 , SEQ_NOTICE.CURRVAL
+			 , #{vo.originName}
+			 , #{vo.changeName}
+		 )
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
 	
 </mapper>
