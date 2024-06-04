@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="FaqMapper">
+
+	<select id="faqList" resultType="FAQVo">
+		SELECT *
+		FROM
+		(
+			SELECT ROWNUM AS R
+			, F.*
+			FROM FAQ F
+            WHERE DEL_DATE IS NULL
+			ORDER BY ENROLL_DATE
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="getTotPage" resultType="int">
+		SELECT COUNT(NO) AS COUNT
+		FROM FAQ
+	</select>
+	
+	<select id="selectFaq" resultType="FAQVo">
+		SELECT 
+			NO
+			, TITLE
+			, CONTENT
+			, ENROLL_DATE
+			, MODIFY_DATE
+			, DEL_DATE    		
+		FROM FAQ
+		WHERE NO = #{no}
+	</select>
+	
+	<select id="searchFaqList" resultType="FAQVo">
+		SELECT *
+		FROM
+		(
+		    SELECT F.*
+		    ,ROWNUM R
+		 		   FROM
+		    (
+		        SELECT 
+		            TITLE
+		            , CONTENT
+		            , ENROLL_DATE
+		            , MODIFY_DATE
+		        FROM FAQ
+		        WHERE DEL_DATE IS NULL
+		        AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+		        ORDER BY 
+		            CASE 
+		            <if test="type == 'title'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 1
+		            ELSE 2
+		            </if> 
+		            <if test="type == 'content'">
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 2
+		            ELSE 1
+		            </if> 
+		            END, ENROLL_DATE DESC
+		    ) F
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="getSearchTotPage" resultType="int">
+        		SELECT 
+            	COUNT(NO)
+       	 		FROM FAQ
+        		WHERE DEL_DATE IS NULL
+        		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+	</select>
+	
+</mapper>

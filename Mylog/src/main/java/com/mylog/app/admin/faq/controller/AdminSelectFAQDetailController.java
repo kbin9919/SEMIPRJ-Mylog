@@ -19,14 +19,13 @@ public class AdminSelectFAQDetailController extends HttpServlet{
 		try {
 			//data
 			String no = req.getParameter("no");
-			
 			//service
-			FAQService NoticeService = new FAQService();
-			FAQVo noticeVo = NoticeService.noticeDetail(no);
+			FAQService faqService = new FAQService();
+			FAQVo faqVo = faqService.faqDetail(no);
 			
 			//result
 			PrintWriter out = resp.getWriter();
-			out.write("noticeVo : " + noticeVo);;
+			out.write("noticeVo : " + faqVo);;
 			
 		}catch(Exception e) {
 			e.printStackTrace();

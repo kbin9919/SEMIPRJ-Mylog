@@ -3,7 +3,7 @@ package com.mylog.app.admin.faq.vo;
 public class FAQVo {
 	private String no;
 	private String title;
-	private String contents;
+	private String content;
 	private String enrollDate;
 	private String modifyDate;
 	private String delDate;
@@ -12,11 +12,11 @@ public class FAQVo {
 		super();
 	}
 
-	public FAQVo(String no, String title, String contents, String enrollDate, String modifyDate, String delDate) {
+	public FAQVo(String no, String title, String content, String enrollDate, String modifyDate, String delDate) {
 		super();
 		this.no = no;
 		this.title = title;
-		this.contents = contents;
+		this.content = content;
 		this.enrollDate = enrollDate;
 		this.modifyDate = modifyDate;
 		this.delDate = delDate;
@@ -38,12 +38,12 @@ public class FAQVo {
 		this.title = title;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String contents) {
+		this.content = contents;
 	}
 
 	public String getEnrollDate() {
@@ -72,7 +72,7 @@ public class FAQVo {
 
 	@Override
 	public String toString() {
-		return "FAQVo [no=" + no + ", title=" + title + ", contents=" + contents + ", enrollDate=" + enrollDate
+		return "FAQVo [no=" + no + ", title=" + title + ", content=" + content + ", enrollDate=" + enrollDate
 				+ ", modifyDate=" + modifyDate + ", delDate=" + delDate + "]";
 	}
 	

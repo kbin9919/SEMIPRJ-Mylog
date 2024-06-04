@@ -16,16 +16,14 @@ import com.mylog.app.admin.member.vo.MemberVo;
 @WebServlet("/admin/select/member/detail")
 public class AdminSelectMemberDetailController extends HttpServlet{
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
 			String no = req.getParameter("no");
 			AdminMemberService adminService = new AdminMemberService();
 			MemberVo memberVo = adminService.selectMemberDetail(no);
-			
-//			req.getRequestDispatcher("/WEB-INF/views/admin/member/detail.jsp").forward(req, resp);
-			PrintWriter out = resp.getWriter();
-			out.write("관리자 로그인 성공! : " + memberVo);
+			req.setAttribute("memberVo", memberVo);
+			req.getRequestDispatcher("/WEB-INF/views/admin/detailMember.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

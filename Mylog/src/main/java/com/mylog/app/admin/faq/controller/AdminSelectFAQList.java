@@ -27,13 +27,13 @@ public class AdminSelectFAQList extends HttpServlet{
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
 			
-			FAQService noticeService = new FAQService();
-			List<FAQVo> noticeVoList = noticeService.selectNoticeList(searchVo);
+			FAQService faqService = new FAQService();
+			List<FAQVo> faqVoList = faqService.selectFaqList(searchVo);
 			
 //			req.setAttribute("memberVoList", memberVoList);
 //			req.getRequestDispatcher("/WEB-INF/views/admin/member/select.jsp").forward(req, resp);
 			PrintWriter out = resp.getWriter();
-			out.write("리스트 : " + noticeVoList);
+			out.write("리스트 : " + faqVoList);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

@@ -15,7 +15,7 @@ public class AdminLogoutController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		session.removeAttribute("loginAdminVo");
-		resp.sendRedirect("/app/home");
+		resp.sendRedirect("/Mylog/admin/main");
 	}
 	
 	@Override

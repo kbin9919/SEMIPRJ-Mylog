@@ -2,40 +2,50 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <link rel="stylesheet" href="/Mylog/resources/qna/writeQna.css">
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
 </head>
-<body>
 
-	<header>
-		<div class="top">
-			<div>MyLog</div>
-			<div>MyHome</div>
-			<div class="top-right">
-				<div>알림</div>
-				<div>검색</div>
-				<div id="newBoard">새 글 작성</div>
-				<div>set</div>
+<body>
+	<%@ include file="/WEB-INF/views/layout/header.jsp"%>
+	<div class="notice-body">
+		<a href="/Mylog/qna" class="notice-title">
+			<div>QNA</div>
+		</a>
+		<div class="tag notice-tag">
+			<table>
+				<tr>
+					<td>
+						<div id="tagList">태그 목록</div>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="/Mylog/notice" class="">NOTICE</a></td>
+				</tr>
+				<tr>
+					<td><a href="/Mylog/faq">FAQ</a></td>
+				</tr>
+				<tr>
+					<td><a href="/Mylog/qna" class="tag-focus">QNA</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="notice-main">
+			<div class="qna-write-main">
+				<form action="/Mylog/writeQna" method="post">
+					<div><input type="text" name="qna-title" placeholder="제목을 입력하세요"></div>
+					<div><textarea name="qna-content" placeholder="내용을 입력하세요" class="notice-textarea" cols="30" rows="10"></textarea></div>
+					<div class="qna-write-input">
+						<div>비밀글<input type="checkbox" id="secretYn" name="secretYn"></div>
+						<div class="qna-write-submit"><input type="submit" name="qna-write-submit" value="QNA작성"></div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</header>
-	<aside></aside>
-	<main class="QNA-wpage">
-		<h1>Q&A 작성</h1>
-		<div class="wqna-title">
-			<input type="text" placeholder="제목을 입력하세요" class="title">
-		</div>
-		<div>
-			<textarea id="" class="wqna-content" placeholder="내용을 입력하세요"></textarea>
-		</div>
-		<div class="btn-main">
-			<button class="wbtn">작성하기</button>
-		</div>
-
-	</main>
-
-
+	</div>
 </body>
+
 </html>

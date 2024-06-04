@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 
 @WebServlet("/admin/notice/list")
@@ -20,7 +20,7 @@ public class AdminNoticeListController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		try {
-			NoticeService noticeService = new NoticeService();
+			AdminNoticeService noticeService = new AdminNoticeService();
 			List<NoticeVo> noticeVoList = noticeService.noticeList();
 			
 			//result

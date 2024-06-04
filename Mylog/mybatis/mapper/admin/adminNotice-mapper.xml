@@ -7,6 +7,27 @@
 		INSERT INTO NOTICE(NO, CATEGORY_NO, WRITER_NO, TITLE, CONTENT) VALUES(SEQ_NOTICE.NEXTVAL, #{categoryNo}, #{writerNo}, #{title}, #{content})
 	</insert>
 		
+	<insert id="insertNoticeAttachment">
+			<foreach collection="list" item="vo" separator=" ">
+			INSERT ALL
+		 	INTO NOTICE_ATTACHMENT
+		 	(
+				 NO
+				 , NOTICE_NO
+				 , ORIGIN_NAME
+				 , CHANGE_NAME
+			 ) 
+			 VALUES 
+			 (
+				 SEQ_NOTICE_ATTACHMENT.NEXTVAL
+				 , SEQ_NOTICE.CURRVAL
+				 , #{vo.originName}
+				 , #{vo.changeName}
+		 	)
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>	
+		
 	<select id="noticeList" resultType="NoticeVo">
 		SELECT 
     		N.NO

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.mylog.app.admin.notice.service.NoticeService;
+import com.mylog.app.admin.notice.service.AdminNoticeService;
 import com.mylog.app.admin.notice.vo.NoticeVo;
 import com.mylog.app.util.vo.SearchVo;
 
@@ -27,7 +27,7 @@ public class AdminSelectNoticeList extends HttpServlet{
 			searchVo.setSearchValue(searchValue);
 			searchVo.setType(type);
 			
-			NoticeService noticeService = new NoticeService();
+			AdminNoticeService noticeService = new AdminNoticeService();
 			List<NoticeVo> noticeVoList = noticeService.selectNoticeList(searchVo);
 			
 //			req.setAttribute("memberVoList", memberVoList);

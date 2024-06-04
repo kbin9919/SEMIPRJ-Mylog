@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdminQNAMapper">
+
+	<update id="qnaWrite">
+		UPDATE QNA 
+		SET ADMIN_NO = #{adminNo} , ANSWER_TITLE = #{answerTitle}, ANSWER_CONTENT = #{answerContent}, ANSWER_DATE = SYSDATE
+		WHERE NO = #{no}
+	</update>
+		
+	<select id="qnaList" resultType="QNAVo">
+		SELECT 
+			Q.NO
+			, Q.WRITER_NO
+			, M.NICK
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.CREATED_DATE
+			, Q.SECRET_YN
+			, Q.ADMIN_NO
+			, A.NICK AS ADMIN_NICK
+			, Q.ANSWER_TITLE
+			, Q.ANSWER_CONTENT
+			, Q.ANSWER_DATE
+			, Q.DEL_DATE		 
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO = Q.WRITER_NO
+		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
+		ORDER BY NO
+	</select>	
+		
+	<select id="qnaDetail" resultType="QNAVo">
+		SELECT 
+			Q.NO
+			, Q.WRITER_NO
+			, M.NICK
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.CREATED_DATE
+			, Q.SECRET_YN
+			, Q.ADMIN_NO
+			, A.NICK AS ADMIN_NICK
+			, Q.ANSWER_TITLE
+			, Q.ANSWER_CONTENT
+			, Q.ANSWER_DATE
+			, Q.DEL_DATE		 
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO = Q.WRITER_NO
+		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
+		WHERE Q.NO = #{no}
+	</select>
+	
+	<select id="selectQnaList" resultType="QNAVo">
+		SELECT 
+			Q.NO
+			, Q.WRITER_NO
+			, M.NICK
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.CREATED_DATE
+			, Q.SECRET_YN
+			, Q.ADMIN_NO
+			, A.NICK AS ADMIN_NICK
+			, Q.ANSWER_TITLE
+			, Q.ANSWER_CONTENT
+			, Q.ANSWER_DATE
+			, Q.DEL_DATE		 
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO = Q.WRITER_NO
+		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
+		WHERE TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+		<if test="type == 'title'">
+		ORDER BY TITLE
+		</if> 
+		<if test="type == 'content'">
+		ORDER BY CONTENT
+		</if>
+	</select>
+	
+	<delete id="qnaDelete">
+		DELETE FROM QNA WHERE NO = {no}
+	</delete>
+	
+</mapper>

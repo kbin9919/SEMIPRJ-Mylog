@@ -3,15 +3,23 @@ package com.mylog.app.util.vo;
 public class SearchVo {
 	private String searchValue;
 	private String type;
-
+	private String categoryNo;
+	private String startNo; 
+	private String endNo;
+	private String writerNo;
+	
 	public SearchVo() {
 		super();
 	}
 
-	public SearchVo(String searchValue, String type) {
+	public SearchVo(String searchValue, String type, String categoryNo, String startNo, String endNo, String writerNo) {
 		super();
 		this.searchValue = searchValue;
 		this.type = type;
+		this.categoryNo = categoryNo;
+		this.startNo = startNo;
+		this.endNo = endNo;
+		this.writerNo = writerNo;
 	}
 
 	public String getSearchValue() {
@@ -30,9 +38,42 @@ public class SearchVo {
 		this.type = type;
 	}
 
+	public String getCategoryNo() {
+		return categoryNo;
+	}
+
+	public void setCategoryNo(String categoryNo) {
+		this.categoryNo = categoryNo;
+	}
+
+	public String getStartNo() {
+		return startNo;
+	}
+
+	public void setStartNo(String startNo) {
+		this.startNo = startNo;
+	}
+
+	public String getEndNo() {
+		return endNo;
+	}
+
+	public void setEndNo(String endNo) {
+		this.endNo = endNo;
+	}
+
+	public String getWriterNo() {
+		return writerNo;
+	}
+
+	public void setWriterNo(String writerNo) {
+		this.writerNo = writerNo;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchVo [searchValue=" + searchValue + ", type=" + type + "]";
+		return "SearchVo [searchValue=" + searchValue + ", type=" + type + ", categoryNo=" + categoryNo + ", startNo="
+				+ startNo + ", endNo=" + endNo + ", writerNo=" + writerNo + "]";
 	}
 
 }

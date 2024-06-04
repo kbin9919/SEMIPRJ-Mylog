@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QnaMapper">
+
+	<select id="qnaList" resultType="QNAVo">
+		SELECT *
+		FROM
+		(
+			SELECT ROWNUM AS R
+			, Q.*
+			FROM QNA Q
+			WHERE DEL_DATE IS NULL
+			ORDER BY CREATED_DATE DESC
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+			<if test="type == 'my'">
+        		AND WRITER_NO = #{writerNo}
+			</if>
+	</select>
+
+	<select id="getTotPage" resultType="int">
+		SELECT COUNT(NO) AS COUNT
+		FROM QNA
+		WHERE DEL_DATE IS NULL
+	</select>
+	
+	<select id="selectQna" resultType="QNAVo">
+		SELECT 
+			Q.NO
+			, Q.WRITER_NO
+			, M.NICK
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.CREATED_DATE
+			, Q.SECRET_YN
+			, Q.ADMIN_NO
+			, A.NICK AS ADMIN_NICK
+			, Q.ANSWER_TITLE
+			, Q.ANSWER_CONTENT
+			, Q.ANSWER_DATE
+			, Q.DEL_DATE		 
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO = Q.WRITER_NO
+		LEFT JOIN MEMBER A ON M.NO = Q.ADMIN_NO
+		WHERE Q.NO = #{no}
+	</select>
+	
+	<update id="qnaWrite">
+		INSERT INTO QNA(NO, WRITER_NO, TITLE, CONTENT, SECRET_YN) VALUES(SEQ_QNA.NEXTVAL, #{writerNo}, #{title}, #{content}, #{secretYn})		
+	</update>
+	
+	<select id="searchQnaList" resultType="QNAVo">
+		SELECT *
+		FROM
+		(
+    		SELECT 
+    			Q.*
+    			,ROWNUM R
+    		FROM
+    		(
+        		SELECT 
+            		TITLE
+            		, CONTENT
+            		, CREATED_DATE
+            		, SECRET_YN
+        		FROM QNA
+        		WHERE DEL_DATE IS NULL AND
+        			<if test="type == 'all'"> 
+        				SECRET_YN = 'N'
+        			</if>
+        			<if test="type == 'my'">
+        				WRITER_NO = #{writerNo}
+		            </if>
+        				AND (TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%')
+        			ORDER BY
+            		<if test="type == 'all'">
+            		CASE 
+		            WHEN TITLE LIKE '%${searchValue}%' THEN 1
+		            ELSE 2 END, 
+		            </if>
+		            CREATED_DATE DESC
+    		) Q
+		)
+		WHERE R BETWEEN #{startNo} AND #{endNo}
+	</select>
+	
+	<select id="getSearchTotPage" resultType="int">
+        		SELECT 
+            		COUNT(NO)
+        		FROM QNA
+        		WHERE DEL_DATE IS NULL AND SECRET_YN = 'N'
+        		AND TITLE LIKE '%${searchValue}%' OR CONTENT LIKE '%${searchValue}%'
+	</select>
+	
+</mapper>
